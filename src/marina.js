@@ -1,0 +1,1 @@
+var newFile = 'Hey, this is a new file.'
