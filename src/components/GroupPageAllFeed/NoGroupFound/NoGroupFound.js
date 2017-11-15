@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class NoGroupFound extends Component {
     render(){
         return(
-            <div>NoGroupFound</div>
+            <div className='NoGroupFound'>NoGroupFound</div>
         )
     }
 }

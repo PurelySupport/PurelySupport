@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class FriendListModal extends Component {
     render(){
         return(
-            <div>FriendListModal</div>
+            <div className='FriendListModal'>FriendListModal</div>
         )
     }
 }

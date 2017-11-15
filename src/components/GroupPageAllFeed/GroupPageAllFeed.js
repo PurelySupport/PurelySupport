@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class GroupPageAllFeed extends Component {
     render(){
         return(
-            <div>GroupPageAllFeed</div>
+            <div className='GroupPageAllFeed'>GroupPageAllFeed</div>
         )
     }
 }

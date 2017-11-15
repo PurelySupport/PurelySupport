@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Dashboard extends Component {
     render(){
         return(
-            <div>Dashboard</div>
+            <div className='Dashboard'>Dashboard</div>
         )
     }
 }

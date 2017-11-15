@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Messages
- extends Component {
+class Messages extends Component {
     render(){
         return(
-            <div>Messages
-                
-            </div>
+            <div className='Messages'>Messages</div>
         )
     }
 }
@@ -18,5 +15,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Messages
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);

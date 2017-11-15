@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class NewGroupModal extends Component {
     render(){
         return(
-            <div>NewGroupModal</div>
+            <div className='NewGroupModal'>NewGroupModal</div>
         )
     }
 }

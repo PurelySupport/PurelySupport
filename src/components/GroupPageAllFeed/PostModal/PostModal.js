@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './PostModal.css';
 
 class PostModal extends Component {
     render(){

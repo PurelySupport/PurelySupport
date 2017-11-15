@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class MyActivityLog extends Component {
     render(){
         return(
-            <div>MyActivityLog</div>
+            <div className='MyActivityLog'>MyActivityLog</div>
         )
     }
 }

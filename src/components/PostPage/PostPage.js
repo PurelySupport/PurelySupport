@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class PostPage extends Component {
     render(){
         return(
-            <div>PostPage</div>
+            <div className='PostPage'>PostPage</div>
         )
     }
 }

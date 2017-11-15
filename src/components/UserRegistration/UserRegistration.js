@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class UserRegistration extends Component {
     render(){
         return(
-            <div>UserRegistration</div>
+            <div className='UserRegistration'>UserRegistration</div>
         )
     }
 }

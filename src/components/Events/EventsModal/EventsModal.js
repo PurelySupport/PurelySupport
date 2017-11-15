@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class EventsModal extends Component {
     render(){
         return(
-            <div>EventsModal</div>
+            <div className='EventsModal'>EventsModal</div>
         )
     }
 }

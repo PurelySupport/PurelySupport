@@ -4,17 +4,11 @@ import { connect } from 'react-redux';
 class Landing extends Component {
     render() {
         return (
-            <div className='App'>
-                <a href={process.env.REACT_APP_LOGIN}><button>Login</button></a>
+            <div className='Landing'>
+                <a href={process.env.REACT_APP_LOGIN}><button className='btn'>Login</button></a>
             </div>
         )
     }
 }
 
-function mapStateToProps(state) {
-    return {};
-}
-const mapDispatchToProps = {
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Landing);
+export default Landing;
