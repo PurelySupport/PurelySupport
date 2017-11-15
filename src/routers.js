@@ -21,7 +21,7 @@ import UserRegistration from './components/UserRegistration/UserRegistration';
 class Routers extends Component {
     render() {
         return(
-            <Router>
+            <div>
                 <Route exact path='/' Component={Landing}/>
                 <Route path='/dashboard' component={Dashboard}/>
                 <Route path='/accountsettings' component={AccountSettings}/>
@@ -33,7 +33,7 @@ class Routers extends Component {
                 <Route path='postpage' component={PostPage}/>
                 <Route path='/publicprofile' component={PublicProfile}/>
                 <Route path='userregistration' component={UserRegistration}/>    
-            </Router>
+            </div>
         )
     }
 }
