@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS Diseases(
+DiseaseId SERIAL PRIMARY KEY,
+Name Varchar (100)
+);
