@@ -40,12 +40,13 @@ function(accessToken, refreshToken, extraParams, profile, done) {
 
     db.find_user([ profile.identities[0].user_id ]).then( user => {
         if (user[0]){
-            return done(null, user[0].id)
+            console.log('TEST',user[0])
+            return done(null, user[0].userid)
         } else {
             const user = profile._json
             db.create_user([ user.name, user.email, user.picture, user.identities[0].user_id ])
             .then( user => {
-                return done(null, user[0].id)
+                return done(null, user[0].userid)
             })
         }
 
@@ -66,7 +67,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/auth/logout', ( req, res ) => {
     req.logOut();
-    res.redirect(302, 'http://localhost:3000/#/')
+    res.redirect(302, 'http://localhost:3000/')
 })
 
 passport.serializeUser( function( userid, done ) {
