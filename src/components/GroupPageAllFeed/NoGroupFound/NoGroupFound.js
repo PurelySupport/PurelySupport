@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class Navbar extends Component {
+class NoGroupFound extends Component {
     render(){
         return(
-            <div>Navbar</div>
+            <div>NoGroupFound</div>
         )
     }
 }
@@ -15,4 +15,4 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(NoGroupFound);
