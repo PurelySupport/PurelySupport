@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './NoGroupFound.css';
 
 class NoGroupFound extends Component {
     render(){
         return(
-            <div>NoGroupFound</div>
+            <div className='NoGroupFound'>NoGroupFound</div>
         )
     }
 }

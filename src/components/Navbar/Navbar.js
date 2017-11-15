@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Navbar.css';
 
 class Navbar extends Component {
     render(){
         return(
-            <div>Navbar</div>
+            <div className='Navbar'>Navbar</div>
         )
     }
 }

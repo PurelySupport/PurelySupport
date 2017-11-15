@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './GroupPageAllFeed.css';
 
 class GroupPageAllFeed extends Component {
     render(){
         return(
-            <div>GroupPageAllFeed</div>
+            <div className='GroupPageAllFeed'>GroupPageAllFeed</div>
         )
     }
 }

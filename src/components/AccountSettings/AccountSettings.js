@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './AccountSettings.css';
 
 class AccountSettings extends Component {
     render(){
         return(
-            <div>AccountSettings</div>
+            <div className='AccountSettings'>AccountSettings</div>
         )
     }
 }

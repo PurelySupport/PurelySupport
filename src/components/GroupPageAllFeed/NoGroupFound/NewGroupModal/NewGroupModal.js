@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './NewGroupModal.css';
 
 class NewGroupModal extends Component {
     render(){
         return(
-            <div>NewGroupModal</div>
+            <div className='NewGroupModal'>NewGroupModal</div>
         )
     }
 }

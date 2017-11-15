@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './PublicProfile.css';
 
 class PublicProfile extends Component {
     render(){
         return(
-            <div>PublicProfile</div>
+            <div className='PublicProfile'>PublicProfile</div>
         )
     }
 }

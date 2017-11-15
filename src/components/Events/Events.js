@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Events.css';
 
 class Events extends Component {
     render(){
         return(
-            <div>Events</div>
+            <div className='Events'>Events</div>
         )
     }
 }

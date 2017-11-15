@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './MyActivityLog.css';
 
 class MyActivityLog extends Component {
     render(){
         return(
-            <div>MyActivityLog</div>
+            <div className='MyActivityLog'>MyActivityLog</div>
         )
     }
 }
