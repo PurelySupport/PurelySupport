@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './EventsModal.css';
 
 class EventsModal extends Component {
     render(){

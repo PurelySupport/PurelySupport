@@ -69,12 +69,12 @@ app.get('/auth/logout', ( req, res ) => {
     res.redirect(302, 'http://localhost:3000/#/')
 })
 
-passport.serializeUser( function( id, done ) {
-    done(null, id);
+passport.serializeUser( function( userid, done ) {
+    done(null, userid);
 })
 
-passport.deserializeUser( function( id, done ) {
-    app.get('db').find_current_user([ id ])
+passport.deserializeUser( function( userid, done ) {
+    app.get('db').find_current_user([ userid ])
     .then( user => {
         done(null, user[0])
     })

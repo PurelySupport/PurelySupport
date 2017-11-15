@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './FriendListModal.css';
 
 class FriendListModal extends Component {
     render(){

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './MyActivityLog.css';
 
 class MyActivityLog extends Component {
     render(){

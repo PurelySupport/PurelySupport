@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import './NewGroupModal.css';
 
 class NewGroupModal extends Component {
     render(){

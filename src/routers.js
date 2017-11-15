@@ -22,7 +22,7 @@ class Routers extends Component {
     render() {
         return(
             <Router>
-                <Route exact path='/' Component={Landing}/>
+                <Route exact path='/' component={Landing}/>
                 <Route path='/dashboard' component={Dashboard}/>
                 <Route path='/accountsettings' component={AccountSettings}/>
                 <Route path='/events' component={Events}/>
