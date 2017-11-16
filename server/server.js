@@ -86,13 +86,15 @@ passport.deserializeUser( function( userid, done ) {
 
 
 
-app.get('/api/getuserinfo', userController.getUserInfo);
+app.get('/api/getuserinfo/:id', userController.getUserInfo);
 
 app.get('/api/getdiseases', userController.getDiseases);
 
 app.get('/api/getinterests', userController.getInterests);
 
 app.get('/api/groups', userController.getGroups);
+
+app.get('/api/getusercredentials/:id', userController.getUserCredentials);
 
 app.put('/api/updategroups', userController.updateGroups);
 

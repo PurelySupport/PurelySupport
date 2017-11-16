@@ -32,7 +32,7 @@ module.exports = {
     updateGroups: (req, res, next) => {
         const db = req.app.get('db')
         const body = req.body;
-        db.update_user_groups([body.groupid])
+        db.update_user_groups([body.userid, body.groupid])
         .then( res => {
             res.status(200).send(res.data)
         })
@@ -55,7 +55,14 @@ module.exports = {
     },
     getUserInfo: (req, res, next) => {
         const db = req.app.get('db')
-        get_user_info()
+        db.get_user_info(req.params.id)
+        .then( res => {
+            res.status(200).send(res.data)
+        })
+    },
+    getUserCredentials: (req, res, next) => {
+        const db = req.app.get('db')
+        db.get_user_credentials(req.params.id)
         .then( res => {
             res.status(200).send(res.data)
         })
