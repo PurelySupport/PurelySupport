@@ -31,12 +31,13 @@
     transition: transform .5s, background-color .5s, color .5s;
   }
   /*the colors of the different columns*/
-  .side-menu ul li:nth-child(1) { background-color: #fff; border: 2px solid #000;}
-  .side-menu ul li:nth-child(2) { background-color: #fff; border: 2px solid #000; border-top: none;}
-  .side-menu ul li:nth-child(3) { background-color: #fff; border: 2px solid #000; border-top: none;}
-  .side-menu ul li:nth-child(4) { background-color: #fff; border: 2px solid #000; border-top: none;}
-  .side-menu ul li:nth-child(5) { background-color: #fff; border: 2px solid #000; border-top: none;}
+  .side-menu ul li:nth-child(1) { background-color: #fff; border: 2px solid #000; border-bottom: none;}
+  .side-menu ul li:nth-child(2) { background-color: #fff; border: 2px solid #000;}
+  .side-menu ul li:nth-child(3) { background-color: #fff; border: 2px solid #000;}
+  .side-menu ul li:nth-child(4) { background-color: #fff; border: 2px solid #000; border-bottom: none; border-top: none;}
+  .side-menu ul li:nth-child(5) { background-color: #fff; border: 2px solid #000;}
   .side-menu ul li:nth-child(6) { background-color: #fff; border: 2px solid #000;}
+  
   
   .side-menu ul li:hover {
     background-color: #000; /*you can make different colors depending on the nth-child like above*/
@@ -65,5 +66,14 @@
   i.icon {
     font-size: 2em;
     margin-right: -.8vw;
+    text-decoration: none;
+    cursor: pointer;
+    color: #C0B283
+  }
+
+  .fix_link {
+    text-decoration: none;
+    cursor: pointer;
+    color: #C0B283
   }
 }

@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { getUserDetails } from '../../ducks/reducer';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Form, Button, Divider } from 'semantic-ui-react';
 
 class AccountSettings extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
             displayName: '',
@@ -20,7 +20,7 @@ class AccountSettings extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getUserDetails()
         this.setState({
             displayName: this.props.userCredentials.displayname,
@@ -28,9 +28,9 @@ class AccountSettings extends Component {
             lastName: this.props.userCredentials.lastname,
             city: this.props.userCredentials.city,
             state: this.props.userCredentials.state,
-            // userInterests: this.props.userDetails.userInterests,
-            // userDiseases: this.props.userDetails.userDiseases,
-            // userGroups: this.props.userDetails.userGroups
+            userInterests: this.props.userDetails.userInterests,
+            userDiseases: this.props.userDetails.userDiseases,
+            userGroups: this.props.userDetails.userGroups
         })
     }
 
@@ -61,26 +61,28 @@ class AccountSettings extends Component {
             })
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className='AccountSettings'>
-            <h1>Account Settings</h1>
-                User Name
-                <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'displayName')} value={this.state.displayName} required></input><br />
-                First Name
-                <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'firstName')} value={this.state.firstName} required></input><br />
-                Last Name
-                <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'lastName')} value={this.state.lastName} required></input><br />
-                City
-                <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'city')} value={this.state.city} required></input><br />
-                State
-                <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'state')} value={this.state.state} required></input><br />
-                <Dropdown placeholder='Interests' fluid multiple search selection options={this.state.interests} /> 
-                <Dropdown placeholder='Diseases' fluid multiple search selection options={this.state.diseases} /> 
-                <Dropdown placeholder='Groups' fluid multiple search selection options={this.state.groups} /> 
-                <Link to='/dashboard'>
-                    <button onClick={() => this.updateRegistration()}>SUBMIT</button>
-                </Link>
+                <h1>Account Settings</h1>
+                <Form size='tiny' error>
+                    <Form.Input label='Username' placeholder={this.state.displayName} width={6} onChange={(e) => this.handleChange(e.target.value, 'displayName')} required />
+                    <Form.Group widths='equal'>
+                        <Form.Field label='First name' control='input' placeholder={this.state.firstName} onChange={(e) => this.handleChange(e.target.value, 'firstName')} required />
+                        <Form.Field label='Last name' control='input' placeholder={this.state.lastName} onChange={(e) => this.handleChange(e.target.value, 'lastName')} required />
+                    </Form.Group>
+                    <Form.Group widths='equal'>
+                        <Form.Field label='City' control='input' placeholder={this.state.city} onChange={(e) => this.handleChange(e.target.value, 'city')} required />
+                        <Form.Field label='State' control='input' placeholder={this.state.state} onChange={(e) => this.handleChange(e.target.value, 'state')} required />
+                    </Form.Group>
+                    <Dropdown placeholder='Interests' fluid multiple search selection options={this.state.interests} />
+                    <Dropdown placeholder='Diseases' fluid multiple search selection options={this.state.diseases} />
+                    <Dropdown placeholder='Groups' fluid multiple search selection options={this.state.groups} />
+                    <Link to='/dashboard'>
+                        <Button type='submit' onClick={() => this.updateAccountSettings()} >Submit</Button>
+                    </Link>
+                    <Divider hidden />
+                </Form>
             </div>
         )
     }
@@ -92,4 +94,4 @@ function mapStateToProps(state) {
         userDetails: state.userDetails
     }
 }
-export default connect(mapStateToProps, {getUserDetails})(AccountSettings);
+export default connect(mapStateToProps, { getUserDetails })(AccountSettings);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Dropdown, Form, Button, Divider } from 'semantic-ui-react';
 
 class UserRegistration extends Component {
     constructor() {
@@ -48,20 +49,21 @@ class UserRegistration extends Component {
     render() {
         return (
             <div className='UserRegistration'>
-            <h1>UserRegistration</h1>
-                User Name
-                <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'displayName')} required></input><br />
-                First Name
-                <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'firstName')} required></input><br />
-                Last Name
-                <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'lastName')} required></input><br />
-                City
-                <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'city')} required></input><br />
-                State
-                <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'state')} required></input><br />
-                <Link to='/dashboard'>
-                    <button onClick={() => this.updateRegistration()}>SUBMIT</button>
-                </Link>
+                <Form size='tiny' error>
+                    <Form.Input label='Username' placeholder='Username' width={6} onChange={(e) => this.handleChange(e.target.value, 'displayName')} required />
+                    <Form.Group widths='equal'>
+                        <Form.Field label='First name' control='input' placeholder='First Name' onChange={(e) => this.handleChange(e.target.value, 'firstName')} required />
+                        <Form.Field label='Last name' control='input' placeholder='Last Name' onChange={(e) => this.handleChange(e.target.value, 'lastName')} required />
+                    </Form.Group>
+                    <Form.Group widths='equal'>
+                        <Form.Field label='City' control='input' placeholder='City' onChange={(e) => this.handleChange(e.target.value, 'city')} required />
+                        <Form.Field label='State' control='input' placeholder='State' onChange={(e) => this.handleChange(e.target.value, 'state')} required />
+                    </Form.Group>
+                    <Link to='/dashboard'>
+                        <Button type='submit' onClick={() => this.updateRegistration()} >Submit</Button>
+                    </Link>
+                    <Divider hidden />
+                </Form>
             </div>
         )
     }

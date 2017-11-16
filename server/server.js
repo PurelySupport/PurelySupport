@@ -13,9 +13,9 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true
 }))
 app.use(cors())
 
@@ -24,7 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 massive(process.env.CONNECTION_STRING).then(db => {
-  app.set('db', db);
+    app.set('db', db);
 })
 
 passport.use(new Auth0Strategy({
@@ -32,27 +32,27 @@ passport.use(new Auth0Strategy({
     clientID: process.env.AUTH_CLIENT_ID,
     clientSecret: process.env.AUTH_CLIENT_SECRET,
     callbackURL: process.env.AUTH_CALLBACK_URL
-}, 
-function(accessToken, refreshToken, extraParams, profile, done) {
-    console.log(profile)
+},
+    function (accessToken, refreshToken, extraParams, profile, done) {
+        console.log(profile)
 
 
-    const db = app.get('db')
+        const db = app.get('db')
 
-    db.find_user([ profile.identities[0].user_id ]).then( user => {
-        if (user[0]){
-            // console.log('TEST',user[0])
-            return done(null, user[0].userid)
-        } else {
-            const user = profile._json
-            db.create_user([ user.name, user.email, user.picture, user.identities[0].user_id ])
-            .then( user => {
+        db.find_user([profile.identities[0].user_id]).then(user => {
+            if (user[0]) {
+                // console.log('TEST',user[0])
                 return done(null, user[0].userid)
-            })
-        }
+            } else {
+                const user = profile._json
+                db.create_user([user.name, user.email, user.picture, user.identities[0].user_id])
+                    .then(user => {
+                        return done(null, user[0].userid)
+                    })
+            }
 
-    })
-}))
+        })
+    }))
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
@@ -60,41 +60,36 @@ app.get('/auth/callback', passport.authenticate('auth0', {
     failureRedirect: '/auth'
 }));
 app.get('/auth/me', (req, res) => {
-    if(!req.user){
+    if (!req.user) {
         return res.status(404).send('User Not Found')
-    } 
+    }
     return res.status(200).send(req.user);
 })
 
-app.get('/auth/logout', ( req, res ) => {
+app.get('/auth/logout', (req, res) => {
     req.logOut();
     res.redirect(302, 'http://localhost:3000/')
 })
 
-passport.serializeUser( function( userid, done ) {
+passport.serializeUser(function (userid, done) {
     done(null, userid);
 })
 
-passport.deserializeUser( function( userid, done ) {
-    app.get('db').find_current_user([ userid ])
-    .then( user => {
-        done(null, user[0])
-    })
+passport.deserializeUser(function (userid, done) {
+    app.get('db').find_current_user([userid])
+        .then(user => {
+            done(null, user[0])
+        })
 })
 
 
 
-
-
-app.get('/api/getuserinfo/:id', userController.getUserInfo);
-
-app.get('/api/getdiseases', userController.getDiseases);
-
-app.get('/api/getinterests', userController.getInterests);
-
-app.get('/api/groups', userController.getGroups);
+//^^^WORKING ^^^
+app.put('/api/register', userController.register);
 
 app.get('/api/getusercredentials/:id', userController.getUserCredentials);
+
+app.get('/api/getuserinfo/:id', userController.getUserInfo);
 
 app.put('/api/updategroups', userController.updateGroups);
 
@@ -102,7 +97,13 @@ app.put('/api/updateinterests', userController.updateInterests);
 
 app.put('/api/updatediseases', userController.updateDiseases)
 
-app.put('/api/register', userController.register);
+app.get('/api/getdiseases', userController.getDiseases);
+
+app.get('/api/getinterests', userController.getInterests);
+
+app.get('/api/getgroups', userController.getGroups);
+
+app.post('/api/createpost', userController.createPost);
 
 
 
