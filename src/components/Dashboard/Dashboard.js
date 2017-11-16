@@ -1,20 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { getUserCredentials } from '../../ducks/reducer';
+import Navbar from '../Navbar/Navbar';
 
 class Dashboard extends Component {
-    render(){
-        return(
-            <div className='Dashboard'>Dashboard</div>
+
+    componentDidMount() {
+        this.props.getUserCredentials
+    }
+
+    componentWillReceiveProps(newProps) {
+        console.log(newProps)
+        if (newProps.userCredentials.displayname === null) {
+            this.props.history.push('/userregistration')
+        } else {
+            console.log('user registered')
+        }
+    }
+
+    render() {
+        const user = this.props.userCredentials
+        console.log(user)
+        return (
+            <div className='Dashboard'>Dashboard
+            <Navbar />
+            </div>
         )
     }
 }
 
 function mapStateToProps(state) {
-    return {  };
-}
-const mapDispatchToProps = {
+    return {
+        userCredentials: state.userCredentials
+
+    }
 }
 
-export default Dashboard;
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, { getUserCredentials })(Dashboard);
