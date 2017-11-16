@@ -41,7 +41,7 @@ function(accessToken, refreshToken, extraParams, profile, done) {
 
     db.find_user([ profile.identities[0].user_id ]).then( user => {
         if (user[0]){
-            console.log('TEST',user[0])
+            // console.log('TEST',user[0])
             return done(null, user[0].userid)
         } else {
             const user = profile._json
