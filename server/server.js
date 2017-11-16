@@ -6,7 +6,8 @@ const massive = require('massive');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const cors = require('cors');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const userController = require('./controllers/userController');
 
 const app = express();
 
@@ -80,6 +81,44 @@ passport.deserializeUser( function( userid, done ) {
         done(null, user[0])
     })
 })
+
+
+
+
+
+app.get('/api/getuserinfo/:id', userController.getUserInfo);
+
+app.get('/api/getdiseases', userController.getDiseases);
+
+app.get('/api/getinterests', userController.getInterests);
+
+app.get('/api/groups', userController.getGroups);
+
+app.get('/api/getusercredentials/:id', userController.getUserCredentials);
+
+app.put('/api/updategroups', userController.updateGroups);
+
+app.put('/api/updateinterests', userController.updateInterests);
+
+app.put('/api/updatediseases', userController.updateDiseases)
+
+app.put('/api/register', userController.register);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // app.post('/api/payment', function (req, res, next) {
 //   //convert amount to pennies
