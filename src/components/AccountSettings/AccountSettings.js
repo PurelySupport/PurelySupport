@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { getUserDetails } from '../../ducks/reducer';
+import { Dropdown } from 'semantic-ui-react';
 
 class AccountSettings extends Component {
     constructor(){
@@ -74,6 +75,9 @@ class AccountSettings extends Component {
                 <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'city')} value={this.state.city} required></input><br />
                 State
                 <input type='text' size='40' onChange={(e) => this.handleChange(e.target.value, 'state')} value={this.state.state} required></input><br />
+                <Dropdown placeholder='Interests' fluid multiple search selection options={this.state.interests} /> 
+                <Dropdown placeholder='Diseases' fluid multiple search selection options={this.state.diseases} /> 
+                <Dropdown placeholder='Groups' fluid multiple search selection options={this.state.groups} /> 
                 <Link to='/dashboard'>
                     <button onClick={() => this.updateRegistration()}>SUBMIT</button>
                 </Link>
