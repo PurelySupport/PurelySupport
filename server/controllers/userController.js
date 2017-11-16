@@ -55,9 +55,11 @@ module.exports = {
     },
     getUserInfo: (req, res, next) => {
         const db = req.app.get('db')
-        db.get_user_info(req.params.id)
-        .then( res => {
-            res.status(200).send(res.data)
+        const { params } = req;
+
+        db.get_user_info([params.id])
+        .then( userInfo => {
+            res.status(200).send(userInfo)
         })
     },
     getUserCredentials: (req, res, next) => {
