@@ -32,7 +32,7 @@ class Routers extends Component {
                 <Route path='/myactivitylog' component={MyActivityLog}/>
                 <Route path='postpage' component={PostPage}/>
                 <Route path='/publicprofile' component={PublicProfile}/>
-                <Route path='userregistration' component={UserRegistration}/>    
+                <Route path='/userregistration' component={UserRegistration}/>    
             </div>
         )
     }
