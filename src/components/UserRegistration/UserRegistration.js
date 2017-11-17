@@ -23,14 +23,16 @@ class UserRegistration extends Component {
             [formfield]: e
         })
     }
+    //body.userid, body.displayname, body.firstname, body.lastname, body.state, body.city
 
     updateRegistration() {
         const data = {
+            userid: this.props.userCredentials.userid,
             displayname: this.state.displayName,
             firstname: this.state.firstName,
             lastname: this.state.lastName,
+            state: this.state.state,
             city: this.state.city,
-            state: this.state.state
         }
 
         axios.put('/api/register', data)
