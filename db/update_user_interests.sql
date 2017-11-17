@@ -8,6 +8,8 @@ DECLARE
   interests_array_len int = array_upper(interests_array, 1);
 
  begin
+  DELETE FROM userinterests
+WHERE userid = $1;
   for i in 1..interests_array_len
     loop
       insert into userinterests (interestid, userid) Values ( interests_array[i], $1 );
