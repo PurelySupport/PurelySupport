@@ -106,7 +106,7 @@ module.exports = {
     postComment: (req, res, next) => {
         const db = req.app.get('db')
         const body = req.body;
-        db.post_comment([body.userid, body.postid, body.pointtotal, body.comment, body.timestamp])
+        db.post_comment([body.userid, body.postid, body.comment, body.timestamp])
         .then(data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('There was a problem posting your comment.'))
@@ -132,6 +132,13 @@ module.exports = {
         .then(data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('There was a problem upvoting this comment.'))
+    },
+    getPost: (req, res, next) => {
+        const db = req.app.get('db')
+        db.get_post([req.params.id])
+        .then(data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong retreiving the post'))
     }
 
 
