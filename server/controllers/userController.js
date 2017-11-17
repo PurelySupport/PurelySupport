@@ -21,6 +21,7 @@ module.exports = {
         db.get_user_info([params.id])
             .then(data => {
                 res.status(200).send(data)
+                console.log('ctrl', data)
             }).catch(() => res.status(500).send());
     },
     updateGroups: (req, res, next) => {
