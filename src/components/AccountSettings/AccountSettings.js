@@ -14,27 +14,27 @@ class AccountSettings extends Component {
             lastName: '',
             city: '',
             state: '',
-            userInterests: [],
+            userInterests: [1],
             userDiseases: [],
             userGroups: []
         }
-        this.handleChange = this.handleChange.bind( this );
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
         this.props.getUserDetails(this.props.userCredentials.userid)
         this.props.getDiseases()
         this.props.getInterests()
-        this.props.getGroups()        
+        this.props.getGroups()
         this.setState({
             displayName: this.props.userCredentials.displayname,
             firstName: this.props.userCredentials.firstname,
             lastName: this.props.userCredentials.lastname,
             city: this.props.userCredentials.city,
             state: this.props.userCredentials.state,
-            userInterests: this.props.userDetails.userInterests,
-            userDiseases: this.props.userDetails.userDiseases,
-            userGroups: this.props.userDetails.userGroups
+            userInterests: this.props.userDetails.interestid,
+            userDiseases: this.props.userDetails.diseaseid,
+            userGroups: this.props.userDetails.groupid
         })
     }
 
@@ -45,59 +45,87 @@ class AccountSettings extends Component {
     }
 
     updateAccountSettings() {
-        const data = {
+        const data1 = {
+            userid: this.props.userCredentials.userid,
             displayname: this.state.displayName,
             firstname: this.state.firstName,
             lastname: this.state.lastName,
-            city: this.state.city,
             state: this.state.state,
-            interests: this.state.userInterests,
-            diseases: this.state.userDiseases,
-            group: this.state.userGroups
+            city: this.state.city,
         }
 
-        axios.put('', data)
-            .then(res => {
-                this.setState({
-                    displayName: '',
-                    firstName: '',
-                    lastName: '',
-                    city: '',
-                    state: '',
-                    userInterests: [],
-                    userDiseases: [],
-                    userGroup: []
-                })
-            })
+        const data2 = {
+            userid: this.props.userCredentials.userid,
+            interestid: this.state.userInterests
+        }
+
+        const data3 = {
+            userid: this.props.userCredentials.userid,
+            groupid: this.state.userGroups,
+        }
+
+        const data4 = {
+            userid: this.props.userCredentials.userid,
+            diseaseid: this.state.userDiseases
+        }
+
+        axios.put('/api/register', data1)
+        .then(response => {})
+        console.log(data1)
+        axios.put('/api/updateinterests', data2)
+        .then(response => {})
+        console.log('data2', data2)
+        axios.put('/api/updategroups', data3)
+        .then(response => {})
+        console.log('data3', data3)
+        axios.put('/api/updatediseases', data4)
+        .then(response => {})
+        console.log('data4', data4)
     }
 
 
     render() {
-        console.log('interests', this.props.interests)
-        const interestList = this.props.interests
-        // const interestList = this.props.interests.map((property, index) => {
-        //     delete property.interestid
-        // })
-        
         return (
             <div className='AccountSettings'>
                 <h1>Account Settings</h1>
                 <Form size='tiny' error>
-                    <Form.Input label='Username' placeholder={this.state.displayName} width={6} onChange={(e) => this.handleChange(e.target.value, 'displayName')} required />
+                    <Form.Input label='Username' value={this.state.displayName} width={6} onChange={(e) => this.handleChange(e.target.value, 'displayName')} required />
                     <Form.Group widths='equal'>
-                        <Form.Field label='First name' control='input' placeholder={this.state.firstName} onChange={(e) => this.handleChange(e.target.value, 'firstName')} required />
-                        <Form.Field label='Last name' control='input' placeholder={this.state.lastName} onChange={(e) => this.handleChange(e.target.value, 'lastName')} required />
+                        <Form.Field label='First name' control='input' value={this.state.firstName} onChange={(e) => this.handleChange(e.target.value, 'firstName')} required />
+                        <Form.Field label='Last name' control='input' value={this.state.lastName} onChange={(e) => this.handleChange(e.target.value, 'lastName')} required />
                     </Form.Group>
                     <Form.Group widths='equal'>
-                        <Form.Field label='City' control='input' placeholder={this.state.city} onChange={(e) => this.handleChange(e.target.value, 'city')} required />
-                        <Form.Field label='State' control='input' placeholder={this.state.state} onChange={(e) => this.handleChange(e.target.value, 'state')} required />
+                        <Form.Field label='City' control='input' value={this.state.city} onChange={(e) => this.handleChange(e.target.value, 'city')} required />
+                        <Form.Field label='State' control='input' value={this.state.state} onChange={(e) => this.handleChange(e.target.value, 'state')} required />
                     </Form.Group>
-                    <Dropdown placeholder='Interests' fluid multiple search selection options={interestList} />
-                    <Dropdown placeholder='Diseases' fluid multiple search selection options={this.props.diseases} />
-                    <Dropdown placeholder='Groups' fluid multiple search selection options={this.props.groups} />
-                    <Link to='/dashboard'>
-                        <Button type='submit' onClick={() => this.updateAccountSettings()} >Submit</Button>
-                    </Link>
+
+
+                    <Dropdown placeholder='Interests' fluid multiple search selection options={this.props.interests.map((interest, index) => {
+                        return {
+                            key: interest.interestid,
+                            value: interest.interestid,
+                            text: interest.interest
+                        }
+                    })} onChange={(e, data) => this.setState({ userInterests: data.value })} />
+                    <Dropdown placeholder='Diseases' fluid multiple search selection options={this.props.diseases.map((disease, index) => {
+                        return {
+                            key: disease.diseaseid,
+                            value: disease.diseaseid,
+                            text: disease.name
+                        }
+                    })} onChange={(e, data) => this.setState({ userDiseases: data.value })} />
+                    <Dropdown placeholder='Groups' fluid multiple search selection options={this.props.groups.map((group, index) => {
+                        return {
+                            key: group.groupid,
+                            value: group.groupid,
+                            text: group.name
+                        }
+                    })} onChange={(e, data) => this.setState({ userGroups: data.value })} />
+
+
+                    {/* <Link to='/dashboard'> */}
+                    <Button type='submit' onClick={() => this.updateAccountSettings()} >Submit</Button>
+                    {/* </Link> */}
                     <Divider hidden />
                 </Form>
             </div>
