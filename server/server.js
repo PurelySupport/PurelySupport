@@ -105,20 +105,21 @@ app.get('/api/getgroups', userController.getGroups);
 
 app.post('/api/createpost', userController.createPost);
 
+// upvote post, upvote comment
 
+app.put('/api/updatepost', userController.updatePost);
 
+app.post('/api/creategroup', userController.createGroup);
 
+app.put('/api/updategroup', userController.updateGroup);
 
+app.post('/api/postcomment', userController.postComment);
 
+app.put('/api/updatecomment', userController.updateComment);
 
+app.put('/api/upvotepost', userController.upvotePost);
 
-
-
-
-
-
-
-
+app.put('/api/upvotecomment', userController.upvoteComment);
 
 
 // app.post('/api/payment', function (req, res, next) {
