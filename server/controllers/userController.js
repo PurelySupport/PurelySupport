@@ -146,6 +146,13 @@ module.exports = {
         .then( data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('Something went wrong retreiving the comments for this post'))
+    },
+    deleteComment: (req, res, next) => {
+        const db = req.app.get('db')
+        db.delete_comment([req.params.id])
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong deleting the comment'))
     }
 
 

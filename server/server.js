@@ -125,6 +125,7 @@ app.get('/api/getpost/:id', userController.getPost);
 
 app.get('/api/getcomments/:id', userController.getComments);
 
+app.put('/api/deletecomment/:id', userController.deleteComment);
 
 // app.post('/api/payment', function (req, res, next) {
 //   //convert amount to pennies
