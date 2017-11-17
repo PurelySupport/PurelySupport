@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { getUserDetails } from '../../ducks/reducer';
+import { getUserDetails, getDiseases, getInterests, getGroups } from '../../ducks/reducer';
 import { Dropdown, Form, Button, Divider } from 'semantic-ui-react';
 
 class AccountSettings extends Component {
@@ -21,7 +21,10 @@ class AccountSettings extends Component {
     }
 
     componentDidMount() {
-        this.props.getUserDetails()
+        this.props.getUserDetails(this.props.userCredentials.userid)
+        this.props.getDiseases()
+        this.props.getInterests()
+        this.props.getGroups()        
         this.setState({
             displayName: this.props.userCredentials.displayname,
             firstName: this.props.userCredentials.firstname,
@@ -46,7 +49,10 @@ class AccountSettings extends Component {
             firstname: this.state.firstName,
             lastname: this.state.lastName,
             city: this.state.city,
-            state: this.state.state
+            state: this.state.state,
+            interests: this.state.userInterests,
+            diseases: this.state.userDiseases,
+            group: this.state.userGroups
         }
 
         axios.put('', data)
@@ -56,12 +62,18 @@ class AccountSettings extends Component {
                     firstName: '',
                     lastName: '',
                     city: '',
-                    state: ''
+                    state: '',
+                    userInterests: [],
+                    userDiseases: [],
+                    userGroup: []
                 })
             })
     }
 
     render() {
+        // console.log('user deetz', this.props.groups, this.props.diseases, this.props.interests)
+        console.log('user deetz', this.props.interests)
+        
         return (
             <div className='AccountSettings'>
                 <h1>Account Settings</h1>
@@ -75,9 +87,9 @@ class AccountSettings extends Component {
                         <Form.Field label='City' control='input' placeholder={this.state.city} onChange={(e) => this.handleChange(e.target.value, 'city')} required />
                         <Form.Field label='State' control='input' placeholder={this.state.state} onChange={(e) => this.handleChange(e.target.value, 'state')} required />
                     </Form.Group>
-                    <Dropdown placeholder='Interests' fluid multiple search selection options={this.state.interests} />
-                    <Dropdown placeholder='Diseases' fluid multiple search selection options={this.state.diseases} />
-                    <Dropdown placeholder='Groups' fluid multiple search selection options={this.state.groups} />
+                    <Dropdown placeholder='Interests' fluid multiple search selection options={this.props.interests.interest} />
+                    <Dropdown placeholder='Diseases' fluid multiple search selection options={this.props.diseases} />
+                    <Dropdown placeholder='Groups' fluid multiple search selection options={this.props.groups} />
                     <Link to='/dashboard'>
                         <Button type='submit' onClick={() => this.updateAccountSettings()} >Submit</Button>
                     </Link>
@@ -91,7 +103,10 @@ class AccountSettings extends Component {
 function mapStateToProps(state) {
     return {
         userCredentials: state.userCredentials,
-        userDetails: state.userDetails
+        userDetails: state.userDetails,
+        diseases: state.diseases,
+        interests: state.interests,
+        groups: state.groups
     }
 }
-export default connect(mapStateToProps, { getUserDetails })(AccountSettings);
+export default connect(mapStateToProps, { getUserDetails, getDiseases, getInterests, getGroups })(AccountSettings);
