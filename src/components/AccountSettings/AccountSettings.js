@@ -18,6 +18,7 @@ class AccountSettings extends Component {
             userDiseases: [],
             userGroups: []
         }
+        this.handleChange = this.handleChange.bind( this );
     }
 
     componentDidMount() {
@@ -70,9 +71,13 @@ class AccountSettings extends Component {
             })
     }
 
+
     render() {
-        // console.log('user deetz', this.props.groups, this.props.diseases, this.props.interests)
-        console.log('user deetz', this.props.interests)
+        console.log('interests', this.props.interests)
+        const interestList = this.props.interests
+        // const interestList = this.props.interests.map((property, index) => {
+        //     delete property.interestid
+        // })
         
         return (
             <div className='AccountSettings'>
@@ -87,7 +92,7 @@ class AccountSettings extends Component {
                         <Form.Field label='City' control='input' placeholder={this.state.city} onChange={(e) => this.handleChange(e.target.value, 'city')} required />
                         <Form.Field label='State' control='input' placeholder={this.state.state} onChange={(e) => this.handleChange(e.target.value, 'state')} required />
                     </Form.Group>
-                    <Dropdown placeholder='Interests' fluid multiple search selection options={this.props.interests.interest} />
+                    <Dropdown placeholder='Interests' fluid multiple search selection options={interestList} />
                     <Dropdown placeholder='Diseases' fluid multiple search selection options={this.props.diseases} />
                     <Dropdown placeholder='Groups' fluid multiple search selection options={this.props.groups} />
                     <Link to='/dashboard'>
