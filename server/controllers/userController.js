@@ -78,7 +78,59 @@ module.exports = {
             .then( data=> {
                 console.log('consolelog',data)
                 res.status(200).send("??")
-            }).catch(() => res.status(500).send());
+            }).catch(() => res.status(500).send('Something went wrong creating this post.'));
+    },
+    updatePost: (req, res, next) => {
+        const db = req.app.get('db')
+        const { userid, groupid, content, timestamp, pointtotal, title } = req.body;
+        db.update_post([userid, groupid, content, timestamp, pointtotal, title ])
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong updating this post.'))
+    },
+    createGroup: (req, res, next) => {
+        const db = req.app.get('db')
+        db.create_group([req.body.diseaseid, req.body.name])
+        .then(data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong creating group.'))
+    },
+    updateGroup: (req, res, next) => {
+        const db = req.app.get('db')
+        db.update_group([req.body.groupid, req.body.diseaseid, req.body.name])
+        .then(data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong updating group.'))
+    },
+    postComment: (req, res, next) => {
+        const db = req.app.get('db')
+        const body = req.body;
+        db.post_comment([body.userid, body.postid, body.pointtotal, body.comment, body.timestamp])
+        .then(data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('There was a problem posting your comment.'))
+    },
+    updateComment: (req, res, next) => {
+        const db = req.app.get('db')
+        const body = req.body;
+        db.update_comment([body.userid, body.postid, body.pointtotal, body.comment, body.timestamp])
+        .then(data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('There was a problem editing your comment.'))
+    },
+    upvotePost: (req, res, next) => {
+        const db = req.app.get('db')
+        db.upvote_post([req.body.postid, req.body.pointtotal])
+        .then(data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('There was a problem upvoting this post.'))
+    },
+    upvoteComment: (req, res, next) => {
+        const db = req.app.get('db')
+        db.upvote_comment([req.body.commentid, req.body.pointtotal])
+        .then(data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('There was a problem upvoting this comment.'))
     }
 
 
