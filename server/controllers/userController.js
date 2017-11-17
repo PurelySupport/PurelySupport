@@ -5,14 +5,14 @@ module.exports = {
         db.register_user([body.userid, body.displayname, body.firstname, body.lastname, body.state, body.city])
             .then(data => {
                 res.status(200).send(data)
-            }).catch(() => res.status(500).send());
+            }).catch(() => res.status(500).send('Could not register user'));
     },
     getUserCredentials: (req, res, next) => {
         const db = req.app.get('db')
         db.get_user_credentials(req.params.id)
             .then(data => {
                 res.status(200).send(data)
-            }).catch(() => res.status(500).send());
+            }).catch(() => res.status(500).send('Could not retrieve user credentials'));
     },
     getUserInfo: (req, res, next) => {
         const db = req.app.get('db')
@@ -22,7 +22,7 @@ module.exports = {
             .then(data => {
                 res.status(200).send(data)
                 console.log('ctrl', data)
-            }).catch(() => res.status(500).send());
+            }).catch(() => res.status(500).send('Could not retrieve user info'));
     },
     updateGroups: (req, res, next) => {
         const db = req.app.get('db')
@@ -30,7 +30,7 @@ module.exports = {
         db.update_user_groups([body.userid, body.groupid])
             .then(data => {
                 res.status(200).send("Groups Updated")
-            }).catch(() => res.status(500).send());
+            }).catch(() => res.status(500).send('Oops! Something went wrong updating groups'));
     },
 
     updateInterests: (req, res, next) => {
@@ -39,7 +39,7 @@ module.exports = {
         db.update_user_interests([body.userid, body.interestid])
             .then(data => {
                 res.status(200).send("Interesting... this was successful")
-            }).catch(() => res.status(500).send());
+            }).catch(() => res.status(500).send('Oops! Something went wrong updating interests'));
     },
     updateDiseases: (req, res, next) => {
         const db = req.app.get('db')
@@ -47,7 +47,7 @@ module.exports = {
         db.update_user_diseases([body.userid, body.diseaseid])
             .then(data => {
                 res.status(200).send(data)
-            }).catch(() => res.status(500).send());
+            }).catch(() => res.status(500).send('Oops! Something went wrong updating diseases'));
     },
     getDiseases: (req, res, next) => {
         const db = req.app.get('db')
@@ -55,21 +55,21 @@ module.exports = {
         db.get_diseases()
             .then(data => {
                 res.status(200).send(data)
-            }).catch(() => res.status(500).send());
+            }).catch(() => res.status(500).send('Oops! Cannot get diseases right now'));
     },
     getInterests: (req, res, next) => {
         const db = req.app.get('db')
         db.get_interests()
             .then(data => {
                 res.status(200).send(data)
-            }).catch(() => res.status(500).send());
+            }).catch(() => res.status(500).send('Oops! Cannot get interests right now'));
     },
     getGroups: (req, res, next) => {
         const db = req.app.get('db')
         db.get_groups()
             .then(data => {
                 res.status(200).send(data)
-            }).catch(() => res.status(500).send());
+            }).catch(() => res.status(500).send('Oops! Cannot get groups right now'));
     },
     createPost: (req, res, next) => {
         const db = req.app.get('db')
