@@ -139,6 +139,13 @@ module.exports = {
         .then(data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('Something went wrong retreiving the post'))
+    },
+    getComments: (req, res, next) => {
+        const db = req.app.get('db')
+        db.get_comments([req.params.id])
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong retreiving the comments for this post'))
     }
 
 
