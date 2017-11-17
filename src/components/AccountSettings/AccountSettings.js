@@ -85,6 +85,7 @@ class AccountSettings extends Component {
 
 
     render() {
+        console.log(this.state)
         return (
             <div className='AccountSettings'>
                 <h1>Account Settings</h1>

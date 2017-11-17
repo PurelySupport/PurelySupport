@@ -1,18 +1,66 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button, Comment, Form, Header } from 'semantic-ui-react'
+import { getUserDetails } from '../../ducks/reducer';
 
 class PostPage extends Component {
-    render(){
-        return(
-            <div className='PostPage'>PostPage</div>
+    constructor() {
+        super()
+        this.state = {
+            comments: {},
+        }
+    }
+
+    componentDidMount() {
+        this.props.getUserDetails(this.props.userCredentials.userid)
+    }
+
+    render() {
+        return (
+            <div className='PostPage'>
+
+                <h1>Post Title</h1>
+                <div>Post Content</div>
+
+
+                <Comment.Group threaded >
+                    <Header as='h3' dividing>Comments</Header>
+
+                    <Comment>
+                        <Comment.Avatar src={this.props.userCredentials.img} />
+                        <Comment.Content>
+                            <Comment.Author as='a'>{this.props.userCredentials.displayname}</Comment.Author>
+                            <Comment.Metadata>
+                                <div>Today at 5:42PM</div>
+                            </Comment.Metadata>
+                            <Comment.Text>Comment Content</Comment.Text>
+                            <Comment.Actions>
+                                <Comment.Action>Reply</Comment.Action>
+                            </Comment.Actions>
+                            <Form reply>
+                                <Form.TextArea />
+                                <Button content='Add Reply' labelPosition='left' icon='edit' primary />
+                            </Form>
+                        </Comment.Content>
+                    </Comment>
+
+
+                    <Form reply>
+                        <Form.TextArea />
+                        <Button content='Add Comment' labelPosition='left' icon='edit' primary />
+                    </Form>
+
+                </Comment.Group>
+            </div>
+
         )
     }
 }
 
 function mapStateToProps(state) {
-    return {  };
+    return {
+        userCredentials: state.userCredentials,
+        userDetails: state.userDetails,
+    }
 }
-const mapDispatchToProps = {
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostPage);
+export default connect(mapStateToProps, { getUserDetails })(PostPage);
