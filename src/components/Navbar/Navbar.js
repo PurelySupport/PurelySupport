@@ -8,12 +8,18 @@ class Navbar extends Component {
             <div className='Navbar'>
                 <nav class="side-menu">
                     <ul>
-                        <Link to='/accountsettings'>
-                            <li>Account<span></span></li>
+                        <Link to='/accountsettings' className='fix_link'>
+                            <li>Account<span><i class="user icon"></i></span></li>
                         </Link>
-                        <a href={process.env.REACT_APP_LOGOUT}>
-                            <li>logout<span></span></li>
-                        </a>
+                        <Link to='/messages' className='fix_link'>
+                            <li>messages<span><i class="inbox icon"></i></span></li>
+                        </Link>
+                        <li>friends<span><i class="address book icon"></i></span></li>
+                        <li>groups<span><i class="users icon"></i></span></li>
+                        <Link to='/events' className='fix_link'>
+                            <li>events<span><i class="calendar icon"></i></span></li>
+                        </Link>
+                        <li><a href={process.env.REACT_APP_LOGOUT}>logout<span><i class="sign out icon"></i></span></a></li>
                     </ul>
                 </nav>
             </div>
