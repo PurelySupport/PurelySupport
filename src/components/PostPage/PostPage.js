@@ -2,20 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Comment, Form, Header } from 'semantic-ui-react'
 import { getUserDetails } from '../../ducks/reducer';
+import axios from 'axios';
 
 class PostPage extends Component {
     constructor() {
         super()
         this.state = {
             comments: {},
+            post: {}
         }
     }
 
     componentDidMount() {
         this.props.getUserDetails(this.props.userCredentials.userid)
+        axios.get('/api/getpost/:2')
+        .then(res => console.log(res))
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className='PostPage'>
 
