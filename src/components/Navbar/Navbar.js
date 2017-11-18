@@ -6,20 +6,20 @@ class Navbar extends Component {
     render() {
         return (
             <div className='Navbar'>
-                <nav class="side-menu">
+                <nav className="side-menu">
                     <ul>
                         <Link to='/accountsettings' className='fix_link'>
-                            <li>Account<span><i class="user icon"></i></span></li>
+                            <li>Account<span><i className="user icon"></i></span></li>
                         </Link>
                         <Link to='/messages' className='fix_link'>
-                            <li>messages<span><i class="inbox icon"></i></span></li>
+                            <li>messages<span><i className="inbox icon"></i></span></li>
                         </Link>
-                        <li>friends<span><i class="address book icon"></i></span></li>
-                        <li>groups<span><i class="users icon"></i></span></li>
+                        <li>friends<span><i className="address book icon"></i></span></li>
+                        <li>groups<span><i className="users icon"></i></span></li>
                         <Link to='/events' className='fix_link'>
-                            <li>events<span><i class="calendar icon"></i></span></li>
+                            <li>events<span><i className="calendar icon"></i></span></li>
                         </Link>
-                        <li><a href={process.env.REACT_APP_LOGOUT}>logout<span><i class="sign out icon"></i></span></a></li>
+                        <li><a href={process.env.REACT_APP_LOGOUT}>logout<span><i className="sign out icon"></i></span></a></li>
                     </ul>
                 </nav>
             </div>

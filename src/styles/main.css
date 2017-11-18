@@ -80,3 +80,12 @@
     text-decoration: none;
     cursor: pointer;
     color: #C0B283; }
+
+.PostPage .content-parent {
+  height: 100vh;
+  width: 100vw; }
+
+.PostPage .content-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
