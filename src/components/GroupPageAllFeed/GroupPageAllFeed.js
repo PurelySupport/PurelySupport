@@ -17,6 +17,7 @@ class GroupPageAllFeed extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.addPost = this.addPost.bind(this)
         this.titleChange = this.titleChange.bind(this)
+        
     }
 
     handleChange(value) {
@@ -53,6 +54,12 @@ class GroupPageAllFeed extends Component {
         return (
             <div className='GroupPageAllFeed'>
                 <h1>Group Page/All Feed</h1>
+                <div>list of posts</div>
+                <div>post</div>
+                <div>post</div>
+                <div>post</div>
+                <div>post</div>
+
                 <Modal trigger={<Button onClick={this.closeConfigShow(true, false)}> New Post</Button>} 
                 closeIcon open={open} 
                 closeOnRootNodeClick={closeOnRootNodeClick} 

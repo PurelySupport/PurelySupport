@@ -33,7 +33,7 @@ class Routers extends Component {
                 <Route path='/nogroupfound' component={NoGroupFound}/>
                 <Route path='/messages' component={Messages}/>
                 <Route path='/myactivitylog' component={MyActivityLog}/>
-                <Route path='/postpage' component={PostPage}/>
+                <Route path='/postpage/:id' component={PostPage}/>
                 <Route path='/publicprofile' component={PublicProfile}/>
                 <Route path='/userregistration' component={UserRegistration}/>
 
