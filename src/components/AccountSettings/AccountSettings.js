@@ -115,7 +115,7 @@ class AccountSettings extends Component {
                             value: interest.interestid,
                             text: interest.interest
                         }
-                    })} onChange={(e, data) => this.setState({ userInterests: data.value })}  />
+                    })} onChange={(e, data) => this.setState({ userInterests: data.value })} />
                     <Dropdown placeholder='Diseases' fluid multiple search selection options={this.props.diseases.map((disease, index) => {
                         return {
                             key: disease.diseaseid,
@@ -136,11 +136,21 @@ class AccountSettings extends Component {
                         <Link to='/dashboard'>
                             <Button type='submit' onClick={() => this.updateAccountSettings()} >Submit</Button>
                         </Link>
+                    }   
 
-                    }
-                    <Link to='/dashboard'>
-                        <Button>Cancel</Button>
-                    </Link>
+                    <Modal basic size='small' closeIcon trigger={<Button>Cancel</Button>}>
+                        <Header icon='hand paper' content='Unsaved Data' />
+                        <Modal.Content>
+                            <p>You have unsaved changes, are you sure you want to leave the page?</p>
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Link to='/dashboard'>
+                            <Button color='green' inverted>
+                                <Icon name='checkmark' /> Yes
+                            </Button>
+                            </Link>
+                        </Modal.Actions>
+                    </Modal> 
                     <Divider hidden />
                 </Form>
             </div>
