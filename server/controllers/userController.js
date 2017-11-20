@@ -153,7 +153,48 @@ module.exports = {
         .then( data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('Something went wrong deleting the comment'))
+    },
+    createEvent: (req, res, next) => {
+        const db = req.app.get('db')
+        const body = req.body;
+        db.create_event([body.groupid, body.name, body.description,	body.date,	body.starttime,	body.endtime, body.image, body.city, body.state, body.location])
+        // console.log([body.groupid, body.name, body.description,	body.date,	body.starttime,	body.endtime, body.image, body.city, body.state, body.location])
+        .then( data => {
+            
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong creating this event'))
+    },
+    updateEvent: (req, res, next) => {
+        const db = req.app.get('db')
+        const body = req.body;
+        db.update_event([ body.name, body.description,	body.date,	body.starttime,	body.endtime, body.image, body.city, body.state, body.location, body.eventid])
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong updating this event.') )
+    },
+    createReply: (req, res, next) => {
+        const db = req.app.get('db')
+        const body = req.body;
+        db.create_reply([body.userid, body.commentid, body.content, body.timestamp])
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong creating this reply.'))
+    },
+    deleteReply: (req, res, next) => {
+        const db = req.app.get('db')
+        db.delete_reply([req.params.id])
+        .then(data => {
+            res.status(200).send( data )
+        }).catch( () => res.status(500).send('Something went wrong deleting this reply.'))
+    },
+    getMessages: (req, res, next) => {
+        const db = req.app.get('db')
+        db.get_users_messages([req.params.id])
+        .then(data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong retrieving messages.'))
     }
+    
 
 
 }

@@ -68,7 +68,7 @@ app.get('/auth/me', (req, res) => {
 
 app.get('/auth/logout', (req, res) => {
     req.logOut();
-    res.redirect(302, 'http://localhost:3000/')
+    res.redirect(302, process.env.REACT_APP_LOGOUT)
 })
 
 passport.serializeUser(function (userid, done) {
@@ -126,6 +126,16 @@ app.get('/api/getpost/:id', userController.getPost);
 app.get('/api/getcomments/:id', userController.getComments);
 
 app.put('/api/deletecomment/:id', userController.deleteComment);
+
+app.post('/api/createevent/', userController.createEvent);
+
+app.put('/api/updateevent', userController.updateEvent);
+
+app.post('/api/createreply', userController.createReply);
+
+app.put('/api/deletereply/:id', userController.deleteReply);
+
+app.get('/api/messages/:id', userController.getMessages);
 
 // app.post('/api/payment', function (req, res, next) {
 //   //convert amount to pennies
