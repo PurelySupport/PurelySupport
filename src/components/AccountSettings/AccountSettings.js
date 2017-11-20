@@ -17,21 +17,13 @@ class AccountSettings extends Component {
             userInterests: [],
             userDiseases: [],
             userGroups: [],
-            userLeaving: false
+            allInfoFilled: false,
         }
         this.handleChange = this.handleChange.bind(this);
-        this.onUnload = this.onUnload.bind(this);
-    }
-
-    onUnload(event) {
-        console.log("WASSSSUP")
-        event.returnValue = this.setState({
-            userLeaving: !this.userLeaving
-        })
     }
 
     componentDidMount() {
-        window.addEventListener('beforeunload', this.onUnload)
+        window.addEventListener('pointerleave', this.onUnload)
         this.props.getUserDetails(this.props.userCredentials.userid)
         this.props.getDiseases()
         this.props.getInterests()
@@ -55,52 +47,53 @@ class AccountSettings extends Component {
     }
 
     updateAccountSettings() {
-        if (this.state.displayName == null || this.state.firstName == null || this.state.lastName == null || this.state.city == null || this.state.state == null) {
-            this.state.userLeaving = true
-            console.log('null')
-        } else {
-            const data1 = {
-                userid: this.props.userCredentials.userid,
-                displayname: this.state.displayName,
-                firstname: this.state.firstName,
-                lastname: this.state.lastName,
-                state: this.state.state,
-                city: this.state.city,
-            }
-
-            const data2 = {
-                userid: this.props.userCredentials.userid,
-                interestid: this.state.userInterests
-            }
-
-            const data3 = {
-                userid: this.props.userCredentials.userid,
-                groupid: this.state.userGroups,
-            }
-
-            const data4 = {
-                userid: this.props.userCredentials.userid,
-                diseaseid: this.state.userDiseases
-            }
-
-            axios.put('/api/register', data1)
-                .then(response => { })
-            console.log(data1)
-            axios.put('/api/updateinterests', data2)
-                .then(response => { })
-            console.log('data2', data2)
-            axios.put('/api/updategroups', data3)
-                .then(response => { })
-            console.log('data3', data3)
-            axios.put('/api/updatediseases', data4)
-                .then(response => { })
-            console.log('data4', data4)
+        const data1 = {
+            userid: this.props.userCredentials.userid,
+            displayname: this.state.displayName,
+            firstname: this.state.firstName,
+            lastname: this.state.lastName,
+            state: this.state.state,
+            city: this.state.city,
         }
+
+        const data2 = {
+            userid: this.props.userCredentials.userid,
+            interestid: this.state.userInterests
+        }
+
+        const data3 = {
+            userid: this.props.userCredentials.userid,
+            groupid: this.state.userGroups,
+        }
+
+        const data4 = {
+            userid: this.props.userCredentials.userid,
+            diseaseid: this.state.userDiseases
+        }
+
+        axios.put('/api/register', data1)
+            .then(response => { })
+        console.log(data1)
+        axios.put('/api/updateinterests', data2)
+            .then(response => { })
+        console.log('data2', data2)
+        axios.put('/api/updategroups', data3)
+            .then(response => { })
+        console.log('data3', data3)
+        axios.put('/api/updatediseases', data4)
+            .then(response => { })
+        console.log('data4', data4)
     }
 
 
+
+
     render() {
-        console.log(this.state)
+        if (this.state.displayName === '' || this.state.firstName === '' || this.state.lastName === '' || this.state.city === '' || this.state.state === '') {
+            this.state.allInfoFilled = false
+        } else {
+            this.state.allInfoFilled = true
+        }
         return (
             <div className='AccountSettings'>
                 <h1>Account Settings</h1>
@@ -139,31 +132,27 @@ class AccountSettings extends Component {
                     })} onChange={(e, data) => this.setState({ userGroups: data.value })} />
 
 
-                    <Link to='/dashboard'>
-                        <Button type='submit' onClick={() => this.updateAccountSettings()} >Submit</Button>
-                    </Link>
-                    <Link to='/dashboard'>
-                        <Button>Cancel</Button>
-                    </Link>
-                    <Divider hidden />
-                </Form>
+                    {this.state.allInfoFilled === false ? <Button disabled>Submit</Button> :
+                        <Link to='/dashboard'>
+                            <Button type='submit' onClick={() => this.updateAccountSettings()} >Submit</Button>
+                        </Link>
+                    }   
 
-                {this.state.userLeaving == 0 ? <p></p> :
-                    <Modal basic size='small' closeIcon open>
+                    <Modal basic size='small' closeIcon trigger={<Button>Cancel</Button>}>
                         <Header icon='hand paper' content='Unsaved Data' />
                         <Modal.Content>
                             <p>You have unsaved changes, are you sure you want to leave the page?</p>
                         </Modal.Content>
                         <Modal.Actions>
-                            <Button basic color='red' inverted>
-                                <Icon name='remove' /> No
-                </Button>
+                            <Link to='/dashboard'>
                             <Button color='green' inverted>
                                 <Icon name='checkmark' /> Yes
-                </Button>
+                            </Button>
+                            </Link>
                         </Modal.Actions>
-                    </Modal>
-                }
+                    </Modal> 
+                    <Divider hidden />
+                </Form>
             </div>
         )
     }
