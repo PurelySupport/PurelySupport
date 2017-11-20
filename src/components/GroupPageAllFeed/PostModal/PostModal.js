@@ -50,7 +50,7 @@ class PostModal extends Component {
                 <ReactQuill className='editor'
                     value={this.state.text}
                     onChange={this.handleChange}
-                // modules={{ toolbar: toolbarOptions }}  
+                    // modules={{ toolbar: toolbarOptions }}  
                 />
 
                 <button onClick={() => this.addPost()}>Create Post</button>
