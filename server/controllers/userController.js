@@ -193,6 +193,27 @@ module.exports = {
         .then(data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('Something went wrong retrieving messages.'))
+    },
+    createMessage: (req, res, next) => {
+        const db = req.app.get('db')
+        db.send_message([req.body.senderid, req.body.receiverid, req.body.content, req.body.timestamp])
+        .then(data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong sending the message.'))
+    },
+    deleteMessage: (req, res, next) => {
+        const db = req.app.get('db')
+        db.delete_message([req.params.id])
+        .then(data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong deleting this message.'))
+    },
+    getAllPosts: (req, res, next) => {
+        const db = req.app.get('db')
+        db.get_all_posts()
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong getting all posts.'))
     }
     
 
