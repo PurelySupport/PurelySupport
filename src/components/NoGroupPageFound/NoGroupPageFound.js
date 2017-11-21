@@ -70,7 +70,6 @@ class NoGroupPageFound extends Component {
                     </Modal.Content>
                 </Modal>
             </div>
-
         )
     }
 }
