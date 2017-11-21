@@ -14,7 +14,17 @@ const initialState = {
     newEvent: [],
     newMessage: [],
     newReply: [],
-    newComment:[]
+    newComment:[],
+    updatedPost:[],
+    updatedGroup: [],
+    updatedEvent: [],
+    updatedComment: [],
+    upvotedPost:[],
+    upvotedComment: [],
+    allPosts: [],
+    deletedMessage: [],
+    deletedReply: [],
+    deletedComment:[]
 }
 
 const GET_USER_CREDENTIALS = 'GET_USER_CREDENTIALS';
@@ -31,6 +41,17 @@ const CREATE_EVENT = 'CREATE_EVENT';
 const CREATE_MESSAGE = 'CREATE_MESSAGE';
 const CREATE_REPLY = 'CREATE_REPLY';
 const CREATE_COMMENT = 'CREATE_COMMENT'; 
+const UPDATE_POST = 'UPDATE_POST';
+const UPDATE_GROUP = 'UPDATE_GROUP';
+const UPDATE_EVENT = 'UPDATE_EVENT';
+const UPDATE_COMMENT = 'UPDATE_COMMENT';
+const UPVOTE_POST = 'UPVOTE_POST';
+const UPVOTE_COMMENT = 'UPVOTE_COMMENT';
+const GET_ALL_POSTS = 'GET_ALL_POSTS';
+const DELETE_MESSAGE = 'DELETE_MESSAGE';
+const DELETE_REPLY = 'DELETE_REPLY';
+const DELETE_COMMENT = 'DELETE_COMMENT';
+
 
 export function getUserCredentials() {
     const userData = axios.get('/auth/me')
@@ -186,6 +207,116 @@ export function createComment() {
     }
 }
 
+export function updatePost() {
+    const post = axios.put('/api/updatepost')
+    .then(res => {
+        return res.data
+    })
+    return {
+        type: UPDATE_POST,
+        payload: post
+    }
+}
+
+export function updateGroup() {
+    const group = axios.put('/api/updategroup')
+    .then(res => {
+        return res.data
+    })
+    return {
+        type: UPDATE_GROUP,
+        payload: group
+    }
+}
+
+export function updateEvent() {
+    const event = axios.put('/api/updateevent')
+    .then( res => {
+        return res.data
+    })
+    return {
+        type: UPDATE_EVENT,
+        payload: event
+    }
+}
+
+export function updateComment() {
+    const comment = axios.put('/api/updatecomment')
+    .then( res => {
+        return res.data
+    })
+    return {
+        type: UPDATE_COMMENT,
+        payload: comment
+    }
+}
+
+export function upvotePost() {
+    const vote = axios.put('/api/upvotepost')
+    .then( res => {
+        return res.data
+    })
+    return {
+        type: UPVOTE_POST,
+        payload: vote
+    }
+}
+
+export function upvoteComment() {
+    const vote = axios.put('/api/upvotecomment')
+    .then( res => {
+        return res.data
+    })
+    return {
+        type:UPVOTE_COMMENT,
+        payload: vote
+    }
+}
+
+export function getAllPosts() {
+    const posts = axios.get('/api/allposts')
+    .then( res => {
+        return res.data
+    })
+    return {
+        type: GET_ALL_POSTS,
+        payload: posts
+    }
+}
+
+export function deleteMessage(id) {
+    const remove = axios.put(`/api/deletecomment/${id}`)
+    .then( res => {
+        return res.data
+    })
+    return {
+        type: DELETE_MESSAGE,
+        payload: remove
+    }
+}
+
+export function deleteReply(id) {
+    const remove = axios.put(`/api/deletereply${id}`)
+    .then( res => {
+        return res.data
+    })
+    return {
+        type: DELETE_REPLY,
+        payload: remove
+    }
+}
+
+export function deleteComment(id) {
+    const remove = axios.put(`/api/deletecomment/${id}`)
+    .then( res => {
+        return res.data
+    })
+    return {
+        type: DELETE_COMMENT,
+        payload: remove
+    }
+}
+
 export default function reducer(state = initialState, action) {
     console.log('action fired!! ', action)
     switch (action.type) {
@@ -229,7 +360,37 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {newReply: action.payload})    
 
         case CREATE_COMMENT + '_FULFILLED':
-            return Object.assign({}, state, {newComment: action.payload})    
+            return Object.assign({}, state, {newComment: action.payload}) 
+            
+        case UPDATE_POST + '_FULFILLED':
+            return Object.assign({}, state, {updatedPost: action.payload})    
+
+        case UPDATE_GROUP + '_FULFILLED':
+            return Object.assign({}, state, {updatedGroup: action.payload}) 
+            
+        case UPDATE_EVENT + '_FULFILLED':
+            return Object.assign({}, state, {updatedEvent: action.payload})   
+            
+        case UPDATE_COMMENT + '_FULFILLED':
+            return Object.assign({}, state, {updatedComment: action.payload})    
+
+        case UPVOTE_POST + '_FULFILLED':
+            return Object.assign({}, state, {upvotedPost: action.payload})  
+            
+        case UPVOTE_COMMENT + '_FULFILLED': 
+            return Object.assign({}, state, {upvotedComment: action.payload})  
+            
+        case GET_ALL_POSTS  + '_FULFILLED':
+            return Object.assign({}, state, {allPosts: action.payload})  
+            
+        case DELETE_MESSAGE + '_FULFILLED':
+            return Object.assign({}, state, {deletedMessage: action.payload})    
+
+        case DELETE_REPLY + '_FULFILLED': 
+            return Object.assign({}, state, {deletedReply: action.payload})    
+
+        case DELETE_COMMENT + '_FULFILLED':
+            return Object.assign({}, state, {deletedComment: action.payload})    
 
 
         default:
