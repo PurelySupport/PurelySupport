@@ -1,4 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
+.Messages {
+  display: flex;
+  justify-content: center;
+  align-items: column; }
+
+.Messages_container {
+  border: solid 1px black;
+  width: 75%;
+  display: flex; }
+
 .Navbar {
   /*the colors of the different columns*/ }
   .Navbar .side-menu {
