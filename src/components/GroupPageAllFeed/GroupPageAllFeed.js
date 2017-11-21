@@ -1,23 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Header, Image, Modal, Form, TextArea, Input } from 'semantic-ui-react';
+import { Button, Header, Image, Modal, Form, TextArea, Input, Icon } from 'semantic-ui-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class GroupPageAllFeed extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            posts: [],
             text: '',
             title: '',
-            open: false
+            open: false,
         }
 
         this.handleChange = this.handleChange.bind(this)
         this.addPost = this.addPost.bind(this)
         this.titleChange = this.titleChange.bind(this)
-        
+
+    }
+
+    componentDidMount() {
+        axios.get('/api/allposts')
+            .then(res => this.setState({
+                posts: res.data
+            }))
     }
 
     handleChange(value) {
@@ -49,21 +58,17 @@ class GroupPageAllFeed extends Component {
     }
     render() {
 
+        console.log('this is state.posts', this.state.posts)
+
         const { open, closeOnEscape, closeOnRootNodeClick } = this.state
 
         return (
             <div className='GroupPageAllFeed'>
                 <h1>Group Page/All Feed</h1>
-                <div>list of posts</div>
-                <div>post</div>
-                <div>post</div>
-                <div>post</div>
-                <div>post</div>
-
-                <Modal trigger={<Button onClick={this.closeConfigShow(true, false)}> New Post</Button>} 
-                closeIcon open={open} 
-                closeOnRootNodeClick={closeOnRootNodeClick} 
-                onClose={this.close}>
+                <Modal trigger={<Button onClick={this.closeConfigShow(true, false)}> New Post</Button>}
+                    closeIcon open={open}
+                    closeOnRootNodeClick={closeOnRootNodeClick}
+                    onClose={this.close}>
                     <Modal.Header>What's On Your Mind?</Modal.Header>
                     <Modal.Content >
                         <Form>
@@ -80,6 +85,43 @@ class GroupPageAllFeed extends Component {
                         </Form>
                     </Modal.Content>
                 </Modal>
+
+
+                {this.state.posts === '' ? <p></p> : this.state.posts.map((post, index) => {
+                    return (
+                        <div className="two">
+                            <div className="example-2 card">
+                                <div className="wrapper">
+                                    <div className="header">
+                                        <div className="date">
+                                            <span>{post.timestamp}</span>
+                                        </div>
+                                        <ul className="menu-content">
+                                            <li><Icon name='heart' size='small' color='red' /><span>{post.pointtotal}</span></li>
+                                            <li><Icon name='comments' size='small' /><span>3</span></li>
+                                        </ul>
+                                    </div>
+                                    <div className="data">
+                                        <div className="content">
+                                            <span className="author">Author</span>
+                                            <Link to={`/postpage/${post.postid}`} className='fix-link'>
+                                                <h1 className="title">{post.title}</h1>
+                                            </Link>
+                                            <p className="text">{post.content.substr(0, 200) + '...'}</p>
+                                            <Link to={`/postpage/${post.postid}`} className='fix-link'>
+                                                <a className='fix-link'>Read more</a>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                })
+                }
+
+
+
             </div>
         )
     }
