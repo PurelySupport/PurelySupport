@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Comment, Form, Header, Checkbox } from 'semantic-ui-react'
+import { Button, Comment, Form, Header, Checkbox, Icon, Grid, Image } from 'semantic-ui-react'
 import { getUserDetails } from '../../ducks/reducer';
 import axios from 'axios';
 
@@ -9,9 +9,12 @@ class PostPage extends Component {
         super()
         this.state = {
             comments: [],
+            pointtotal: 0,
             post: {},
+
             newComment: '',
             newReply: '',
+
             commentFormVisible: false,
             replyFormVisible: false,
             collapsed: true,
@@ -80,14 +83,61 @@ class PostPage extends Component {
             .then(res => alert('comment added'))
     }
 
+    upvotePost(i) {
+        const data = {
+            commentid: this.state.post.postid,
+            pointtotal: this.state.post.pointtotal
+        }
+        axios.put('/api/upvotepost', data)
+            .then(res => res)
+    }
+
+    upvoteComment(commentid, pointtotal) {
+        const data = {
+            commentid: commentid,
+            pointtotal: pointtotal
+        }
+        axios.put('/api/upvotecomment', data)
+        .then(res => console.log('comment has been updated'))
+    }
+
     render() {
         const { collapsed } = this.state
+        console.log('this.state.comments', this.state.comments[0])
         return (
             <div className='PostPage'>
-                <h1>{this.state.post.title}</h1>
-                <div>{this.state.post.content}</div>
+
+                <Grid centered verticalAlign='top' celled>
+                    <Grid.Row>
+                        <Grid.Column width={10}>
+                            <h1>{this.state.post.title}</h1>
+                        </Grid.Column>
+                    </Grid.Row>
+
+
+                    <Grid.Row>
+                        <Grid.Column width={5}>
+                            <div>{this.state.post.timestamp}</div>
+                        </Grid.Column>
+
+                        <Grid.Column width={5}>
+                            <Icon name='chevron up' size='large' />
+                            <div>{this.state.post.pointtotal}</div>
+                            <Icon name='chevron down' size='large' />
+                        </Grid.Column>
+                    </Grid.Row>
+
+
+                    <Grid.Row>
+                        <Grid.Column width={11}>
+                            <div>{this.state.post.content}</div>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+
+
                 {this.state.comments.map((comment, index) => {
-                    <Checkbox defaultChecked label='Collapse comments' onChange={this.handleCheckbox} />
+                    // <Checkbox defaultChecked label='Collapse comments' onChange={this.handleCheckbox} />
                     return (
                         <Comment.Group threaded >
                             <Header as='h3' dividing>Comments</Header>
@@ -95,9 +145,18 @@ class PostPage extends Component {
                                 <Comment.Avatar src={comment.userid} />
                                 <Comment.Content>
                                     <Comment.Author as='a'>{comment.userid}</Comment.Author>
+
                                     <Comment.Metadata>
                                         <div>{comment.timestamp}</div>
+
+
+                                        <Icon name='chevron up' size='large' onClick={() => this.upvoteComment(comment.commentid, comment.pointtotal)}/>
+                                        <div>{comment.pointtotal}</div>
+
+
+                                        <Icon name='chevron down' size='large' />
                                     </Comment.Metadata>
+
                                     <Comment.Text>{comment.comment}</Comment.Text>
                                     <Comment.Actions>
                                         <Comment.Action onClick={() => this.showReplyForm()}>Reply To Comment</Comment.Action>
