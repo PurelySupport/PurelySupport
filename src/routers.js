@@ -4,7 +4,7 @@ import AccountSettings from './components/AccountSettings/AccountSettings';
 import Dashboard from './components/Dashboard/Dashboard';
 import Events from './components/Events/Events';
 import GroupPage from './components/GroupPageAllFeed/GroupPageAllFeed';
-import NoGroupFound from './components/GroupPageAllFeed/NoGroupFound/NoGroupFound';
+import NoGroupPageFound from './components/NoGroupPageFound/NoGroupPageFound';
 import Landing from './components/Landing/Landing';
 import Messages from './components/Messages/Messages';
 import MyActivityLog from './components/MyActivityLog/MyActivityLog';
@@ -30,7 +30,7 @@ class Routers extends Component {
                 <Route path='/accountsettings' component={AccountSettings}/>
                 <Route path='/events' component={Events}/>
                 <Route path='/grouppage' component={GroupPage}/>
-                <Route path='/nogroupfound' component={NoGroupFound}/>
+                <Route path='/nogroupfound' component={NoGroupPageFound}/>
                 <Route path='/messages' component={Messages}/>
                 <Route path='/myactivitylog' component={MyActivityLog}/>
                 <Route path='/postpage/:id' component={PostPage}/>
