@@ -72,7 +72,7 @@ export function getGroups() {
 }
 
 export function getUserMessages(id) {
-    const messages = axios.get(`/api/getmessages/${id}`)
+    const messages = axios.get(`/api/messages/${id}`)
         .then(res => {
             return res.data
         })
@@ -101,7 +101,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { groups: action.payload })
 
         case GET_USER_MESSAGES + "_FULFILLED":
-            return Object.assign({}, state, { messages: action.payload })
+            return Object.assign({}, state, { userMessages: action.payload })
 
 
         default:
