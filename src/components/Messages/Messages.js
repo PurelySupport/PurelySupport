@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserMessages, getUserDetails } from '../../ducks/reducer';
-import { Form, Modal, Button } from 'semantic-ui-react';
+import { Form, Modal, Button, Header, Icon } from 'semantic-ui-react';
 import Navbar from './../Navbar/Navbar.js';
 import axios from 'axios';
 
@@ -47,12 +47,18 @@ class Messages extends Component {
         return (
             <div className='Messages'>
                 <Navbar />
-                <div className='Messages_user'>
-                    <img src={this.props.userCredentials.picture}/>
-                    <h1>{this.props.userCredentials.name}</h1>
-                    {/* {this.props.userDetails.username} */}
-                </div>
+                <Header>Messages</Header>
                 <div className='Messages_container'>
+                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user123yayayayayayayaya</div></div> <div className='messages_subject'>Let's meet!</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
+                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user345</div></div> <div className='messages_subject'>Do you like OW?</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
+                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user123</div></div> <div className='messages_subject'>Let's meet!</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
+                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user345</div></div> <div className='messages_subject'>Do you like OW?</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
+                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user123</div></div> <div className='messages_subject'>Let's meet!</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
+                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user345</div></div> <div className='messages_subject'>Do you like OW?</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
+                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user345</div></div> <div className='messages_subject'>Do you like OW?</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
+                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user123</div></div> <div className='messages_subject'>Let's meet!</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
+                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user345</div></div> <div className='messages_subject'>Do you like OW?</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
+
                     {/* {this.props.userMessages.map(message => {
                     return <div className='Messages_messagePreview'>
                         <div className='sender'>
@@ -68,7 +74,7 @@ class Messages extends Component {
                     </div>
                 })} */}
                 </div>
-                <Modal trigger={<Button className='Messages_compose'>New Message</Button>} closeIcon>
+                <Modal trigger={<div className='messages_compose_btn'><Button className='Messages_compose'>New Message</Button></div>} closeIcon>
                     <Modal.Content>
                         <Modal.Header>Compose Message</Modal.Header>
                         <Form>
