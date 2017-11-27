@@ -214,6 +214,20 @@ module.exports = {
         .then( data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('Something went wrong getting all posts.'))
+    },
+    getConversation: (req, res, next) => {
+        const db = req.app.get('db')
+        db.get_conversation([req.params.id])
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong retreiving this conversation.'))
+    },
+    downVoteComment: (req, res, next) => {
+        const db = req.app.get('db')
+        db.down_vote_comment([req.body.commentid, req.body.pointtotal])
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong unliking this comment.'))
     }
     
 
