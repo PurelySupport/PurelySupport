@@ -217,7 +217,7 @@ module.exports = {
     },
     getConversation: (req, res, next) => {
         const db = req.app.get('db')
-        db.get_conversation([req.params.id])
+        db.get_users_conversation([req.params.active_user_id, req.params.friend_user_id])
         .then( data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('Something went wrong retreiving this conversation.'))
