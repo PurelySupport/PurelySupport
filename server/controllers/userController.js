@@ -121,7 +121,7 @@ module.exports = {
     },
     upvotePost: (req, res, next) => {
         const db = req.app.get('db')
-        db.upvote_post([req.body.postid, req.body.pointtotal])
+        db.upvote_post([req.params.id])
         .then(data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('There was a problem upvoting this post.'))
@@ -235,6 +235,13 @@ module.exports = {
         .then( data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send("Something went wrong getting replies."))
+    },
+    downVotePost: (req, res, next) => {
+        const db = req.app.get('db')
+        db.down_vote_post([req.params.id])
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send('Something went wrong unliking this post.'))
     }
     
 

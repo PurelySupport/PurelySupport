@@ -83,71 +83,73 @@ passport.deserializeUser(function (userid, done) {
 })
 
 
-
+//31 endpoints
 //^^^WORKING ^^^
 app.put('/api/register', userController.register);
 
-app.get('/api/getusercredentials/:id', userController.getUserCredentials);
+app.get('/api/getusercredentials/:id', userController.getUserCredentials);//
 
-app.get('/api/getuserinfo/:id', userController.getUserInfo);
+app.get('/api/getuserinfo/:id', userController.getUserInfo);//
 
 app.put('/api/updategroups', userController.updateGroups);
 
 app.put('/api/updateinterests', userController.updateInterests);
 
-app.put('/api/updatediseases', userController.updateDiseases)
+app.put('/api/updatediseases', userController.updateDiseases);
 
-app.get('/api/getdiseases', userController.getDiseases);
+app.get('/api/getdiseases', userController.getDiseases);//
 
-app.get('/api/getinterests', userController.getInterests);
+app.get('/api/getinterests', userController.getInterests);//
 
-app.get('/api/getgroups', userController.getGroups);
+app.get('/api/getgroups', userController.getGroups);//
 
-app.post('/api/createpost', userController.createPost);
+app.post('/api/createpost', userController.createPost);//
 
 // upvote post, upvote comment
 
-app.put('/api/updatepost', userController.updatePost);
+app.put('/api/updatepost', userController.updatePost);//
 
-app.post('/api/creategroup', userController.createGroup);
+app.post('/api/creategroup', userController.createGroup);//
 
-app.put('/api/updategroup', userController.updateGroup);
+app.put('/api/updategroup', userController.updateGroup);//
 
-app.post('/api/postcomment', userController.postComment);
+app.post('/api/postcomment', userController.postComment);//
 
-app.put('/api/updatecomment', userController.updateComment);
+app.put('/api/updatecomment', userController.updateComment);//
 
-app.put('/api/upvotepost', userController.upvotePost);
+app.put('/api/upvotepost/:id', userController.upvotePost);//
 
-app.put('/api/upvotecomment', userController.upvoteComment);
+app.put('/api/downvotepost/:id', userController.downVotePost);
 
-app.put('/api/downvotecomment', userController.downVoteComment);
+app.put('/api/upvotecomment', userController.upvoteComment);//
 
-app.get('/api/getpost/:id', userController.getPost);
+app.put('/api/downvotecomment/', userController.downVoteComment);//
 
-app.get('/api/getcomments/:id', userController.getComments);
+app.get('/api/getpost/:id', userController.getPost);//
 
-app.put('/api/deletecomment/:id', userController.deleteComment);
+app.get('/api/getcomments/:id', userController.getComments);//
 
-app.post('/api/createevent/', userController.createEvent);
+app.put('/api/deletecomment/:id', userController.deleteComment);//
 
-app.put('/api/updateevent', userController.updateEvent);
+app.post('/api/createevent/', userController.createEvent);//
 
-app.post('/api/createreply', userController.createReply);
+app.put('/api/updateevent', userController.updateEvent);//
 
-app.put('/api/deletereply/:id', userController.deleteReply);
+app.post('/api/createreply', userController.createReply);//
 
-app.get('/api/messages/:id', userController.getMessages);
+app.put('/api/deletereply/:id', userController.deleteReply);//
 
-app.post('/api/createmessage', userController.createMessage);
+app.get('/api/messages/:id', userController.getMessages);//
 
-app.put('/api/deletemessage/:id', userController.deleteMessage);
+app.post('/api/createmessage', userController.createMessage);//
 
-app.get('/api/allposts', userController.getAllPosts);
+app.put('/api/deletemessage/:id', userController.deleteMessage);//
 
-app.get('/api/getreplies/:id',userController.getReplies);
+app.get('/api/allposts', userController.getAllPosts);//
 
-app.get('/api/getconversation/:active_user_id/:friend_user_id', userController.getConversation);
+app.get('/api/getreplies/:id',userController.getReplies);//
+
+app.get('/api/getconversation/:active_user_id/:friend_user_id', userController.getConversation);//
 
 // app.post('/api/payment', function (req, res, next) {
 //   //convert amount to pennies
