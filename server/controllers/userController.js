@@ -228,6 +228,13 @@ module.exports = {
         .then( data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('Something went wrong unliking this comment.'))
+    },
+    getReplies: (req, res, next) => {
+        const db = req.app.get('db')
+        db.get_replies([req.params.id])
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send("Something went wrong getting replies."))
     }
     
 
