@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Comment, Form, Header, Checkbox, Icon, Grid, Image } from 'semantic-ui-react'
+import { Button, Comment, Form, Header, Icon, Grid } from 'semantic-ui-react'
 import { getUserDetails } from '../../ducks/reducer';
 import axios from 'axios';
 
@@ -19,7 +19,6 @@ class PostPage extends Component {
 
             commentFormVisible: false,
             replyFormVisible: false,
-            collapsed: true,
         }
 
         this.showReplyForm = this.showReplyForm.bind(this);
@@ -31,35 +30,14 @@ class PostPage extends Component {
 
     componentDidMount() {
         this.props.getUserDetails(this.props.userCredentials.userid)
-        // axios.get(`/api/getpost/${this.props.match.params.postid}`)
-        // .then(res => this.setState({
-        //     post: res.data[0]
-        // }))
-        // axios.get(`/api/getcomments/${this.props.match.params.postid}`)
-        // .then(res => this.setState({
-        //     comments: res.data
-        // }))
-
-
-        axios.get('/api/getpost/2')
+        axios.get(`/api/getpost/${this.props.match.params.id}`)
             .then(res => this.setState({
                 post: res.data[0]
             }))
-        axios.get('/api/getcomments/2')
-            .then(res => this.setState({
-                comments: res.data
-            }))
-            .then(() => {
-                const comments = this.state.comments
-
-                comments.map((comment, index) => {
-                    return axios.get(`/api/getusercredentials/${comment.userid}`)
-                        .then((res) => {
-                            console.log('this is res', res)
-                            this.setState({
-                                commenterInfo: res.data
-                            })
-                        })
+        axios.get(`/api/getcomments/${this.props.match.params.id}`)
+            .then(res => {
+                this.setState({
+                    comments: res.data
                 })
             })
     }
@@ -89,13 +67,35 @@ class PostPage extends Component {
     }
 
     addComment() {
+        let currentdate = new Date();
+        let timestamp = currentdate.getDate() + "/"
+            + (currentdate.getMonth() + 1) + "/"
+            + currentdate.getFullYear() + " @ "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes() + ":"
+            + currentdate.getSeconds();
+        const data = {
+            userid: this.props.userCredentials.userid,
+            postid: this.state.post.postid,
+            comment: this.state.newComment,
+            timestamp: timestamp
+        }
+        axios.post('/api/postcomment', data)
+            .then(() => {
+                window.location.reload()
+            })
+    }
+
+    addReply() {
         const data = {
             userid: this.props.userCredentials.userid,
             postid: this.props.match.params.postid,
             comment: this.state.newComment
         }
-        axios.put('/postcomment', data)
-            .then(res => alert('comment added'))
+        axios.post('/api/postreply', data)
+        .then(() => {
+            window.location.reload()
+        })
     }
 
     upvotePost(i) {
@@ -137,8 +137,6 @@ class PostPage extends Component {
 
 
     render() {
-        const { collapsed } = this.state
-        console.log('this.state.upvoted', this.state.upvoted)
         return (
             <div className='PostPage'>
 
@@ -156,8 +154,6 @@ class PostPage extends Component {
                         </Grid.Column>
 
                         <Grid.Column width={5}>
-                            {/* <Icon name='empty heart' size='large' color='red' className='heart'/>
-                            <div cl>{this.state.post.pointtotal}</div> */}
                             <div><Icon name='empty heart' size='large' color='red' /><span>{this.state.post.pointtotal}</span></div>
                         </Grid.Column>
                     </Grid.Row>
@@ -171,49 +167,60 @@ class PostPage extends Component {
                 </Grid>
 
 
-                {this.state.comments.map((comment, index) => {
-                    // <Checkbox defaultChecked label='Collapse comments' onChange={this.handleCheckbox} />
-                    return (
-                        <Comment.Group threaded >
-                            <Header as='h3' dividing>Comments</Header>
-                            {this.state.commenterInfo.map((commenter, index) => {
-                                return (
-                                    <Comment>
-                                        <Comment.Avatar src={commenter.img} />
-                                        <Comment.Content>
-                                            <Comment.Author as='a'>{commenter.displayname}</Comment.Author>
+                <Comment.Group threaded >
+                    <Header as='h3' dividing>Comments</Header>
+                    {this.state.comments.map((comment, index) => {
+                        return (
+                            <Comment key={comment.commentid}>
+                                <Comment.Avatar src={comment.img} />
+                                <Comment.Content>
+                                    <Comment.Author as='a'>{comment.displayname}</Comment.Author>
 
-                                            <Comment.Metadata>
-                                                <div>{comment.timestamp}</div>
+                                    <Comment.Metadata>
+                                        <div>{comment.timestamp}</div>
 
 
-                                                <Icon name='empty heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid, comment.pointtotal)} />
-                                                <div>{comment.pointtotal}</div>
-                                            </Comment.Metadata>
 
-                                            <Comment.Text>{comment.comment}</Comment.Text>
-                                            <Comment.Actions>
-                                                <Comment.Action onClick={() => this.showReplyForm()}>Reply To Comment</Comment.Action>
-                                            </Comment.Actions>
-                                            {this.state.replyFormVisible === false ? <p></p> :
-                                                <Form reply>
-                                                    <Form.TextArea onChange={(e) => this.handleChange(e.target.value, 'newReply')} />
-                                                    <Button content='Add Reply' labelPosition='left' icon='edit' primary />
-                                                </Form>
-                                            }
-                                        </Comment.Content>
-                                    </Comment>
-                                )
-                            })}
-                            {this.state.commentFormVisible === false ? <p></p> :
-                                <Form reply>
-                                    <Form.TextArea onChange={(e) => this.handleChange(e.target.value, 'newComment')} />
-                                    <Button content='Add Comment' labelPosition='left' icon='edit' primary />
-                                </Form>
-                            }
-                        </Comment.Group>
-                    )
-                })}
+
+
+
+
+                                        {this.state.upvoted ?
+                                            <Icon name='heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid, comment.pointtotal)} /> :
+                                            <Icon name='empty heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid, comment.pointtotal)} />
+                                        }
+
+
+
+
+
+                                        <div>{comment.pointtotal}</div>
+                                    </Comment.Metadata>
+
+                                    <Comment.Text>{comment.comment}</Comment.Text>
+                                    <Comment.Actions>
+                                        <Comment.Action onClick={() => this.showReplyForm()}>Reply To Comment</Comment.Action>
+                                    </Comment.Actions>
+                                    {this.state.replyFormVisible === false ? <p></p> :
+                                        <Form reply>
+                                            <Form.TextArea onChange={(e) => this.handleChange(e.target.value, 'newReply')} />
+                                            <Button content='Add Reply' labelPosition='left' icon='edit' primary />
+                                        </Form>
+                                    }
+                                </Comment.Content>
+                            </Comment>
+
+                        )
+                    })}
+                    {this.state.commentFormVisible === false ? <p></p> :
+                        <Form reply>
+                            <Form.TextArea onChange={(e) => this.handleChange(e.target.value, 'newComment')} />
+                            <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={() => this.addComment()} />
+                        </Form>
+                    }
+                </Comment.Group>
+
+
                 {this.state.commentFormVisible === false ?
                     <Button content='Add New Comment' labelPosition='left' icon='edit' primary onClick={() => this.showCommentForm()} /> :
                     <p></p>
