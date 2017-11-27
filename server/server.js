@@ -145,6 +145,8 @@ app.put('/api/deletemessage/:id', userController.deleteMessage);
 
 app.get('/api/allposts', userController.getAllPosts);
 
+app.get('/api/getreplies/:id',userController.getReplies);
+
 app.get('/api/getconversation/:active_user_id/:friend_user_id', userController.getConversation);
 
 // app.post('/api/payment', function (req, res, next) {
