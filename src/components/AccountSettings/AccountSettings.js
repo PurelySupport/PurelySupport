@@ -23,7 +23,6 @@ class AccountSettings extends Component {
     }
 
     componentDidMount() {
-        window.addEventListener('pointerleave', this.onUnload)
         this.props.getUserDetails(this.props.userCredentials.userid)
         this.props.getDiseases()
         this.props.getInterests()
