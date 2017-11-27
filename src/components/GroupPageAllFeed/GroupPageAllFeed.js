@@ -97,7 +97,7 @@ class GroupPageAllFeed extends Component {
                                             <span>{post.timestamp}</span>
                                         </div>
                                         <ul className="menu-content">
-                                            <li><Icon name='heart' size='small' color='red' /><span>{post.pointtotal}</span></li>
+                                            <li><Icon name='empty heart' size='small' color='red'/><span>{post.pointtotal}</span></li>
                                             <li><Icon name='comments' size='small' /><span>3</span></li>
                                         </ul>
                                     </div>
