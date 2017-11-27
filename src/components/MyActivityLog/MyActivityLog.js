@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Navbar from '../Navbar/Navbar';
 
 class MyActivityLog extends Component {
     render(){
         return(
-            <div className='MyActivityLog'>MyActivityLog</div>
+            <div className='MyActivityLog'>
+            <Navbar />
+            </div>
         )
     }
 }

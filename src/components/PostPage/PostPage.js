@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button, Comment, Form, Header, Icon, Grid } from 'semantic-ui-react'
 import { getUserDetails } from '../../ducks/reducer';
 import axios from 'axios';
+import Navbar from '../Navbar/Navbar';
 
 class PostPage extends Component {
     constructor() {
@@ -24,7 +25,6 @@ class PostPage extends Component {
         this.showReplyForm = this.showReplyForm.bind(this);
         this.showCommentForm = this.showCommentForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleCheckbox = this.handleCheckbox.bind(this);
 
     }
 
@@ -44,7 +44,7 @@ class PostPage extends Component {
 
     showCommentForm() {
         this.setState({
-            commentFormVisible: !this.state.replyFormVisible
+            commentFormVisible: !this.state.commentFormVisible
         })
     }
 
@@ -103,22 +103,12 @@ class PostPage extends Component {
             content: this.state.newReply,
             timestamp: timestamp
         }
-        
+
         axios.post('/api/createreply', data)
-        .then(() => {
-            window.location.reload()
-        })
+            .then(() => {
+                window.location.reload()
+            })
     }
-
-    upvotePost(i) {
-        const data = {
-            commentid: this.state.post.postid,
-            pointtotal: this.state.post.pointtotal
-        }
-        axios.put('/api/upvotepost', data)
-            .then(res => res)
-    }
-
 
     upvoteComment(commentid, pointtotal) {
         if (this.state.upvoted === false) {
@@ -147,11 +137,36 @@ class PostPage extends Component {
         }
     }
 
+    // upvotePost(postid) {
+    //     if (this.state.upvoted === false) {
+    //         let data = {
+    //             postid: postid,
+    //         }
+    //         axios.put(`/api/upvotepost/${postid}`, data)
+    //             .then(() => {
+    //                 this.setState({
+    //                     upvoted: true
+    //                 })
+    //             })
+
+    //     } else {
+    //         let data = {
+    //             postid: postid,
+    //         }
+    //         axios.put(`/api/downvotepost/${postid}`, data)
+    //             .then(() => {
+    //                 this.setState({
+    //                     upvoted: false
+    //                 })
+    //             })
+    //     }
+    // }
+
 
     render() {
         return (
             <div className='PostPage'>
-
+            <Navbar />
                 <Grid centered verticalAlign='top' celled>
                     <Grid.Row>
                         <Grid.Column width={10}>
@@ -166,7 +181,10 @@ class PostPage extends Component {
                         </Grid.Column>
 
                         <Grid.Column width={5}>
-                            <div><Icon name='empty heart' size='large' color='red' /><span>{this.state.post.pointtotal}</span></div>
+                            {/* {this.state.upvoted ?
+                                <div><Icon name='empty heart' size='large' color='red' onClick={(this.upvotePost(this.state.post.postid))} /><span>{this.state.post.pointtotal}</span></div> :
+                                <div><Icon name='heart' size='large' color='red' onClick={(this.upvotePost(this.state.post.postid))} /><span>{this.state.post.pointtotal}</span></div>
+                            } */}
                         </Grid.Column>
                     </Grid.Row>
 
@@ -190,6 +208,8 @@ class PostPage extends Component {
 
                                     <Comment.Metadata>
                                         <div>{comment.timestamp}</div>
+                                        
+                                        <Icon name='heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid, comment.pointtotal)} /> 
 
 
 
@@ -197,10 +217,11 @@ class PostPage extends Component {
 
 
 
-                                        {this.state.upvoted ?
+
+                                        {/* {this.state.upvoted ?
                                             <Icon name='heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid, comment.pointtotal)} /> :
                                             <Icon name='empty heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid, comment.pointtotal)} />
-                                        }
+                                        } */}
 
 
 
@@ -210,13 +231,13 @@ class PostPage extends Component {
                                     </Comment.Metadata>
 
                                     <Comment.Text>{comment.comment}</Comment.Text>
-                                    <Comment.Actions>
+                                    {/* <Comment.Actions>
                                         <Comment.Action onClick={() => this.showReplyForm()}>Reply To Comment</Comment.Action>
-                                    </Comment.Actions>
+                                    </Comment.Actions> */}
                                     {this.state.replyFormVisible === false ? <p></p> :
                                         <Form reply>
                                             <Form.TextArea onChange={(e) => this.handleChange(e.target.value, 'newReply')} />
-                                            <Button content='Add Reply' labelPosition='left' icon='edit' primary onClick={() => this.addReply(comment.commentid)}/>
+                                            <Button content='Add Reply' labelPosition='left' icon='edit' primary onClick={() => this.addReply(comment.commentid)} />
                                         </Form>
                                     }
                                 </Comment.Content>
@@ -227,9 +248,16 @@ class PostPage extends Component {
                     {this.state.commentFormVisible === false ? <p></p> :
                         <Form reply>
                             <Form.TextArea onChange={(e) => this.handleChange(e.target.value, 'newComment')} />
-                            <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={() => this.addComment()} />
+                            {this.state.newComment === '' ?
+                                <Button content='Add Comment' labelPosition='left' icon='edit' disabled /> :
+                                <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={() => this.addComment()} />
+
+                            }
+                            <Button content='Cancel' labelPosition='left' icon='remove' onClick={() => this.showCommentForm()} /> 
+
                         </Form>
                     }
+
                 </Comment.Group>
 
 

@@ -4,6 +4,7 @@ import { getUserDetails, getDiseases } from '../../ducks/reducer';
 import { Button, Header, Image, Modal, Form, TextArea, Input, Dropdown, Divider, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from '../Navbar/Navbar';
 
 class NoGroupPageFound extends Component {
     constructor() {
@@ -49,11 +50,14 @@ class NoGroupPageFound extends Component {
         const { open, closeOnEscape, closeOnRootNodeClick } = this.state
 
         return (
-            <div className='NoGroupPageFound'>No Group Found!
+            <div className='NoGroupPageFound'>
+            No Group Found! 
+            <Navbar />
             <Modal trigger={<Button onClick={this.closeConfigShow(true, false)}>Create New Group</Button>}
                     closeIcon open={open}
                     closeOnRootNodeClick={closeOnRootNodeClick}
                     onClose={this.close}>
+
                     <Modal.Header>Let's Make a New Group</Modal.Header>
                     <Modal.Content >
                         <Form>
