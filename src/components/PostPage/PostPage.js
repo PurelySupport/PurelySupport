@@ -74,25 +74,37 @@ class PostPage extends Component {
             + currentdate.getHours() + ":"
             + currentdate.getMinutes() + ":"
             + currentdate.getSeconds();
+
         const data = {
             userid: this.props.userCredentials.userid,
             postid: this.state.post.postid,
             comment: this.state.newComment,
             timestamp: timestamp
         }
+
         axios.post('/api/postcomment', data)
             .then(() => {
                 window.location.reload()
             })
     }
 
-    addReply() {
+    addReply(commentid) {
+        let currentdate = new Date();
+        let timestamp = currentdate.getDate() + "/"
+            + (currentdate.getMonth() + 1) + "/"
+            + currentdate.getFullYear() + " @ "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes() + ":"
+            + currentdate.getSeconds();
+
         const data = {
             userid: this.props.userCredentials.userid,
-            postid: this.props.match.params.postid,
-            comment: this.state.newComment
+            commentid: commentid,
+            content: this.state.newReply,
+            timestamp: timestamp
         }
-        axios.post('/api/postreply', data)
+        
+        axios.post('/api/createreply', data)
         .then(() => {
             window.location.reload()
         })
@@ -204,7 +216,7 @@ class PostPage extends Component {
                                     {this.state.replyFormVisible === false ? <p></p> :
                                         <Form reply>
                                             <Form.TextArea onChange={(e) => this.handleChange(e.target.value, 'newReply')} />
-                                            <Button content='Add Reply' labelPosition='left' icon='edit' primary />
+                                            <Button content='Add Reply' labelPosition='left' icon='edit' primary onClick={() => this.addReply(comment.commentid)}/>
                                         </Form>
                                     }
                                 </Comment.Content>
