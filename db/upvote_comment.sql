@@ -3,7 +3,7 @@
 
 UPDATE comments SET
     liked_by =
-    CASE WHEN (liked_by @> $2) THEN (
+    CASE WHEN (liked_by @> array[$2]) THEN (
            array_remove(liked_by, $2)
         )
         ELSE (
@@ -12,7 +12,7 @@ UPDATE comments SET
     EnD,
     
     Pointtotal =
-    CASE wheN (liked_by @> $2) THEN (
+    CASE wheN (liked_by @> array[$2]) THEN (
           pointtotal-1
         )
         else (
@@ -20,3 +20,4 @@ UPDATE comments SET
         )
     END
   where commentid = $1;
+--   returning *;

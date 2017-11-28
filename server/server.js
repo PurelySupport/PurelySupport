@@ -149,7 +149,7 @@ app.get('/api/getreplies/:id',userController.getReplies);
 
 app.get('/api/getconversation/:active_user_id/:friend_user_id', userController.getConversation);
 
-app.put('/api/addfriend/:active_user_id/:friend_user_id',userController.addFriend);
+app.put('/api/addfriend',userController.addFriend);
 
 
 // app.post('/api/payment', function (req, res, next) {
