@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Navbar from '../Navbar/Navbar';
 
 class GroupPageAllFeed extends Component {
     constructor(props) {
@@ -65,6 +66,7 @@ class GroupPageAllFeed extends Component {
         return (
             <div className='GroupPageAllFeed'>
                 <h1>Group Page/All Feed</h1>
+                <Navbar />
                 <Modal trigger={<Button onClick={this.closeConfigShow(true, false)}> New Post</Button>}
                     closeIcon open={open}
                     closeOnRootNodeClick={closeOnRootNodeClick}
