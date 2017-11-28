@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Header, Image, Modal, Form, TextArea, Input, Icon } from 'semantic-ui-react';
+import { Button, Header, Image, Modal, Form, TextArea, Input, Icon, Card } from 'semantic-ui-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
@@ -14,29 +14,36 @@ class GroupPageAllFeed extends Component {
             posts: [],
             text: '',
             title: '',
+            image: '',
             open: false,
         }
 
         this.handleChange = this.handleChange.bind(this)
         this.addPost = this.addPost.bind(this)
-        this.titleChange = this.titleChange.bind(this)
 
     }
 
     componentDidMount() {
-        axios.get('/api/allposts')
-            .then(res => this.setState({
-                posts: res.data
-            }))
+        if (this.props.userCredentials.userid == null) {
+            axios.get('/api/allposts')
+                .then((res) => {
+                    this.setState({
+                        posts: res.data
+                    })
+                })
+        } else {
+            axios.get('/api/allposts')
+                .then((res) => {
+                    this.setState({
+                        posts: res.data
+                    })
+                })
+        }
     }
 
-    handleChange(value) {
-        this.setState({ text: value })
-    }
-
-    titleChange(prop, e) {
+    handleChange(e, formfield) {
         this.setState({
-            [prop]: e.target.value,
+            [formfield]: e
         })
     }
 
@@ -47,13 +54,22 @@ class GroupPageAllFeed extends Component {
     close = () => this.setState({ open: false })
 
     addPost() {
+        let currentdate = new Date();
+        let timestamp = currentdate.getDate() + "/"
+            + (currentdate.getMonth() + 1) + "/"
+            + currentdate.getFullYear() + " @ "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes() + ":"
+            + currentdate.getSeconds();
+
         const body = {
             userid: this.props.userCredentials.userid,
             groupid: 2,
             content: this.state.text,
-            timestamp: Date.now(),
+            timestamp: timestamp,
             pointtotal: 0,
-            title: this.state.title
+            title: this.state.title,
+            image: this.state.image
         }
         return axios.post(`/api/createpost`, body)
     }
@@ -74,7 +90,8 @@ class GroupPageAllFeed extends Component {
                     <Modal.Header>What's On Your Mind?</Modal.Header>
                     <Modal.Content >
                         <Form>
-                            <Form.Field control='input' Label='Title' placeholder='Title' onChange={(e) => this.titleChange('title', e)} required />
+                            <Form.Field control='input' Label='Title' placeholder='Title' onChange={(e) => this.handleChange(e.target.value, 'title')} required />
+                            <Form.Field control='input' Label='Image URL' placeholder='Image URL' onChange={(e) => this.handleChange(e.target.value, 'image')} required />
                             <ReactQuill className='editor'
                                 theme='snow'
                                 value={this.state.text}
@@ -89,6 +106,8 @@ class GroupPageAllFeed extends Component {
                 </Modal>
 
 
+
+                {/* fancier cards */}
                 {this.state.posts === '' ? <p></p> : this.state.posts.map((post, index) => {
                     return (
                         <div className="two">
@@ -99,7 +118,7 @@ class GroupPageAllFeed extends Component {
                                             <span>{post.timestamp}</span>
                                         </div>
                                         <ul className="menu-content">
-                                            <li><Icon name='empty heart' size='small' color='red'/><span>{post.pointtotal}</span></li>
+                                            <li><Icon name='empty heart' size='small' color='red' /><span>{post.pointtotal}</span></li>
                                             <li><Icon name='comments' size='small' /><span>3</span></li>
                                         </ul>
                                     </div>
@@ -121,8 +140,6 @@ class GroupPageAllFeed extends Component {
                     )
                 })
                 }
-
-
 
             </div>
         )

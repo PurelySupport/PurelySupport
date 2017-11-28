@@ -121,14 +121,14 @@ module.exports = {
     },
     upvotePost: (req, res, next) => {
         const db = req.app.get('db')
-        db.upvote_post([req.body.postid, req.body.pointtotal])
+        db.upvote_post([req.body.postid, req.body.userid])
         .then(data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('There was a problem upvoting this post.'))
     },
     upvoteComment: (req, res, next) => {
         const db = req.app.get('db')
-        db.upvote_comment([req.body.commentid, req.body.pointtotal])
+        db.upvote_comment([req.body.commentid, req.body.userid])
         .then(data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('There was a problem upvoting this comment.'))
