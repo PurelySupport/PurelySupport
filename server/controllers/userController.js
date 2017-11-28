@@ -121,14 +121,14 @@ module.exports = {
     },
     upvotePost: (req, res, next) => {
         const db = req.app.get('db')
-        db.upvote_post([req.params.id])
+        db.upvote_post([req.body.postid, req.body.userid])
         .then(data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('There was a problem upvoting this post.'))
     },
     upvoteComment: (req, res, next) => {
         const db = req.app.get('db')
-        db.upvote_comment([req.body.commentid, req.body.pointtotal])
+        db.upvote_comment([req.body.commentid, req.body.userid])
         .then(data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('There was a problem upvoting this comment.'))
@@ -236,14 +236,21 @@ module.exports = {
             res.status(200).send(data)
         }).catch( () => res.status(500).send("Something went wrong getting replies."))
     },
+<<<<<<< HEAD
     downVotePost: (req, res, next) => {
         const db = req.app.get('db')
         db.down_vote_post([req.params.id])
         .then( data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send('Something went wrong unliking this post.'))
+=======
+    addFriend: (req, res, next) => {
+        const db = req.app.get('db')
+        db.add_friends([req.body.active_user_id, req.body.friend_user_id])
+            
+        .then(data => {
+            res.status(200).send('Added New Friend.')
+        }).catch( () => res.status(500).send('Something went wrong adding this friend.'))
+>>>>>>> master
     }
-    
-
-
 }
