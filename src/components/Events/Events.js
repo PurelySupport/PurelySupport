@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Form, Modal, Button, Header, Icon, Input, Image } from 'semantic-ui-react';
+import Navbar from './../Navbar/Navbar.js';
 
 class Events extends Component {
     constructor() {
@@ -24,6 +25,7 @@ class Events extends Component {
     render() {
         return (
             <div className='Events'>
+            <Navbar/>
                 <Modal trigger={<Button>Create Event</Button>} closeIcon>
                     <Modal.Content>
                         <Modal.Header>New Event</Modal.Header>
