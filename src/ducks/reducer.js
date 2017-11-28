@@ -163,8 +163,8 @@ export function createGroup() {
     }
 }
 
-export function createEvent() {
-    const event = axios.post('/api/createevent')
+export function createEvent(body) {
+    const event = axios.post('/api/createevent', body)
     .then( res => {
         return res.data
     })

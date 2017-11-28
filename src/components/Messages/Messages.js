@@ -62,7 +62,6 @@ class Messages extends Component {
     render() {
         console.log('usercred', this.props.userCredentials)
         console.log('usermessages', this.props.userMessages[0])
-        console.log('theconvo', this.state.conversation)
         return (
             <div className='Messages'>
                 <Navbar />
@@ -94,7 +93,7 @@ class Messages extends Component {
                     </div>
                     <div className='Messages_container'>
                         {this.props.userMessages.length ? this.props.userMessages.map((messages) => {
-                            return messages.user_messages.map((message) => {
+                            return messages.user_messages.map((message, i, arr) => {
                                 if (message.sender_id !== 3)
                                     return <div key={message.messageid} className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon' name='mail'></Icon><div className='messages_user'>{message.sender_name}</div></div> <div className='messages_subject'>Do some javascript here..</div> <div className='messages_time'>TimeStamp?</div>
                                         <Modal trigger={<Button onClick={() => { this.getConvo(message.sender_id) }} className='messages_read'>Read</Button>} closeIcon>
