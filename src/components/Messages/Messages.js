@@ -1,24 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUserMessages, getUserDetails } from '../../ducks/reducer';
+import { getUserMessages } from '../../ducks/reducer';
 import { Form, Modal, Button, Header, Icon } from 'semantic-ui-react';
 import Navbar from './../Navbar/Navbar.js';
 import axios from 'axios';
+import { isNumber } from 'util';
 
 class Messages extends Component {
     constructor() {
         super();
 
         this.state = {
+            conversation: [],
             subject: '',
             to: '',
             messageBody: ''
 
         }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
+        this.getConvo = this.getConvo.bind(this);
     }
 
     componentDidMount() {
-        this.props.getUserMessages(this.props.userCredentials.userid)
+        this.props.getUserMessages(3)
         // this.props.getUserDetails(this.props.userCredentials.userid)
     }
 
@@ -28,63 +34,89 @@ class Messages extends Component {
         })
     }
 
+
     sendMessage() {
+
         const body = {
-            userid: this.props.userCredentials.userid,
-            subject: this.state.subject,
-            to: this.state.to,
-            messageBody: this.state.messageBody
+            senderid: 3,
+            recieverid: this.state.to,
+            content: this.state.messageBody,
+            timestamp: Date.now()
         }
 
         axios.post('', body)
             .then(response => { })
     }
 
+    getConvo(friendID) {
+        axios.get(`/api/getconversation/3/${friendID}`)
+            .then(response => {
+                console.log(response.data[0])
+                return this.setState({
+                    conversation: response.data[0].user_conversation
+                })
+            })
+    }
+
 
     render() {
         console.log('usercred', this.props.userCredentials)
-        console.log(this.props.userDetails)
+        console.log('usermessages', this.props.userMessages[0])
+        console.log('theconvo', this.state.conversation)
         return (
             <div className='Messages'>
                 <Navbar />
                 <Header>Messages</Header>
-                <div className='Messages_container'>
-                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user123yayayayayayayaya</div></div> <div className='messages_subject'>Let's meet!</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
-                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user345</div></div> <div className='messages_subject'>Do you like OW?</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
-                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user123</div></div> <div className='messages_subject'>Let's meet!</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
-                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user345</div></div> <div className='messages_subject'>Do you like OW?</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
-                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user123</div></div> <div className='messages_subject'>Let's meet!</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
-                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user345</div></div> <div className='messages_subject'>Do you like OW?</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
-                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user345</div></div> <div className='messages_subject'>Do you like OW?</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
-                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user123</div></div> <div className='messages_subject'>Let's meet!</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
-                    <div className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon'name='mail'></Icon><div className='messages_user'>user345</div></div> <div className='messages_subject'>Do you like OW?</div> <div className='messages_time'>12:30PM</div> <Button className='messages_read'>Read</Button></div>
-
-                    {/* {this.props.userMessages.map(message => {
-                    return <div className='Messages_messagePreview'>
-                        <div className='sender'>
-                            {message.sender}
-                        </div>
-                        <div className='subject'>
-                            {message.subject}
-                        </div>
-                        <div className='timestamp'>
-                            {message.timestamp}
-                        </div>
-                        </br>
+                <div className='Messages_friends-messages-container'>
+                    <div className='Messages_friends-container'>
+                        <div className='myFriends-header'>My Friends</div>
+                        <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src='https://wi-images.condecdn.net/image/Pyznj0v4kJw/crop/200/square' /><div className='Messages_friend-holder-username'>bobbbyyyy234</div><Modal trigger={<Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon>} closeIcon>
+                            <Modal.Content>
+                                <Modal.Header>Compose Message</Modal.Header>
+                                <div className='Messages_modal-userholder'>
+                                    <img className='Messages_friend-holder-img' src='https://wi-images.condecdn.net/image/Pyznj0v4kJw/crop/200/square' />
+                                    <div className='Messages_username-header'>bobbbyyyy234</div>
+                                </div>
+                                <Form>
+                                    <textarea rows='7' placeholder='Your message here...' onChange={(e) => this.handleChange(e.target.value, 'messageBody')}></textarea>
+                                </Form>
+                                <Button onClick={this.sendMessage}>Send</Button>
+                            </Modal.Content>
+                        </Modal></div>
+                        <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src='https://wi-images.condecdn.net/image/Pyznj0v4kJw/crop/200/square' /><div className='Messages_friend-holder-username'>bobby123</div><Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon></div>
+                        <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src='https://wi-images.condecdn.net/image/Pyznj0v4kJw/crop/200/square' /><div className='Messages_friend-holder-username'>bobby123</div><Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon></div>
+                        <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src='https://wi-images.condecdn.net/image/Pyznj0v4kJw/crop/200/square' /><div className='Messages_friend-holder-username'>bobby123</div><Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon></div>
+                        <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src='https://wi-images.condecdn.net/image/Pyznj0v4kJw/crop/200/square' /><div className='Messages_friend-holder-username'>bobby123</div><Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon></div>
+                        <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src='https://wi-images.condecdn.net/image/Pyznj0v4kJw/crop/200/square' /><div className='Messages_friend-holder-username'>bobby123</div><Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon></div>
+                        <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src='https://wi-images.condecdn.net/image/Pyznj0v4kJw/crop/200/square' /><div className='Messages_friend-holder-username'>bobby123</div><Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon></div>
+                        <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src='https://wi-images.condecdn.net/image/Pyznj0v4kJw/crop/200/square' /><div className='Messages_friend-holder-username'>bobby123</div><Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon></div>
+                        <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src='https://wi-images.condecdn.net/image/Pyznj0v4kJw/crop/200/square' /><div className='Messages_friend-holder-username'>bobby123</div><Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon></div>
                     </div>
-                })} */}
+                    <div className='Messages_container'>
+                        {this.props.userMessages.length ? this.props.userMessages.map((messages) => {
+                            return messages.user_messages.map((message) => {
+                                if (message.sender_id !== 3)
+                                    return <div key={message.messageid} className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon' name='mail'></Icon><div className='messages_user'>{message.sender_name}</div></div> <div className='messages_subject'>Do some javascript here..</div> <div className='messages_time'>TimeStamp?</div>
+                                        <Modal trigger={<Button onClick={() => { this.getConvo(message.sender_id) }} className='messages_read'>Read</Button>} closeIcon>
+                                            <Modal.Content>
+                                                <div className='Messages_read-modal'>
+                                                    <Modal.Header>Message Open</Modal.Header>
+                                                    {this.state.conversation.map(message => {
+                                                        return <div className='Messages_messagefeedmodal'>
+                                                            <div className='Messages_messagefeedmodal-sender'>{message.sender_name} </div>
+                                                            <div className='Messages_messagefeedmodal-message'>Message: {message.message}</div>
+                                                        </div>
+                                                    })}
+                                                    <textarea className='Messages_read-modal_textbox' rows='7'></textarea>
+                                                    <Button>Send</Button>
+                                                </div>
+                                            </Modal.Content>
+                                        </Modal>
+                                    </div>
+                            })
+                        }) : null}
+                    </div>
                 </div>
-                <Modal trigger={<div className='messages_compose_btn'><Button className='Messages_compose'>New Message</Button></div>} closeIcon>
-                    <Modal.Content>
-                        <Modal.Header>Compose Message</Modal.Header>
-                        <Form>
-                            <Form.Field control='input' label='To' placeholder='username123' onChange={(e) => this.handleChange(e.target.value, 'to')} />
-                            <Form.Field control='input' label='Subject' placeholder='Subject' onChange={(e) => this.handleChange(e.target.value, 'subject')} />
-                            <textarea rows='7' onChange={(e) => this.handleChange(e.target.value, 'messageBody')}></textarea>
-                        </Form>
-                        <Button onClick={this.sendMessage()}>Send</Button>
-                    </Modal.Content>
-                </Modal>
             </div>
         )
     }
