@@ -44,7 +44,7 @@ class PostPage extends Component {
         //         })
         //     })
         
-        fns.grabPost(`/api/getpost${this.props.match.params.id}`)
+        fns.grabPost(`/api/getpost/${this.props.match.params.id}`)
         .then( res => {
             this.setState({
                 post: res

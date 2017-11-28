@@ -12,7 +12,7 @@ test('Post page should grab a post from database', () => {
     expect.assertions(1);
     const url = 'http://localhost:3001/api/getpost/2'
     return fns.grabPost(url).then( res => {
-        expect(res[0].postid).toEqual(2);
+        expect(res.postid).toEqual(2);
     })
 })
 
@@ -20,6 +20,6 @@ test('Post page should grab posts comments on componentDidMount',() => {
     expect.assertions(1);
     const url = 'http://localhost:3001/api/getcomments/2'
     return fns.getComments(url).then( res => {
-        expect(res[0].commentid).toEqual(1);
+        expect(res[0].commentid).toEqual(4);
     })
 })
