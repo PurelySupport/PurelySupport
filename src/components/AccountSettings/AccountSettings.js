@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { getUserDetails, getDiseases, getInterests, getGroups } from '../../ducks/reducer';
 import { Dropdown, Form, Button, Divider, Header, Icon, Modal } from 'semantic-ui-react';
+import Navbar from '../Navbar/Navbar';
 
 class AccountSettings extends Component {
     constructor() {
@@ -96,6 +97,7 @@ class AccountSettings extends Component {
         return (
             <div className='AccountSettings'>
                 <h1>Account Settings</h1>
+                <Navbar />
                 <Form size='tiny' error>
                     <Form.Input label='Username' value={this.state.displayName} width={6} onChange={(e) => this.handleChange(e.target.value, 'displayName')} required />
                     <Form.Group widths='equal'>
