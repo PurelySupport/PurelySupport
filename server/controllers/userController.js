@@ -235,8 +235,12 @@ module.exports = {
         .then( data => {
             res.status(200).send(data)
         }).catch( () => res.status(500).send("Something went wrong getting replies."))
+    },
+    addFriend: (req, res, next) => {
+        const db = req.app.get('db')
+        db.add_friends([req.params.active_user_id, req.params.friend_user_id])
+        .then(data => {
+            res.status(200).send('Added New Friend.')
+        }).catch( () => res.status(500).send('Something went wrong updating group.'))
     }
-    
-
-
 }
