@@ -119,8 +119,6 @@ app.put('/api/updatecomment', userController.updateComment);//
 
 app.put('/api/upvotepost/:id', userController.upvotePost);//
 
-app.put('/api/downvotepost/:id', userController.downVotePost);
-
 app.put('/api/upvotecomment', userController.upvoteComment);//
 
 app.put('/api/downvotecomment/', userController.downVoteComment);//
