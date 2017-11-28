@@ -1,4 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 .Events {
   display: flex;
@@ -73,107 +72,81 @@
       flex-direction: column;
       margin-top: 10px; }
 
-.GroupPageAllFeed { }
-  .GroupPageAllFeed .fix-link {
-    cursor: pointer;
-    text-decoration: none;
-    color: #000; }
-  .GroupPageAllFeed h1 {
-    font-family: "Open Sans", sans-serif;
-    font-weight: 300; }
-  .GroupPageAllFeed .row {
-    max-width: 900px;
-    margin: 50px auto 0; }
-  .GroupPageAllFeed .card {
-    float: left;
-    padding: 0 1.7rem;
-    width: 33%; }
-  .GroupPageAllFeed .card .menu-content {
-    margin: 0;
-    padding: 0;
-    list-style-type: none; }
-  .GroupPageAllFeed .card .menu-content::before, .GroupPageAllFeed .card .menu-content::after {
-    content: '';
-    display: table; }
-  .GroupPageAllFeed .card .menu-content::after {
-    clear: both; }
-  .GroupPageAllFeed .card .menu-content li {
-    display: inline-block; }
-  .GroupPageAllFeed .card .menu-content span {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    font-size: 10px;
-    font-weight: 700;
-    font-family: 'Open Sans';
-    transform: translate(-50%, 0); }
-  .GroupPageAllFeed .card .wrapper {
-    background-color: #fff;
-    min-height: 540px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
-    margin-bottom: 100px; }
-  .GroupPageAllFeed .card .wrapper:hover .data {
-    transform: translateY(0); }
-  .GroupPageAllFeed .card .data {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    transform: translateY(calc(70px + 1em));
-    transition: transform 0.3s; }
-  .GroupPageAllFeed .card .data .content {
-    padding: .5em;
-    position: relative;
-    z-index: 1; }
-  .GroupPageAllFeed .card .author {
-    font-size: 12px; }
-  .GroupPageAllFeed .card .title {
-    margin-top: 10px; }
-  .GroupPageAllFeed .card .text {
-    height: 70px;
-    margin: 0; }
-  .GroupPageAllFeed .card input[type='checkbox'] {
-    display: none; }
-  .GroupPageAllFeed .wrapper {
-    background: url(http://www.qygjxz.com/data/out/255/5074721-white-background-images.jpg) center/cover no-repeat; }
-  .GroupPageAllFeed .wrapper:hover .menu-content span {
-    transform: translate(-50%, -10px);
-    opacity: 1; }
-  .GroupPageAllFeed .header {
-    color: #000;
-    padding: 1em; }
-  .GroupPageAllFeed .header::before, .GroupPageAllFeed .header::after {
-    content: '';
-    display: table; }
-  .GroupPageAllFeed .header::after {
-    clear: both; }
-  .GroupPageAllFeed .header .date {
-    float: left;
-    font-size: 12px; }
-  .GroupPageAllFeed .menu-content {
-    float: right; }
-  .GroupPageAllFeed .menu-content li {
-    margin: 0 5px;
-    position: relative; }
-  .GroupPageAllFeed .menu-content span {
-    transition: all 0.3s;
-    opacity: 0; }
-  .GroupPageAllFeed .example-2 .data {
-    color: #000;
-    transform: translateY(calc(70px + 4em)); }
-  .GroupPageAllFeed .title a {
-    color: #000; }
-  .GroupPageAllFeed .button {
-    display: block;
-    width: 100px;
-    margin: 2em auto 1em;
-    text-align: center;
-    font-size: 12px;
-    color: #000;
-    line-height: 1;
-    position: relative;
-    font-weight: 700; }
+.GroupPageAllFeed .card {
+  font-family: 'Lato', Arial, sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 0.5vh 1%;
+  min-width: 13.9vw;
+  max-width: 17.3vw;
+  width: 100%;
+  background-color: #ffffff;
+  color: #2B2B2B;
+  text-align: center;
+  font-size: .8vh;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); }
+
+.GroupPageAllFeed .card * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.GroupPageAllFeed .card img {
+  max-width: 100%;
+  vertical-align: top;
+  position: relative; }
+
+.GroupPageAllFeed .card figcaption {
+  padding: 10%;
+  padding-bottom: calc(25%);
+  background-color: #ffffff; }
+
+.GroupPageAllFeed .card h4 {
+  font-family: 'Oswald';
+  text-transform: uppercase;
+  font-size: 1.12vh;
+  font-weight: 400;
+  line-height: 1.3vh;
+  margin: 3px 0; }
+
+.GroupPageAllFeed .card h5 {
+  font-weight: 400;
+  margin: 0;
+  text-transform: uppercase;
+  color: #888;
+  letter-spacing: 1px; }
+
+.GroupPageAllFeed .card footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.065);
+  padding: 0 1.12vw;
+  font-size: .72vh;
+  line-height: 2.7vh;
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%; }
+
+.GroupPageAllFeed .card footer .icons {
+  position: absolute;
+  right: 1.12vw;
+  top: 0; }
+
+.GroupPageAllFeed .card footer .icons > div {
+  display: inline-block;
+  margin-left: .44vw; }
+
+.GroupPageAllFeed .card footer .icons i {
+  display: inline-block;
+  margin-right: .27vw;
+  font-size: 1em; }
+
+.GroupPageAllFeed .card a {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 1; }
 
 .Messages {
   width: 100%;

@@ -110,33 +110,20 @@ class GroupPageAllFeed extends Component {
                 {/* fancier cards */}
                 {this.state.posts === '' ? <p></p> : this.state.posts.map((post, index) => {
                     return (
-                        <div className="two">
-                            <div className="example-2 card">
-                                <div className="wrapper">
-                                    <div className="header">
-                                        <div className="date">
-                                            <span>{post.timestamp}</span>
-                                        </div>
-                                        <ul className="menu-content">
-                                            <li><Icon name='empty heart' size='small' color='red' /><span>{post.pointtotal}</span></li>
-                                            <li><Icon name='comments' size='small' /><span>3</span></li>
-                                        </ul>
+                        <figure className="card">
+                            <div className="image"><img src={post.image} alt="" /></div>
+                            <figcaption>
+                                {/* <h5>Food</h5> */}
+                                <h4>{post.title}</h4>
+                                <footer>
+                                    <div className="date">{post.timestamp}</div>
+                                    <div className="icons">
+                                        {/* <div className="views"><i class="ion-eye"></i>2,907</div> */}
+                                        <div><Icon name='empty heart' size='large' color='red' />{post.pointtotal}</div>
                                     </div>
-                                    <div className="data">
-                                        <div className="content">
-                                            <span className="author">Author</span>
-                                            <Link to={`/postpage/${post.postid}`} className='fix-link'>
-                                                <h1 className="title">{post.title}</h1>
-                                            </Link>
-                                            <p className="text">{post.content.substr(0, 200) + '...'}</p>
-                                            <Link to={`/postpage/${post.postid}`} className='fix-link'>
-                                                <a className='fix-link'>Read more</a>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                </footer>
+                            </figcaption>
+                        </figure>
                     )
                 })
                 }
@@ -155,3 +142,52 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupPageAllFeed);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{/* <div className="two">
+    <div className="example-2 card">
+        <div className="wrapper">
+            <div className="header">
+                <div className="date">
+                    <span>{post.timestamp}</span>
+                </div>
+                <ul className="menu-content">
+                    <li><Icon name='empty heart' size='small' color='red' /><span>{post.pointtotal}</span></li>
+                    <li><Icon name='comments' size='small' /><span>3</span></li>
+                </ul>
+            </div>
+            <div className="data">
+                <div className="content">
+                    <span className="author">Author</span>
+                    <Link to={`/postpage/${post.postid}`} className='fix-link'>
+                        <h1 className="title">{post.title}</h1>
+                    </Link>
+                    <p className="text">{post.content.substr(0, 200) + '...'}</p>
+                    <Link to={`/postpage/${post.postid}`} className='fix-link'>
+                        <a className='fix-link'>Read more</a>
+                    </Link>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> */}
