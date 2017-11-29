@@ -18,6 +18,18 @@ module.exports = {
         .then( res => {
             return res.data[0]
         })
+    },
+    getConversation: (url) => {
+        return axios.get(url)
+        .then( res => {
+            return res.data
+        })
+    },
+    getEvents: (url) => {
+        return axios.get(url)
+        .then( res => {
+            return res.data
+        })
     }
 
 }
