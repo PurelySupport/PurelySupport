@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const initialState = {
-    userCredentials: {},
+    userCredentials: [],
     userDetails: {},
     diseases: [],
     interests: [],
