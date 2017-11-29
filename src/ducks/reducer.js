@@ -26,7 +26,8 @@ const initialState = {
     deletedReply: [],
     deletedComment:[],
     replies: [],
-    conversation: []
+    conversation: [],
+    allUsers: []
 }
 
 const GET_USER_CREDENTIALS = 'GET_USER_CREDENTIALS';
@@ -56,6 +57,7 @@ const DELETE_COMMENT = 'DELETE_COMMENT';
 const GET_REPLIES = 'GET_REPLIES';
 const GET_CONVERSATION = 'GET_CONVERSATION';
 const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT';
+const GET_ALL_USERS = 'GET_ALL_USERS';
 
 export function getUserCredentials() {
     const userData = axios.get('/auth/me')
@@ -354,6 +356,17 @@ return {
 }
 }
 
+export function getAllUsers(){
+    const users = axios.get('/api/getusers')
+    .then(response => {
+        return response.data
+    })
+    return {
+        type: GET_ALL_USERS,
+        payload: users
+    }
+}
+
 export default function reducer(state = initialState, action) {
     console.log('action fired!! ', action)
     switch (action.type) {
@@ -436,7 +449,9 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {conversation: action.payload})  
             
         case DOWNVOTE_COMMENT + '_FULFILLED':
-            return Object.assign({}, state, {votedComment: action.payload})    
+            return Object.assign({}, state, {votedComment: action.payload})
+        case GET_ALL_USERS + '_FULFILLED':
+            return Object.assign({}, state, {allUsers: action.payload})
 
 
         default:

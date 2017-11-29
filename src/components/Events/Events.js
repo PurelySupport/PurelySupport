@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Form, Modal, Button, Header, Icon, Input, Image, Dropdown } from 'semantic-ui-react';
 import Navbar from './../Navbar/Navbar.js';
 import { getGroups, createEvent } from '../../ducks/reducer';
+import axios from 'axios'
 
 class Events extends Component {
     constructor() {
         super();
 
         this.state = {
-            title: '',
             location: '',
             date: '',
             starttime: '',
@@ -20,7 +20,8 @@ class Events extends Component {
             state: '',
             myEventsToggled: false,
             allEventsToggled: true,
-            groupid: 0
+            groupid: 0,
+            events: []
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -32,6 +33,11 @@ class Events extends Component {
 
     componentDidMount() {
         this.props.getGroups();
+
+        axios.get('/api/getallevents')
+            .then(response => {
+                this.setState({ events: response.data })
+            })
     }
 
     handleChange(e, formfield) {
@@ -56,26 +62,22 @@ class Events extends Component {
 
     allEvents() {
         if (this.state.allEventsToggled === true) {
-            return (
-                <div className='events-holder'>
-                    <div className='left-holder'>
-                        <div className='featured-event'></div>
-                    </div>
-                    <div className='right-holder'>
-                        <div className='event'>IM AN EVENTT!!!!!!</div>
-                        <div className='event'></div>
-                        <div className='event'></div>
-                        <div className='event'></div>
-                    </div>
-                </div>
-            )
-        } else return <p>This is my event I made.</p>
+            return this.state.events.map((event) => {
+                return (
+                    <div className='event'>{event.description}</div>
+                )
+            })
+        } else return this.state.events.map((event) => {
+            if (event.name == 6){
+                return <div className='event'>{event.description}</div>
+            }
+        })
     }
 
-    newEvent(){
+    newEvent() {
         const body = {
             groupid: this.state.groupid,
-            name: this.state.title,
+            name: 6,
             description: this.state.description,
             date: this.state.date,
             starttime: this.state.starttime,
@@ -90,7 +92,7 @@ class Events extends Component {
 
 
     render() {
-        console.log(this.state)
+        console.log(this.state.events)
         return (
             <div className='Events'>
                 <Navbar />
@@ -99,8 +101,14 @@ class Events extends Component {
                     <div onClick={this.selectAll} className={this.state.allEventsToggled === true ? 'button-selected' : 'button'}>All Events</div>/
                     <div onClick={this.selectMine} className={this.state.myEventsToggled === true ? 'button-selected' : 'button'}>My Events</div>
                 </div>
-
-                {this.allEvents()}
+                <div className='events-holder'>
+                    <div className='left-holder'>
+                        <div className='featured-event'></div>
+                    </div>
+                    <div className='right-holder'>
+                        {this.allEvents()}
+                    </div>
+                </div>
                 <Modal trigger={<Button>Create Event</Button>} closeIcon>
                     <Modal.Content>
                         <Modal.Header>New Event</Modal.Header>
@@ -110,16 +118,13 @@ class Events extends Component {
                                     <div className='left-container'>
                                         <div className='input-holder'>
                                             <div className='input-title'>Group</div>
-                                    <Dropdown className='input'placeholder='Groups' selection options={this.props.groups.map((group, index) => {
+                                            <Dropdown className='input' placeholder='Groups' selection options={this.props.groups.map((group, index) => {
                                                 return {
                                                     key: group.groupid,
                                                     value: group.groupid,
                                                     text: group.name
                                                 }
                                             })} onChange={(e, data) => this.setState({ groupid: data.value })} />
-                                        </div>
-                                        <div className='input-holder'>
-                                            <div className='input-title'>Title</div><Input onChange={(e) => this.handleChange(e.target.value, 'title')} className='input'></Input>
                                         </div>
                                         <div className='input-holder'>
                                             <div className='input-title'>Date</div><Input onChange={(e) => this.handleChange(e.target.value, 'date')} className='input'></Input>
@@ -131,7 +136,7 @@ class Events extends Component {
                                             <div className='input-title'>End Time</div><Input onChange={(e) => this.handleChange(e.target.value, 'endtime')} className='input'></Input>
                                         </div>
                                         <div className='input-holder'>
-                                            <div className='input-title'>Image</div><Input onChange={(e) => this.handleChange(e.target.value, 'img')}className='input'></Input>
+                                            <div className='input-title'>Image</div><Input onChange={(e) => this.handleChange(e.target.value, 'img')} className='input'></Input>
                                         </div>
                                         <div className='input-holder'>
                                             <div className='input-title'>Location</div><Input onChange={(e) => this.handleChange(e.target.value, 'location')} className='input'></Input>
@@ -150,7 +155,7 @@ class Events extends Component {
                                 </div>
 
                                 <div className='input-holder-desc'>
-                                    Description<textarea onChange={(e) => this.handleChange(e.target.value, 'description')}rows='6'></textarea>
+                                    Description<textarea onChange={(e) => this.handleChange(e.target.value, 'description')} rows='6'></textarea>
                                 </div>
                             </div>
                         </Form>

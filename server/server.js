@@ -151,6 +151,12 @@ app.get('/api/getconversation/:active_user_id/:friend_user_id', userController.g
 
 app.put('/api/addfriend',userController.addFriend);
 
+app.get('/api/getusers', userController.getAllUsers);
+
+app.get('/api/getallmessages/:id', userController.getAllMessages);
+
+app.get('/api/getallevents', userController.getAllEvents);
+
 
 // app.post('/api/payment', function (req, res, next) {
 //   //convert amount to pennies
