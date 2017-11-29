@@ -254,4 +254,29 @@ module.exports = {
             res.status(200).send(data)
         }).catch( () => res.status(500).send("Something went wrong getting friends."))
     },
+
+    getAllUsers: ((req, res, next) => {
+        const db = req.app.get('db');
+        db.get_all_users()
+        .then(data => {
+            res.status(200).send(data)
+        }).catch((err) => res.status(500).send(err, 'Could not get all users.'))
+    }),
+
+    getAllMessages: ((req, res, next) => {
+        const db = req.app.get('db');
+        const {id} = req.params
+        db.get_all_messages([id])
+        .then(data =>{
+            res.status(200).send(data)
+        }).catch((err) => res.status(500).send(err, 'Could not get all messages.'))
+    }),
+    
+    getAllEvents: ((req, res, next) => {
+        const db = req.app.get('db');
+        db.get_all_events()
+        .then(data =>{
+            res.status(200).send(data)
+        }).catch((err) => res.status(500).send(err, 'Could not get all events.'))
+    })
 }

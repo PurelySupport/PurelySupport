@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import fns from './../../utilities/functions';
 
 class GroupPageAllFeed extends Component {
     constructor(props) {
@@ -24,10 +25,18 @@ class GroupPageAllFeed extends Component {
     }
 
     componentDidMount() {
-        axios.get('/api/allposts')
-            .then(res => this.setState({
-                posts: res.data
-            }))
+        // axios.get('/api/allposts')
+        //     .then(res => this.setState({
+        //         posts: res.data
+        //     }))
+
+        fns.getPosts('/api/allposts').then( res => {
+            this.setState({
+                posts: res
+            })
+        })
+
+
     }
 
     handleChange(value) {
