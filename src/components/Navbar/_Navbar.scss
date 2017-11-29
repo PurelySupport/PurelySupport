@@ -1,79 +1,101 @@
+@import '../../styles/_colors.scss';
+
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
 .Navbar {
-  .side-menu {
-    width:14em;
-    height: auto;
-    margin:4em auto 0;
-    font-size: 1em;
-    line-height: 2em;
-    color: #C0B283;
-    font-weight:700;
-    letter-spacing: -0.1em;
-    text-transform:uppercase;
-    position:absolute;
-    top:0; 
-    bottom:0;
-    left: -10em;
-  }
-  .side-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  .side-menu ul li {
-  display:block;
-    background-color: #333;
-    height: 6.5vh;
-    padding: 1em 1.5em;
-    position: relative;
-    -webkit-transition: -webkit-transform 0.5s,     background-color .5s, color .5s;
-    transition: transform .5s, background-color .5s, color .5s;
-  }
-  /*the colors of the different columns*/
-  .side-menu ul li:nth-child(1) { background-color: #fff; border: 2px solid #000; border-bottom: none;}
-  .side-menu ul li:nth-child(2) { background-color: #fff; border: 2px solid #000;}
-  .side-menu ul li:nth-child(3) { background-color: #fff; border: 2px solid #000;}
-  .side-menu ul li:nth-child(4) { background-color: #fff; border: 2px solid #000; border-bottom: none; border-top: none;}
-  .side-menu ul li:nth-child(5) { background-color: #fff; border: 2px solid #000;}
-  .side-menu ul li:nth-child(6) { background-color: #fff; border: 2px solid #000;}
-  
-  
-  .side-menu ul li:hover {
-    background-color: #000; /*you can make different colors depending on the nth-child like above*/
-    -webkit-transform: translateX(10em);
-    transform: translateX(10em);/*equal to left in the .side-menu*/
-  }
-  .side-menu ul li a {
-  display:block;
-    color: #C0B283;
-    text-decoration: none;
-  }
-  .side-menu ul li span {
-    display:block;
-    position: absolute;
-    font-size:1em;
-    line-height: 2em;
-    height:3vh;
-    top:0; 
-    bottom:0;
-    margin:0 auto;
-    padding:1em 1.5em;
-    right: 0.16666666666667em;
-    color: #C0B283;
-  }
-  
-  i.icon {
-    font-size: 2em;
-    margin-right: -.8vw;
-    text-decoration: none;
-    cursor: pointer;
-    color: #C0B283
-  }
+  .nav-main {
+    width: 100vw;
+    right: 0;
+    left: 0;
+}
 
-  .fix_link {
+.nav-parent {
+    width: 100vw;
+    height: 5vh;
+}
+
+
+.nav-logo-header {
+    color: $white;
+    font-family: 'Lato';
     text-decoration: none;
     cursor: pointer;
-    color: #C0B283
-  }
+}
+
+.nav-logo-parent {
+    height: 5vh;
+    width: 10vw;
+    display: flex;
+    align-items: center;
+    margin-left: 1.12vw;
+    position: fixed;
+}
+
+.nav-menu-icon {
+    position: absolute;;
+    color: $white;
+    top:1.2vh;
+    right:1.12vw;
+    z-index:9;
+    font-size: 2.4em;
+    line-height: .3em;
+    opacity:0.6;
+    cursor: pointer;        
+}
+
+.hide {
+    display: none;
+}
+
+a {
+  color: $white;
+}
+
+.nav-drop-down {
+    background:rgba(0,0,0,0.8);
+    position:fixed;
+    width:15vw;
+    height:100vh;
+    right:-16.668vw;
+    top: 0px;
+    box-sizing:border-box;
+    transition:all 0.2s ease;
+    z-index:99
+}
+
+.nav-drop-down-open {
+    right: 0;
+}
+
+.nav-drop-down-parent {
+    margin-top: 5vh;
+    font-family: 'Lato';
+    font-size: .7em;    
+    margin-left:3vw; 
+    height: 40vh;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.fix-link {
+    color: $white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fix-link :hover {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fix-link2 {
+  color: $white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 }

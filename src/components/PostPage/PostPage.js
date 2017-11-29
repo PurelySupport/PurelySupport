@@ -142,7 +142,7 @@ class PostPage extends Component {
             postid: postid,
             userid: this.props.userCredentials.userid
         }
-        axios.put('/api/upvotepost', data)
+        axios.put(`/api/upvotepost/${postid}`, data)
         .then(res => this.setState({
             post: res.data
         }))

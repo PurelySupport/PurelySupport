@@ -1,56 +1,91 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Lato");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Lato");
 .Events {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
-  .Events .view-select {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    margin-top: 5px; }
-    .Events .view-select .button {
-      margin: 5px;
-      padding: 5px; }
-    .Events .view-select .button:hover {
-      text-shadow: 1px 1px #c5bcbc; }
-    .Events .view-select .button-selected {
-      margin: 5px;
-      padding: 5px;
-      text-shadow: 1px 1px #c5bcbc; }
-  .Events .events-holder {
-    width: 75%;
-    height: 80vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; }
-  .Events .right-holder {
-    width: 50%;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to right, #D7DDE8, #757F9A);
+  font-family: 'Lato';
+  font-weight: 500; }
+  .Events .feed-container {
     height: 100%;
+    width: 100vw;
+    display: flex;
+    justify-content: center; }
+  .Events .event-main {
+    height: 100%;
+    width: 68vw;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    align-content: space-between;
-    padding: 20px; }
-  .Events .left-holder {
-    width: 50%;
+    margin-top: 7vh; }
+  .Events .event-feed {
     height: 100%;
+    width: 39.8vw;
+    border: 1px solid grey;
+    border-bottom: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 5px; }
+  .Events .btn {
+    background-color: #FFFFFF;
+    color: grey; }
+  .Events .view-select-container {
+    height: 100%;
+    width: 20vw;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: center; }
+  .Events .view-select {
+    height: 16.9vh;
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 20px; }
-  .Events .featured-event {
+    border-radius: 5px;
+    background: #FFFFFF;
+    color: grey;
+    margin-top: 7vh;
+    border: 1px solid grey; }
+  .Events .view-select div {
+    margin-left: .5vw; }
+  .Events .view-select hr {
+    width: 99.2%; }
+  .Events .calendar {
+    margin-top: 7vh; }
+  .Events .event-card {
+    height: 13vh;
+    width: 39.8vw;
+    display: flex;
+    border: 1px solid grey;
+    border-top: none;
+    background: #FFFFFF;
+    border-radius: 5px; }
+  .Events .card-content {
     height: 100%;
-    width: 100%;
-    border: solid 1px black; }
-  .Events .event {
-    width: 45%;
-    height: 47%;
-    border: solid 1px black; }
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: grey; }
+  .Events .card-date {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    color: grey;
+    margin-left: .5vw;
+    margin-top: .5vh; }
+  .Events .card-title {
+    color: black;
+    font-weight: 900;
+    font-size: 1.1em; }
+  .Events .fix-link {
+    text-decoration: none;
+    cursor: pointer;
+    color: grey; }
+  .Events .read-more {
+    margin-top: .87vh;
+    font-size: .7em; }
 
 .modal .form-container {
   width: 100%;
@@ -298,87 +333,85 @@
     font-size: 30px;
     margin-left: 10px; }
 
-.Navbar {
-  /*the colors of the different columns*/ }
-  .Navbar .side-menu {
-    width: 14em;
-    height: auto;
-    margin: 4em auto 0;
-    font-size: 1em;
-    line-height: 2em;
-    color: #C0B283;
-    font-weight: 700;
-    letter-spacing: -0.1em;
-    text-transform: uppercase;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -10em; }
-  .Navbar .side-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 0; }
-  .Navbar .side-menu ul li {
-    display: block;
-    background-color: #333;
-    height: 6.5vh;
-    padding: 1em 1.5em;
-    position: relative;
-    -webkit-transition: -webkit-transform 0.5s,     background-color .5s, color .5s;
-    transition: transform .5s, background-color .5s, color .5s; }
-  .Navbar .side-menu ul li:nth-child(1) {
-    background-color: #fff;
-    border: 2px solid #000;
-    border-bottom: none; }
-  .Navbar .side-menu ul li:nth-child(2) {
-    background-color: #fff;
-    border: 2px solid #000; }
-  .Navbar .side-menu ul li:nth-child(3) {
-    background-color: #fff;
-    border: 2px solid #000; }
-  .Navbar .side-menu ul li:nth-child(4) {
-    background-color: #fff;
-    border: 2px solid #000;
-    border-bottom: none;
-    border-top: none; }
-  .Navbar .side-menu ul li:nth-child(5) {
-    background-color: #fff;
-    border: 2px solid #000; }
-  .Navbar .side-menu ul li:nth-child(6) {
-    background-color: #fff;
-    border: 2px solid #000; }
-  .Navbar .side-menu ul li:hover {
-    background-color: #000;
-    /*you can make different colors depending on the nth-child like above*/
-    -webkit-transform: translateX(10em);
-    transform: translateX(10em);
-    /*equal to left in the .side-menu*/ }
-  .Navbar .side-menu ul li a {
-    display: block;
-    color: #C0B283;
-    text-decoration: none; }
-  .Navbar .side-menu ul li span {
-    display: block;
-    position: absolute;
-    font-size: 1em;
-    line-height: 2em;
-    height: 3vh;
-    top: 0;
-    bottom: 0;
-    margin: 0 auto;
-    padding: 1em 1.5em;
-    right: 0.16666666666667em;
-    color: #C0B283; }
-  .Navbar i.icon {
-    font-size: 2em;
-    margin-right: -.8vw;
-    text-decoration: none;
-    cursor: pointer;
-    color: #C0B283; }
-  .Navbar .fix_link {
-    text-decoration: none;
-    cursor: pointer;
-    color: #C0B283; }
+.Navbar .nav-main {
+  width: 100vw;
+  right: 0;
+  left: 0; }
+
+.Navbar .nav-parent {
+  width: 100vw;
+  height: 5vh; }
+
+.Navbar .nav-logo-header {
+  color: #FFFFFF;
+  font-family: 'Lato';
+  text-decoration: none;
+  cursor: pointer; }
+
+.Navbar .nav-logo-parent {
+  height: 5vh;
+  width: 10vw;
+  display: flex;
+  align-items: center;
+  margin-left: 1.12vw;
+  position: fixed; }
+
+.Navbar .nav-menu-icon {
+  position: absolute;
+  color: #FFFFFF;
+  top: 1.2vh;
+  right: 1.12vw;
+  z-index: 9;
+  font-size: 2.4em;
+  line-height: .3em;
+  opacity: 0.6;
+  cursor: pointer; }
+
+.Navbar .hide {
+  display: none; }
+
+.Navbar a {
+  color: #FFFFFF; }
+
+.Navbar .nav-drop-down {
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 15vw;
+  height: 100vh;
+  right: -16.668vw;
+  top: 0px;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  z-index: 99; }
+
+.Navbar .nav-drop-down-open {
+  right: 0; }
+
+.Navbar .nav-drop-down-parent {
+  margin-top: 5vh;
+  font-family: 'Lato';
+  font-size: .7em;
+  margin-left: 3vw;
+  height: 40vh;
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around; }
+
+.Navbar .fix-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer; }
+
+.Navbar .fix-link :hover {
+  color: black;
+  text-decoration: none;
+  cursor: pointer; }
+
+.Navbar .fix-link2 {
+  color: #FFFFFF;
+  text-decoration: none;
+  cursor: pointer; }
 
 .PostPage button {
   border: none; }
