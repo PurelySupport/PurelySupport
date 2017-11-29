@@ -4,6 +4,7 @@ import { Form, Modal, Button, Header, Icon, Input, Image, Dropdown } from 'seman
 import Navbar from './../Navbar/Navbar.js';
 import { getGroups, createEvent } from '../../ducks/reducer';
 import axios from 'axios'
+import fns from './../../utilities/functions';
 
 class Events extends Component {
     constructor() {
@@ -34,10 +35,18 @@ class Events extends Component {
     componentDidMount() {
         this.props.getGroups();
 
-        axios.get('/api/getallevents')
-            .then(response => {
-                this.setState({ events: response.data })
+        // axios.get('/api/getallevents')
+        //     .then(response => {
+        //         this.setState({ events: response.data })
+        //     })
+
+        fns.getEvents('/api/getallevents')
+        .then( res => {
+            this.setState({
+                events: res
             })
+        })
+
     }
 
     handleChange(e, formfield) {

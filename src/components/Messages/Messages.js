@@ -5,6 +5,7 @@ import { Form, Modal, Button, Header, Icon } from 'semantic-ui-react';
 import Navbar from './../Navbar/Navbar.js';
 import axios from 'axios';
 import { isNumber } from 'util';
+import fns from './../../utilities/functions';
 
 class Messages extends Component {
     constructor() {
@@ -57,13 +58,23 @@ class Messages extends Component {
     }
 
     getConvo(friendID) {
-        axios.get(`/api/getconversation/3/${friendID}`)
-            .then(response => {
-                console.log(response.data[0])
-                return this.setState({
-                    conversation: response.data[0].user_conversation
-                })
+        // axios.get(`/api/getconversation/3/${friendID}`)
+        //     .then(response => {
+        //         console.log(response.data[0])
+        //         return this.setState({
+        //             conversation: response.data[0].user_conversation
+        //         })
+        //     })
+
+        fns.getConversation(`/api/getconversation/3/${friendID}`)
+        .then( res => {
+            return this.setState({
+                conversation: res[0].user_conversation
             })
+        })
+
+
+
     }
 
     findFriends() {
