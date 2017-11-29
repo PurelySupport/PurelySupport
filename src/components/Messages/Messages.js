@@ -117,6 +117,9 @@ class Messages extends Component {
         console.log('usercred', this.props.userCredentials)
         console.log('usermessages', this.props.userMessages[0])
         console.log('allusers', this.props.allUsers)
+
+
+
         return (
             <div className='Messages'>
                 <Navbar />
@@ -151,7 +154,7 @@ class Messages extends Component {
 
 {this.state.messages.length ? this.state.messages.map((message) => {
                             if (message.recieverid == this.props.userCredentials.userid)
-                                return <div key={message.messageid} className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon' name='mail'></Icon><div className='messages_user'>{message.messageid}</div></div> <div className='messages_subject'>{message.content}</div> <div className='messages_time'>TimeStamp?</div>
+                                return <div key={message.messageid} className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon' name='mail'></Icon><div className='messages_user'>{message.senderid}</div></div> <div className='messages_subject'>{message.content}</div> <div className='messages_time'>TimeStamp?</div>
                                     <Modal trigger={<Button onClick={() => { this.getConvo(message.senderid) } } className='messages_read'>Read</Button>} closeIcon>
                                         <Modal.Content>
                                             <div className='Messages_read-modal'>
@@ -163,7 +166,7 @@ class Messages extends Component {
                                                     </div>
                                                 })}
                                                 <textarea className='Messages_read-modal_textbox' rows='7' onChange={(e) => this.handleChange(e.target.value, 'messageBody')}></textarea>
-                                                <Button onClick={() => this.sendMessage(message.recieverid)}>Send</Button>
+                                                <Button onClick={() => this.sendMessage(message.senderid)}>Send</Button>
                                             </div>
                                         </Modal.Content>
                                     </Modal>
