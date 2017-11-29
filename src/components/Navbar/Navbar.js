@@ -15,7 +15,9 @@ class Navbar extends Component {
                             <li>messages<span><i className="inbox icon"></i></span></li>
                         </Link>
                         <li>friends<span><i className="address book icon"></i></span></li>
-                        <li>groups<span><i className="users icon"></i></span></li>
+                        <Link to='/grouppage' className='fix_link'>
+                            <li>groups<span><i className="users icon"></i></span></li>
+                        </Link>
                         <Link to='/events' className='fix_link'>
                             <li>events<span><i className="calendar icon"></i></span></li>
                         </Link>

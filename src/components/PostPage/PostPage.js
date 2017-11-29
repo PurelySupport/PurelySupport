@@ -4,6 +4,7 @@ import { Button, Comment, Form, Header, Icon, Grid } from 'semantic-ui-react'
 import { getUserDetails } from '../../ducks/reducer';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
+import fns from './../../utilities/functions';
 
 class PostPage extends Component {
     constructor() {
@@ -30,16 +31,33 @@ class PostPage extends Component {
 
     componentDidMount() {
         this.props.getUserDetails(this.props.userCredentials.userid)
-        axios.get(`/api/getpost/${this.props.match.params.id}`)
-            .then(res => this.setState({
-                post: res.data[0]
-            }))
-        axios.get(`/api/getcomments/${this.props.match.params.id}`)
-            .then(res => {
-                this.setState({
-                    comments: res.data
-                })
+       
+        // axios.get(`/api/getpost/${this.props.match.params.id}`)
+        //     .then(res => this.setState({
+        //         post: res.data[0]
+        //     }))
+
+        // axios.get(`/api/getcomments/${this.props.match.params.id}`)
+        //     .then(res => {
+        //         this.setState({
+        //             comments: res.data
+        //         })
+        //     })
+        
+        fns.grabPost(`/api/getpost/${this.props.match.params.id}`)
+        .then( res => {
+            this.setState({
+                post: res
             })
+        })
+       
+        fns.getComments(`/api/getcomments/${this.props.match.params.id}`)
+        .then( res => {
+            this.setState({
+                comments: res
+            })
+        })
+        
     }
 
     showCommentForm() {
