@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
+import fns from './../../utilities/functions';
 
 class GroupPageAllFeed extends Component {
     constructor(props) {

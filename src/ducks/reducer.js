@@ -20,11 +20,14 @@ const initialState = {
     updatedEvent: [],
     updatedComment: [],
     upvotedPost:[],
-    upvotedComment: [],
+    votedComment: [],
     allPosts: [],
     deletedMessage: [],
     deletedReply: [],
-    deletedComment:[]
+    deletedComment:[],
+    replies: [],
+    conversation: [],
+    allUsers: []
 }
 
 const GET_USER_CREDENTIALS = 'GET_USER_CREDENTIALS';
@@ -51,7 +54,10 @@ const GET_ALL_POSTS = 'GET_ALL_POSTS';
 const DELETE_MESSAGE = 'DELETE_MESSAGE';
 const DELETE_REPLY = 'DELETE_REPLY';
 const DELETE_COMMENT = 'DELETE_COMMENT';
-
+const GET_REPLIES = 'GET_REPLIES';
+const GET_CONVERSATION = 'GET_CONVERSATION';
+const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT';
+const GET_ALL_USERS = 'GET_ALL_USERS';
 
 export function getUserCredentials() {
     const userData = axios.get('/auth/me')
@@ -163,8 +169,8 @@ export function createGroup() {
     }
 }
 
-export function createEvent() {
-    const event = axios.post('/api/createevent')
+export function createEvent(body) {
+    const event = axios.post('/api/createevent', body)
     .then( res => {
         return res.data
     })
@@ -317,6 +323,50 @@ export function deleteComment(id) {
     }
 }
 
+export function getReplies(id) {
+    const reply = axios.get(`/api/getreplies${id}`)
+    .then( res => {
+        return res.data
+    })
+    return {
+        type: GET_REPLIES,
+        payload: reply
+    }
+}
+
+export function getConversation(activeid, friendid) {
+    const convo = axios.get(`/api/getconversation/${activeid}/${friendid}`)
+    .then( res => {
+        return res.data
+    })
+    return {
+        type: GET_CONVERSATION,
+        payload: convo
+    }
+}
+
+export function downVoteComment(id) {
+const comment = axios.put('/api/downvotecomment')
+.then( res => {
+    return res.data
+})
+return {
+    type: DOWNVOTE_COMMENT,
+    payload: comment
+}
+}
+
+export function getAllUsers(){
+    const users = axios.get('/api/getusers')
+    .then(response => {
+        return response.data
+    })
+    return {
+        type: GET_ALL_USERS,
+        payload: users
+    }
+}
+
 export default function reducer(state = initialState, action) {
     console.log('action fired!! ', action)
     switch (action.type) {
@@ -378,7 +428,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {upvotedPost: action.payload})  
             
         case UPVOTE_COMMENT + '_FULFILLED': 
-            return Object.assign({}, state, {upvotedComment: action.payload})  
+            return Object.assign({}, state, {votedComment: action.payload})  
             
         case GET_ALL_POSTS  + '_FULFILLED':
             return Object.assign({}, state, {allPosts: action.payload})  
@@ -390,7 +440,18 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {deletedReply: action.payload})    
 
         case DELETE_COMMENT + '_FULFILLED':
-            return Object.assign({}, state, {deletedComment: action.payload})    
+            return Object.assign({}, state, {deletedComment: action.payload})  
+            
+        case GET_REPLIES + '_FULFILLED' :
+            return Object.assign({}, state, {replies: action.payload})   
+            
+        case GET_CONVERSATION + '_FULFILLED':
+            return Object.assign({}, state, {conversation: action.payload})  
+            
+        case DOWNVOTE_COMMENT + '_FULFILLED':
+            return Object.assign({}, state, {votedComment: action.payload})
+        case GET_ALL_USERS + '_FULFILLED':
+            return Object.assign({}, state, {allUsers: action.payload})
 
 
         default:

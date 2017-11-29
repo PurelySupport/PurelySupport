@@ -83,73 +83,79 @@ passport.deserializeUser(function (userid, done) {
 })
 
 
-
+//31 endpoints
 //^^^WORKING ^^^
 app.put('/api/register', userController.register);
 
-app.get('/api/getusercredentials/:id', userController.getUserCredentials);
+app.get('/api/getusercredentials/:id', userController.getUserCredentials);//
 
-app.get('/api/getuserinfo/:id', userController.getUserInfo);
+app.get('/api/getuserinfo/:id', userController.getUserInfo);//
 
 app.put('/api/updategroups', userController.updateGroups);
 
 app.put('/api/updateinterests', userController.updateInterests);
 
-app.put('/api/updatediseases', userController.updateDiseases)
+app.put('/api/updatediseases', userController.updateDiseases);
 
-app.get('/api/getdiseases', userController.getDiseases);
+app.get('/api/getdiseases', userController.getDiseases);//
 
-app.get('/api/getinterests', userController.getInterests);
+app.get('/api/getinterests', userController.getInterests);//
 
-app.get('/api/getgroups', userController.getGroups);
+app.get('/api/getgroups', userController.getGroups);//
 
-app.post('/api/createpost', userController.createPost);
+app.post('/api/createpost', userController.createPost);//
 
 // upvote post, upvote comment
 
-app.put('/api/updatepost', userController.updatePost);
+app.put('/api/updatepost', userController.updatePost);//
 
-app.post('/api/creategroup', userController.createGroup);
+app.post('/api/creategroup', userController.createGroup);//
 
-app.put('/api/updategroup', userController.updateGroup);
+app.put('/api/updategroup', userController.updateGroup);//
 
-app.post('/api/postcomment', userController.postComment);
+app.post('/api/postcomment', userController.postComment);//
 
-app.put('/api/updatecomment', userController.updateComment);
+app.put('/api/updatecomment', userController.updateComment);//
 
-app.put('/api/upvotepost', userController.upvotePost);
+app.put('/api/upvotepost/:id', userController.upvotePost);//
 
-app.put('/api/upvotecomment', userController.upvoteComment);
+app.put('/api/upvotecomment', userController.upvoteComment);//
 
-app.put('/api/downvotecomment', userController.downVoteComment);
+app.put('/api/downvotecomment/', userController.downVoteComment);//
 
-app.get('/api/getpost/:id', userController.getPost);
+app.get('/api/getpost/:id', userController.getPost);//
 
-app.get('/api/getcomments/:id', userController.getComments);
+app.get('/api/getcomments/:id', userController.getComments);//
 
-app.put('/api/deletecomment/:id', userController.deleteComment);
+app.put('/api/deletecomment/:id', userController.deleteComment);//
 
-app.post('/api/createevent/', userController.createEvent);
+app.post('/api/createevent/', userController.createEvent);//
 
-app.put('/api/updateevent', userController.updateEvent);
+app.put('/api/updateevent', userController.updateEvent);//
 
-app.post('/api/createreply', userController.createReply);
+app.post('/api/createreply', userController.createReply);//
 
-app.put('/api/deletereply/:id', userController.deleteReply);
+app.put('/api/deletereply/:id', userController.deleteReply);//
 
-app.get('/api/messages/:id', userController.getMessages);
+app.get('/api/messages/:id', userController.getMessages);//
 
-app.post('/api/createmessage', userController.createMessage);
+app.post('/api/createmessage', userController.createMessage);//
 
-app.put('/api/deletemessage/:id', userController.deleteMessage);
+app.put('/api/deletemessage/:id', userController.deleteMessage);//
 
-app.get('/api/allposts', userController.getAllPosts);
+app.get('/api/allposts', userController.getAllPosts);//
 
-app.get('/api/getreplies/:id',userController.getReplies);
+app.get('/api/getreplies/:id',userController.getReplies);//
 
-app.get('/api/getconversation/:active_user_id/:friend_user_id', userController.getConversation);
+app.get('/api/getconversation/:active_user_id/:friend_user_id', userController.getConversation);//
 
 app.put('/api/addfriend',userController.addFriend);
+
+app.get('/api/getusers', userController.getAllUsers);
+
+app.get('/api/getallmessages/:id', userController.getAllMessages);
+
+app.get('/api/getallevents', userController.getAllEvents);
 
 
 // app.post('/api/payment', function (req, res, next) {
