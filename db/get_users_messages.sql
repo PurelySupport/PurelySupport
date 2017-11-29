@@ -1,8 +1,30 @@
 
-select
- user_messages($1)
- ::json;
+SELECT DISTINCT ON (sub.user_id) 
+-- json_agg(json_build_object('message_id',sub.messageid, 'user_id', sub.user_id, 'content', sub.content, 'timestamp', sub.TIMESTAMP, 'display_name',users.displayname))
+sub.messageid, sub.user_id, sub.content, sub.TIMESTAMP, users.displayname
+FROM 
+    (
+  SELECT 'out' AS type, messageid, recieverid AS user_id, content, TIMESTAMP 
+  FROM   messages as mr
+  WHERE  senderid = $1
 
+  UNION  
+  SELECT 'in' AS type, messageid, senderid AS user_id, content, TIMESTAMP
+  FROM   messages as ms
+  WHERE  recieverid = $1
+  
+--   EXCEPT 
+--   SELECT displayname,userid, userid,displayname, displayname
+--   from users
+  ) as sub
+INNER JOIN users ON users.userid=sub.user_id
+-- group by sub.user_id ,sub.messageid
+ORDER  BY sub.user_id, messageid DESC;
+
+
+-- select
+--  user_messages($1)
+--  ::json;
 
 
 

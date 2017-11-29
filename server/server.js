@@ -157,6 +157,8 @@ app.get('/api/getallmessages/:id', userController.getAllMessages);
 
 app.get('/api/getallevents', userController.getAllEvents);
 
+app.get('/api/getuserinterestsgroups/:id', userController.getUserInterestsGroups)
+
 
 // app.post('/api/payment', function (req, res, next) {
 //   //convert amount to pennies
