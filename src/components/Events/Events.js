@@ -16,6 +16,8 @@ class Events extends Component {
             endtime: '',
             img: '',
             description: '',
+            city: '',
+            state: '',
             myEventsToggled: false,
             allEventsToggled: true,
             groupid: 0
@@ -24,6 +26,7 @@ class Events extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.selectAll = this.selectAll.bind(this);
         this.selectMine = this.selectMine.bind(this);
+        this.newEvent = this.newEvent.bind(this);
 
     }
 
@@ -69,6 +72,22 @@ class Events extends Component {
         } else return <p>This is my event I made.</p>
     }
 
+    newEvent(){
+        const body = {
+            groupid: this.state.groupid,
+            name: this.state.title,
+            description: this.state.description,
+            date: this.state.date,
+            starttime: this.state.starttime,
+            endtime: this.state.endtime,
+            image: this.state.img,
+            city: this.state.city,
+            state: this.state.state,
+            location: this.state.location
+        }
+        this.props.createEvent(body)
+    }
+
 
     render() {
         console.log(this.state)
@@ -97,7 +116,7 @@ class Events extends Component {
                                                     value: group.groupid,
                                                     text: group.name
                                                 }
-                                            })} onChange={(e, data) => this.setState({ userGroups: data.value })} />
+                                            })} onChange={(e, data) => this.setState({ groupid: data.value })} />
                                         </div>
                                         <div className='input-holder'>
                                             <div className='input-title'>Title</div><Input onChange={(e) => this.handleChange(e.target.value, 'title')} className='input'></Input>
@@ -117,6 +136,12 @@ class Events extends Component {
                                         <div className='input-holder'>
                                             <div className='input-title'>Location</div><Input onChange={(e) => this.handleChange(e.target.value, 'location')} className='input'></Input>
                                         </div>
+                                        <div className='input-holder'>
+                                            <div className='input-title'>City</div><Input onChange={(e) => this.handleChange(e.target.value, 'city')} className='city'></Input>
+                                        </div>
+                                        <div className='input-holder'>
+                                            <div className='input-title'>State</div><Input onChange={(e) => this.handleChange(e.target.value, 'state')} className='state'></Input>
+                                        </div>
                                     </div>
 
                                     <div className='right-container'>
@@ -129,7 +154,7 @@ class Events extends Component {
                                 </div>
                             </div>
                         </Form>
-                        <Button>Create Event</Button>
+                        <Button onClick={this.newEvent}>Create Event</Button>
                     </Modal.Content>
                 </Modal>
             </div>
