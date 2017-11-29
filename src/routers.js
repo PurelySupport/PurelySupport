@@ -34,7 +34,7 @@ class Routers extends Component {
                 <Route path='/messages' component={Messages}/>
                 <Route path='/myactivitylog' component={MyActivityLog}/>
                 <Route path='/postpage/:id' component={PostPage}/>
-                <Route path='/publicprofile' component={PublicProfile}/>
+                <Route path='/publicprofile/:id' component={PublicProfile}/>
                 <Route path='/userregistration' component={UserRegistration}/>
 
                 {/* the below paths are just here so i can work on their functionality, etc. THEY ARE MODALS THO SO THEY WON'T NEED ROUTES LATER. -Marina */}
