@@ -90,7 +90,7 @@ class Messages extends Component {
     findFriends() {
         if (this.props.allUsers.length > 0) {
             return this.props.allUsers.map((user, i, arr) => {
-                if (this.props.allUsers[6].friends.includes(user.userid) === true) {
+                if (this.props.allUsers[2].friends.includes(user.userid) === true) {
                     return (
                         <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src={user.img} /><div className='Messages_friend-holder-username'>{user.displayname}</div><Modal trigger={<Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon>} closeIcon>
                             <Modal.Content>
