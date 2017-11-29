@@ -244,6 +244,16 @@ module.exports = {
             res.status(200).send('Added New Friend.')
         }).catch( () => res.status(500).send('Something went wrong adding this friend.'))
     },
+    searchUsers:()=>{
+
+    },
+    getFriends: (req, res, next) => {
+        const db = req.app.get('db')
+        db.get_friends([req.params.id])
+        .then( data => {
+            res.status(200).send(data)
+        }).catch( () => res.status(500).send("Something went wrong getting friends."))
+    },
 
     getAllUsers: ((req, res, next) => {
         const db = req.app.get('db');
