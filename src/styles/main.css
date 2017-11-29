@@ -77,18 +77,14 @@
   position: relative;
   overflow: hidden;
   margin: 0.5vh 1%;
-  min-width: 13.9vw;
-  max-width: 17.3vw;
-  width: 100%;
+  min-width: 30vw;
+  max-width: 35vw;
+  width: 100vw;
   background-color: #ffffff;
   color: #2B2B2B;
   text-align: center;
   font-size: .8vh;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); }
-
-.GroupPageAllFeed .card * {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box; }
 
 .GroupPageAllFeed .card img {
   max-width: 100%;
@@ -103,9 +99,9 @@
 .GroupPageAllFeed .card h4 {
   font-family: 'Oswald';
   text-transform: uppercase;
-  font-size: 1.12vh;
+  font-size: 1.7vh;
   font-weight: 400;
-  line-height: 1.3vh;
+  line-height: 1.8vh;
   margin: 3px 0; }
 
 .GroupPageAllFeed .card h5 {
@@ -118,7 +114,7 @@
 .GroupPageAllFeed .card footer {
   border-top: 1px solid rgba(0, 0, 0, 0.065);
   padding: 0 1.12vw;
-  font-size: .72vh;
+  font-size: 1.2vh;
   line-height: 2.7vh;
   text-align: left;
   position: absolute;
@@ -140,13 +136,10 @@
   margin-right: .27vw;
   font-size: 1em; }
 
-.GroupPageAllFeed .card a {
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  position: absolute;
-  z-index: 1; }
+.GroupPageAllFeed .fix-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: #000; }
 
 .Messages {
   width: 100%;
@@ -369,3 +362,13 @@
     text-decoration: none;
     cursor: pointer;
     color: #C0B283; }
+
+.PostPage button {
+  border: none; }
+
+.PostPage .HeartBtn {
+  color: transparent;
+  -webkit-text-stroke: 1px black; }
+
+.PostPage .RedHeartBtn {
+  color: red; }

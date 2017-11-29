@@ -1,0 +1,16 @@
+.PostPage {
+    button {
+        border: none;
+    }
+
+
+    .HeartBtn {
+        color: transparent;
+        -webkit-text-stroke: 1px black;
+    }
+
+    .RedHeartBtn {
+        color: red;
+        // -webkit-text-stroke: 1px black;
+    }
+}

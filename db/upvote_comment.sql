@@ -1,12 +1,6 @@
 -- $1 = commentid	
 -- $2 = userid	
 
-<<<<<<< HEAD
-UPDATE comments
-SET pointtotal = pointtotal+1,
-liked_by = array_prepend($2, liked_by)
-where commentid	 = $1;
-=======
 UPDATE comments SET
     liked_by =
     CASE WHEN (liked_by @> array[$2]) THEN (
@@ -26,5 +20,9 @@ UPDATE comments SET
         )
     END
   where commentid = $1;
+  SELECT
+c.commentid, c.userid, c.postid, c.pointtotal, c.comment, c.timestamp, u.img, u.displayname, c.liked_by
+FROM users as u
+INNER JOIN comments as c ON u.userid = c.userid
+WHERE postid = $1;
 --   returning *;
->>>>>>> master

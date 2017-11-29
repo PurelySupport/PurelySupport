@@ -111,14 +111,15 @@ class GroupPageAllFeed extends Component {
                 {this.state.posts === '' ? <p></p> : this.state.posts.map((post, index) => {
                     return (
                         <figure className="card">
-                            <div className="image"><img src={post.image} alt="" /></div>
+                            <div><img src={post.image} alt="" /></div>
                             <figcaption>
                                 {/* <h5>Food</h5> */}
+                                <Link to={`/postpage/${post.postid}`} className='fix-link'>
                                 <h4>{post.title}</h4>
+                                </Link>
                                 <footer>
                                     <div className="date">{post.timestamp}</div>
                                     <div className="icons">
-                                        {/* <div className="views"><i class="ion-eye"></i>2,907</div> */}
                                         <div><Icon name='empty heart' size='large' color='red' />{post.pointtotal}</div>
                                     </div>
                                 </footer>
