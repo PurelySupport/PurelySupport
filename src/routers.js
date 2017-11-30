@@ -12,6 +12,7 @@ import Navbar from './components/Navbar/Navbar';
 import PostPage from './components/PostPage/PostPage';
 import PublicProfile from './components/PublicProfile/PublicProfile';
 import UserRegistration from './components/UserRegistration/UserRegistration';
+import GroupView from './components/GroupView/GroupView';
 
 // the below imports are modals. they won't need to be in here once our app is complete. - Marina
 import PostModal from './components/GroupPageAllFeed/PostModal/PostModal';
@@ -36,6 +37,7 @@ class Routers extends Component {
                 <Route path='/postpage/:id' component={PostPage}/>
                 <Route path='/publicprofile/:id' component={PublicProfile}/>
                 <Route path='/userregistration' component={UserRegistration}/>
+                <Route path='/group/:id' component={GroupView} />
 
                 {/* the below paths are just here so i can work on their functionality, etc. THEY ARE MODALS THO SO THEY WON'T NEED ROUTES LATER. -Marina */}
                 <Route path='/modal' component={PostModal} />  
