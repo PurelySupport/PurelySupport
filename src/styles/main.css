@@ -413,3 +413,9 @@
     text-decoration: none;
     cursor: pointer;
     color: #C0B283; }
+
+.GroupView {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
