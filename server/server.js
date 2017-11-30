@@ -10,6 +10,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const userController = require('./controllers/userController');
 
 const app = express();
+app.use( express.static( `${__dirname}/../build` ) );
+
 
 app.use(bodyParser.json());
 app.use(session({
@@ -56,7 +58,7 @@ passport.use(new Auth0Strategy({
 
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/dashboard',
+    successRedirect: '/dashboard',
     failureRedirect: '/auth'
 }));
 app.get('/auth/me', (req, res) => {
@@ -197,5 +199,5 @@ app.get('/api/getuserinterestsgroups/:id', userController.getUserInterestsGroups
 //   });
 // });
 
-const PORT = 3001
+const PORT =8086
 app.listen(PORT, () => console.log(`Server on port ${PORT},`))
