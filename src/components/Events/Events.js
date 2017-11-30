@@ -44,11 +44,11 @@ class Events extends Component {
         //     })
 
         fns.getEvents('/api/getallevents')
-        .then( res => {
-            this.setState({
-                events: res
+            .then(res => {
+                this.setState({
+                    events: res
+                })
             })
-        })
 
     }
 
@@ -111,28 +111,7 @@ class Events extends Component {
         return (
             <div className='Events'>
                 <Navbar />
-
-
-
-
-                {/* <div className='view-select'>
-                    <div onClick={this.selectAll} className={this.state.allEventsToggled === true ? 'button-selected' : 'button'}>All Events</div>/
-                    <div onClick={this.selectMine} className={this.state.myEventsToggled === true ? 'button-selected' : 'button'}>My Events</div>
-                </div>
-                <div className='events-holder'>
-                    <div className='left-holder'>
-                        <div className='featured-event'></div>
-                    </div>
-                    <div className='right-holder'>
-                        {this.allEvents()}
-                    </div>
-                </div> */}
-
-
-
-
                 <div className='feed-container'>
-
                     <div className='event-main'>
                         <div className='event-feed'>
 
@@ -224,10 +203,10 @@ class Events extends Component {
                                             </div>
                                         </div>
                                     </Form>
-                                    {this.state.location === '' || this.state.date === '' || this.state.starttime === '' || this.state.endtime === '' || this.state.img === '' || this.state.description === '' || this.state.city === '' || this.state.state === '' ? 
-                                    <Button onClick={this.newEvent} className='btn' disabled>Create Event</Button> : 
-                                    <Button onClick={this.newEvent} className='btn'>Create Event</Button>
-                                }
+                                    {this.state.location === '' || this.state.date === '' || this.state.starttime === '' || this.state.endtime === '' || this.state.img === '' || this.state.description === '' || this.state.city === '' || this.state.state === '' ?
+                                        <Button onClick={this.newEvent} className='btn' disabled>Create Event</Button> :
+                                        <Button onClick={this.newEvent} className='btn'>Create Event</Button>
+                                    }
                                 </Modal.Content>
                             </Modal>
 

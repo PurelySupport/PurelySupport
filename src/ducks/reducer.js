@@ -371,9 +371,10 @@ export default function reducer(state = initialState, action) {
     console.log('action fired!! ', action)
     switch (action.type) {
         case GET_USER_CREDENTIALS + '_FULFILLED':
-            return Object.assign({}, state, { userCredentials: action.payload })
+        return Object.assign({}, state, { userCredentials: action.payload })
+        
+        case GET_USER_DETAILS + "_FULFILLED":
 
-        case GET_USER_DETAILS + "_FULFULLED":
             return Object.assign({}, state, { userDetails: action.payload })
 
         case GET_DISEASES + "_FULFILLED":
