@@ -16,7 +16,7 @@ class GroupView extends Component {
         }
         this.findGroup = this.findGroup.bind(this);
         this.findEvents = this.findEvents.bind(this);
-        this.addComment = this.addComment.bind(this);
+        // this.addComment = this.addComment.bind(this);
     }
 
     componentDidMount() {
