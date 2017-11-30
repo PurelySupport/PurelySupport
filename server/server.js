@@ -199,5 +199,12 @@ app.get('/api/getuserinterestsgroups/:id', userController.getUserInterestsGroups
 //   });
 // });
 
+
+const path = require('path') 
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
+
+
 const PORT =8086
 app.listen(PORT, () => console.log(`Server on port ${PORT},`))
