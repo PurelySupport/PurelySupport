@@ -14,7 +14,9 @@ class Navbar extends Component {
                         <Link to='/messages' className='fix_link'>
                             <li>messages<span><i className="inbox icon"></i></span></li>
                         </Link>
+                        <Link to='/friends' className='fix_link'>
                         <li>friends<span><i className="address book icon"></i></span></li>
+                        </Link>
                         <Link to='/grouppage' className='fix_link'>
                             <li>groups<span><i className="users icon"></i></span></li>
                         </Link>
