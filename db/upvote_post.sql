@@ -20,3 +20,5 @@ UPDATE post SET
         )
     END
   where postid = $1;
+SELECT * from post
+WHERE postid = $1

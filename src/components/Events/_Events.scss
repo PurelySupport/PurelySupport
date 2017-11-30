@@ -1,75 +1,234 @@
+@import '../../styles/_colors.scss';
+
 .Events {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: $background;
+    
 
-    .view-select {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        font-size: 20px;  
-        margin-top: 5px;      
-        
-        .button {
-            margin: 5px;
-            padding: 5px;
-        }
+    @import url('https://fonts.googleapis.com/css?family=Roboto');
+    @import url('https://fonts.googleapis.com/css?family=Lato');
 
-        .button:hover {
-            text-shadow: 1px 1px #c5bcbc;    
-        }
+    font-family: 'Lato';
+    font-weight: 500;
 
-        .button-selected {
-            margin: 5px;
-            padding: 5px;
-            text-shadow: 1px 1px #c5bcbc;           
-        }
-    }
-
-    .events-holder {
-        width: 75%;
-        height: 80vh;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;    
-    }
-
-    .right-holder {
-        width: 50%;
+    .feed-container {
         height: 100%;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        // align-content: center;
+        // align-items: center;
+        // border: 1px solid purple;
+        // align-items: center;
+    }
+
+    .event-main {
+        height: 100%;
+        width: 68vw;
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        align-content: space-between;
-        padding: 20px;
+        margin-top: 7vh;
+        // border: 1px solid red;
     }
 
-    .left-holder {
-        width: 50%;
+    .event-feed {
         height: 100%;
+        width: 39.8vw;
+        border: 1px solid grey;
+        border-bottom: none;
+        border-right: none;
+        border-left: none;
+        border-radius: 5px;
+    }
+
+    .btn {
+        background-color: $white;
+        color: grey;
+    }
+
+    .view-select-container {
+        height: 100%;
+        width: 20vw;
         display: flex;
+        flex-direction: column;
         align-items: center;
+        // border: 1px solid green;
+    }
+
+    .view-select {
+        height: 16.9vh;
+        width: 15vw;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        padding: 20px;
+        border-radius: 5px;
+        background: $white;
+        color: grey;
+        margin-top: 7vh;
+        // justify-content: space-around;
+        // justify-content: center;
+        // align-items: center;
+        // display: block;
+        // text-align: left;
+        border: 1px solid grey;
     }
 
-    .featured-event {
+    .view-select div {
+        margin-left: .5vw;
+        // border: 1px solid black;
+    }
+
+    .view-select hr {
+        width: 99.2%;
+    }
+
+    .calendar {
+        margin-top: 7vh;
+    }
+
+    .event-card {
+        height: 13vh;
+        width: 39.8vw;
+        display: flex;
+        border: 1px solid grey;
+        // border-left: none;
+        // border-right: none;
+        border-top: none;
+        background: $white;
+        border-radius: 5px;
+    }
+
+
+    .card-content {
         height: 100%;
-        width: 100%;
-        border: solid 1px black;   
-
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: grey;
+        // align-items: center;
+        // text-align: left;
+        // align-content: center;
+        // border: 1px solid blue;
     }
 
-    .event {
-        width: 45%;
-        height: 47%;
-        border: solid 1px black;
+    .card-date {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        color: grey;
+        margin-left: .5vw;
+        margin-top: .5vh;
+        // border-right: 1px solid grey;
+        // border: 1px solid red;
+    }
+
+    .card-title {
+        color: black;
+        font-weight: 900;
+        font-size: 1.1em;
+    }
+
+    .fix-link {
+        text-decoration: none;
+        cursor: pointer;
+        color: grey;
+      }
+
+    .read-more {
+        margin-top: .87vh;
+        font-size: .7em;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .Events {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+
+//     .view-select {
+//         display: flex;
+//         flex-direction: row;
+//         justify-content: center;
+//         align-items: center;
+//         font-size: 20px;  
+//         margin-top: 5px;      
+        
+//         .button {
+//             margin: 5px;
+//             padding: 5px;
+//         }
+
+//         .button:hover {
+//             text-shadow: 1px 1px #c5bcbc;    
+//         }
+
+//         .button-selected {
+//             margin: 5px;
+//             padding: 5px;
+//             text-shadow: 1px 1px #c5bcbc;           
+//         }
+//     }
+
+//     .events-holder {
+//         width: 75%;
+//         height: 80vh;
+//         display: flex;
+//         flex-direction: row;
+//         justify-content: center;
+//         align-items: center;    
+//     }
+
+//     .right-holder {
+//         width: 50%;
+//         height: 100%;
+//         display: flex;
+//         justify-content: space-between;
+//         flex-wrap: wrap;
+//         align-items: flex-start;
+//         align-content: space-between;
+//         padding: 20px;
+//     }
+
+//     .left-holder {
+//         width: 50%;
+//         height: 100%;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//         padding: 20px;
+//     }
+
+//     .featured-event {
+//         height: 100%;
+//         width: 100%;
+//         border: solid 1px black;   
+
+//     }
+
+//     .event {
+//         width: 45%;
+//         height: 47%;
+//         border: solid 1px black;
+//     }
+// }
 
 .modal {
     .form-container {

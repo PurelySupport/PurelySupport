@@ -12,9 +12,7 @@ class PostPage extends Component {
         this.state = {
             comments: [],
             commenterInfo: [],
-            pointtotal: 0,
             post: {},
-            upvoted: false,
 
             newComment: '',
             newReply: '',
@@ -86,8 +84,8 @@ class PostPage extends Component {
 
     addComment() {
         let currentdate = new Date();
-        let timestamp = currentdate.getDate() + "/"
-            + (currentdate.getMonth() + 1) + "/"
+        let timestamp = (currentdate.getMonth() + 1) + "/"
+            + currentdate.getDate() + "/"
             + currentdate.getFullYear() + " @ "
             + currentdate.getHours() + ":"
             + currentdate.getMinutes() + ":"
@@ -108,8 +106,8 @@ class PostPage extends Component {
 
     addReply(commentid) {
         let currentdate = new Date();
-        let timestamp = currentdate.getDate() + "/"
-            + (currentdate.getMonth() + 1) + "/"
+        let timestamp = (currentdate.getMonth() + 1) + "/"
+            + currentdate.getDate() + "/"
             + currentdate.getFullYear() + " @ "
             + currentdate.getHours() + ":"
             + currentdate.getMinutes() + ":"
@@ -128,63 +126,34 @@ class PostPage extends Component {
             })
     }
 
-    upvoteComment(commentid, pointtotal) {
-        if (this.state.upvoted === false) {
-            let data = {
-                commentid: commentid,
-                pointtotal: pointtotal,
-            }
-            axios.put('/api/upvotecomment', data)
-                .then(() => {
-                    this.setState({
-                        upvoted: true
-                    })
-                })
-
-        } else {
-            let data = {
-                commentid: commentid,
-                pointtotal: pointtotal,
-            }
-            axios.put('/api/downvotecomment', data)
-                .then(() => {
-                    this.setState({
-                        upvoted: false
-                    })
-                })
+    upvoteComment(commentid) {
+        const data = {
+            commentid: commentid,
+            userid: this.props.userCredentials.userid
         }
+        axios.put('/api/upvotecomment', data)
+            .then(res => this.setState({
+                comments: res.data
+            }))
     }
 
-    // upvotePost(postid) {
-    //     if (this.state.upvoted === false) {
-    //         let data = {
-    //             postid: postid,
-    //         }
-    //         axios.put(`/api/upvotepost/${postid}`, data)
-    //             .then(() => {
-    //                 this.setState({
-    //                     upvoted: true
-    //                 })
-    //             })
-
-    //     } else {
-    //         let data = {
-    //             postid: postid,
-    //         }
-    //         axios.put(`/api/downvotepost/${postid}`, data)
-    //             .then(() => {
-    //                 this.setState({
-    //                     upvoted: false
-    //                 })
-    //             })
-    //     }
-    // }
+    upvotePost(postid) {
+        const data = {
+            postid: postid,
+            userid: this.props.userCredentials.userid
+        }
+        axios.put(`/api/upvotepost/${postid}`, data)
+        .then(res => this.setState({
+            post: res.data
+        }))
+    }
 
 
     render() {
+        console.log('this.state.comments', this.state.comments)
         return (
             <div className='PostPage'>
-            <Navbar />
+                <Navbar />
                 <Grid centered verticalAlign='top' celled>
                     <Grid.Row>
                         <Grid.Column width={10}>
@@ -199,10 +168,16 @@ class PostPage extends Component {
                         </Grid.Column>
 
                         <Grid.Column width={5}>
-                            {/* {this.state.upvoted ?
-                                <div><Icon name='empty heart' size='large' color='red' onClick={(this.upvotePost(this.state.post.postid))} /><span>{this.state.post.pointtotal}</span></div> :
-                                <div><Icon name='heart' size='large' color='red' onClick={(this.upvotePost(this.state.post.postid))} /><span>{this.state.post.pointtotal}</span></div>
-                            } */}
+
+                        {/* <Icon name='heart' size='large' className='HeartBtn' onClick={() => this.upvotePost(this.state.post.postid)} /> */}
+
+                            {this.state.post.liked_by == null ?
+                                <Icon name='empty heart' size='large' color='red' onClick={() => this.upvotePost(this.state.post.postid)} /> :
+                                this.state.post.liked_by.indexOf(this.props.userCredentials.userid) === -1 ?
+                                    <Icon name='empty heart' size='large' color='red' onClick={() => this.upvotePost(this.state.post.postid)} /> :
+                                    <Icon name='heart' size='large' color='red' onClick={() => this.upvotePost(this.state.post.postid)} />
+                            }
+                            <div>{this.state.post.pointtotal}</div>
                         </Grid.Column>
                     </Grid.Row>
 
@@ -226,24 +201,13 @@ class PostPage extends Component {
 
                                     <Comment.Metadata>
                                         <div>{comment.timestamp}</div>
-                                        
-                                        <Icon name='heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid, comment.pointtotal)} /> 
 
-
-
-
-
-
-
-
-                                        {/* {this.state.upvoted ?
-                                            <Icon name='heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid, comment.pointtotal)} /> :
-                                            <Icon name='empty heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid, comment.pointtotal)} />
-                                        } */}
-
-
-
-
+                                        {comment.liked_by === null ?
+                                            <Icon name='empty heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid)} /> :
+                                            comment.liked_by.indexOf(this.props.userCredentials.userid) === -1 ?
+                                                <Icon name='empty heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid)} /> :
+                                                <Icon name='heart' size='large' color='red' onClick={() => this.upvoteComment(comment.commentid)} />
+                                        }
 
                                         <div>{comment.pointtotal}</div>
                                     </Comment.Metadata>
@@ -271,7 +235,7 @@ class PostPage extends Component {
                                 <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={() => this.addComment()} />
 
                             }
-                            <Button content='Cancel' labelPosition='left' icon='remove' onClick={() => this.showCommentForm()} /> 
+                            <Button content='Cancel' labelPosition='left' icon='remove' onClick={() => this.showCommentForm()} />
 
                         </Form>
                     }
