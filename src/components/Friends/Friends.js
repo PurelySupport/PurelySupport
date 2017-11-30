@@ -31,17 +31,37 @@ class Friends extends Component {
 
 
     getFriends() {
-        this.props.userCredentials.friends !== null ?
-        this.props.allUsers.map( (friend, i) => {
-            return <div className='friendBox'>
-                <div className='friendImage'>
-                 {friend.img}   
-                </div>
-                <div>
-                    {friend.displayname}
-                </div>
-            </div> 
-        } ) :  <div>You Don't have any friends yet!</div>
+        // this.props.userCredentials.friends !== null ?
+        // this.props.allUsers.map( (friend, i) => {
+        //     return <div className='friendBox'>
+        //         <div className='friendImage'>
+        //          {friend.img}   
+        //         </div>
+        //         <div>
+        //             {friend.displayname}
+        //         </div>
+        //     </div> 
+        // } ) :  <div>You Don't have any friends yet!</div>
+
+        if (this.props.allUsers.length > 0) {
+            return this.props.allUsers.map((friend, i, arr) => {
+                if (this.props.userCredentials.friends.includes(friend.userid) === true) {
+                    return (
+                        <div className='friendBox'>
+                                 <div className='friendImage'>
+                                   <img src={friend.img} />   
+                                 </div>
+                                 <div>
+                                     {friend.displayname}
+                                 </div>
+                             </div> 
+                    )
+                }
+            })
+        }
+
+
+
     }
 
 
