@@ -422,3 +422,9 @@
 
 .PostPage .RedHeartBtn {
   color: red; }
+
+.GroupView {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
