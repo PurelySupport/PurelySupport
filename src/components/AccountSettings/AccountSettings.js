@@ -24,7 +24,34 @@ class AccountSettings extends Component {
     }
 
     componentDidMount() {
-        this.props.getUserDetails(this.props.userCredentials.userid)
+        this.props.getUserDetails(this.props.userCredentials.userid).then(res => {
+            // console.log('res', res)
+
+            res.action.payload[0].user_interests == null ? this.setState({
+                userInterests: []
+            }) : this.setState({
+                userInterests: res.action.payload[0].user_interests.map((interest, index) => {
+                    return interest.interest_id
+                }),
+            }),
+                res.action.payload[0].user_diseases == null ? this.setState({
+                    userDiseases: []
+                }) : this.setState({
+                    userDiseases: res.action.payload[0].user_diseases.map((disease, index) => {
+                        return disease.disease_id
+                    }),
+
+                }),
+                res.action.payload[0].user_groups == null ? this.setState({
+                    userGroups: []
+                }) : this.setState({
+                    userGroups: res.action.payload[0].user_groups.map((group, index) => {
+                        return group.group_id
+                    }),
+
+                })
+        })
+
         this.props.getDiseases()
         this.props.getInterests()
         this.props.getGroups()
@@ -34,9 +61,9 @@ class AccountSettings extends Component {
             lastName: this.props.userCredentials.lastname,
             city: this.props.userCredentials.city,
             state: this.props.userCredentials.state,
-            userInterests: this.props.userDetails.interestid,
-            userDiseases: this.props.userDetails.diseaseid,
-            userGroups: this.props.userDetails.groupid
+            // userInterests: this.props.userDetails,
+            // userDiseases: this.props.userDetails,
+            // userGroups: this.props.userDetails
         })
     }
 
@@ -89,6 +116,14 @@ class AccountSettings extends Component {
 
 
     render() {
+
+        // console.log('this.props.userdetails', this.props.userDetails.map((detail, index) => {
+        //     return detail.user_groups
+        // }))
+        console.log('this.state.usergroups', this.state.userGroups)
+        console.log('this.state', this.state)
+
+
         if (this.state.displayName === '' || this.state.firstName === '' || this.state.lastName === '' || this.state.city === '' || this.state.state === '') {
             this.state.allInfoFilled = false
         } else {
@@ -110,21 +145,21 @@ class AccountSettings extends Component {
                     </Form.Group>
 
 
-                    <Dropdown placeholder='Interests' fluid multiple search selection options={this.props.interests.map((interest, index) => {
+                    <Dropdown placeholder='Interests' value={[this.state.userInterests]} fluid multiple search selection options={this.props.interests.map((interest, index) => {
                         return {
                             key: interest.interestid,
                             value: interest.interestid,
                             text: interest.interest
                         }
                     })} onChange={(e, data) => this.setState({ userInterests: data.value })} />
-                    <Dropdown placeholder='Diseases' fluid multiple search selection options={this.props.diseases.map((disease, index) => {
+                    <Dropdown placeholder='Diseases' value={[this.state.userDiseases]} fluid multiple search selection options={this.props.diseases.map((disease, index) => {
                         return {
                             key: disease.diseaseid,
                             value: disease.diseaseid,
                             text: disease.name
                         }
                     })} onChange={(e, data) => this.setState({ userDiseases: data.value })} />
-                    <Dropdown placeholder='Groups' fluid multiple search selection options={this.props.groups.map((group, index) => {
+                    <Dropdown placeholder='Groups' value={this.state.userGroups} fluid multiple search selection options={this.props.groups.map((group, index) => {
                         return {
                             key: group.groupid,
                             value: group.groupid,
@@ -137,7 +172,7 @@ class AccountSettings extends Component {
                         <Link to='/dashboard'>
                             <Button type='submit' onClick={() => this.updateAccountSettings()} >Submit</Button>
                         </Link>
-                    }   
+                    }
 
                     <Modal basic size='small' closeIcon trigger={<Button>Cancel</Button>}>
                         <Header icon='hand paper' content='Unsaved Data' />
@@ -146,12 +181,12 @@ class AccountSettings extends Component {
                         </Modal.Content>
                         <Modal.Actions>
                             <Link to='/dashboard'>
-                            <Button color='green' inverted>
-                                <Icon name='checkmark' /> Yes
+                                <Button color='green' inverted>
+                                    <Icon name='checkmark' /> Yes
                             </Button>
                             </Link>
                         </Modal.Actions>
-                    </Modal> 
+                    </Modal>
                     <Divider hidden />
                 </Form>
             </div>

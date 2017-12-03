@@ -1,31 +1,66 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Navbar extends Component {
+    constructor() {
+        super();
+        this.state = {
+            navDropDownVisible: false
+        }
+        this.openNavDropDown = this.openNavDropDown.bind(this);
+    }
+
+    openNavDropDown() {
+        this.setState({
+            navDropDownVisible: !this.state.navDropDownVisible
+        })
+    }
+
     render() {
         return (
             <div className='Navbar'>
-                <nav className="side-menu">
-                    <ul>
-                        <Link to='/accountsettings' className='fix_link'>
-                            <li>Account<span><i className="user icon"></i></span></li>
+                <div className='nav-main'>
+                    <div className='nav-parent'>
+
+                        <Link to='/dashboard' className='nav-logo-header'>
+                            <div className='nav-logo-parent'>PURELY SUPPORT</div>
                         </Link>
-                        <Link to='/messages' className='fix_link'>
-                            <li>messages<span><i className="inbox icon"></i></span></li>
-                        </Link>
-                        <Link to='/friends' className='fix_link'>
-                        <li>friends<span><i className="address book icon"></i></span></li>
-                        </Link>
-                        <Link to='/grouppage' className='fix_link'>
-                            <li>groups<span><i className="users icon"></i></span></li>
-                        </Link>
-                        <Link to='/events' className='fix_link'>
-                            <li>events<span><i className="calendar icon"></i></span></li>
-                        </Link>
-                        <li><a href={process.env.REACT_APP_LOGOUT}>logout<span><i className="sign out icon"></i></span></a></li>
-                    </ul>
-                </nav>
+
+                        <div className='nav-menu-container' onClick={this.openNavDropDown}>
+                            <div className={this.state.navDropDownVisible ? 'hide' : 'nav-menu-icon fix-link'}><a>&equiv;</a></div>
+                        </div>
+
+                        <div className={this.state.navDropDownVisible ? 'nav-drop-down nav-drop-down-open' : 'nav-drop-down'}>
+
+                            <div className={this.state.navDropDownVisible ? 'nav-menu-icon' : 'hide'}><a onClick={this.openNavDropDown}>&times;</a></div>
+
+                            <div className='nav-drop-down-parent'>
+                                <Link to='/accountsettings' className='fix-link2'>
+                                    <list>ACCOUNT</list>
+                                </Link>
+                                <Link to='/dashboard' className='fix-link2'>
+                                    <list>DASHBOARD</list>
+                                </Link>
+                                <Link to='/messages' className='fix-link2'>
+                                    <list>MESSAGES</list>
+                                </Link>
+                                <Link to='/friends' className='fix-link2'>
+                                    <list>FRIENDS</list>
+                                </Link>
+                                <Link to='/grouppage' className='fix-link2'>
+                                    <list>GROUPS</list>
+                                </Link>
+                                <Link to='events' className='fix-link2'>
+                                    <list>EVENTS</list>
+                                </Link>
+                                <a href={process.env.REACT_APP_LOGOUT}>
+                                    <list>LOGOUT</list>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
