@@ -413,3 +413,13 @@
     text-decoration: none;
     cursor: pointer;
     color: #C0B283; }
+
+.friendBox {
+  height: 10%;
+  width: 10%; }
+
+.friendsContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: auto; }
