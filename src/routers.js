@@ -38,11 +38,8 @@ class Routers extends Component {
                 <Route path='/postpage/:id' component={PostPage}/>
                 <Route path='/publicprofile/:id' component={PublicProfile}/>
                 <Route path='/userregistration' component={UserRegistration}/>
-<<<<<<< HEAD
                 <Route path='/friends' component={Friends}/>
-=======
                 <Route path='/group/:id' component={GroupView} />
->>>>>>> master
 
                 {/* the below paths are just here so i can work on their functionality, etc. THEY ARE MODALS THO SO THEY WON'T NEED ROUTES LATER. -Marina */}
                 <Route path='/modal' component={PostModal} />  

@@ -31,34 +31,25 @@ class Friends extends Component {
 
 
     getFriends() {
-        // this.props.userCredentials.friends !== null ?
-        // this.props.allUsers.map( (friend, i) => {
-        //     return <div className='friendBox'>
-        //         <div className='friendImage'>
-        //          {friend.img}   
-        //         </div>
-        //         <div>
-        //             {friend.displayname}
-        //         </div>
-        //     </div> 
-        // } ) :  <div>You Don't have any friends yet!</div>
-
+        
         if (this.props.allUsers.length > 0) {
             return this.props.allUsers.map((friend, i, arr) => {
                 if (this.props.userCredentials.friends.includes(friend.userid) === true) {
                     return (
-                        <div className='friendBox'>
-                                 <div className='friendImage'>
-                                   <img src={friend.img} />   
+                        // <div className='friendBox'>
+                                 <div className='friendimg'>
+                                   <img className="image" src={friend.img} />  <br/> 
+                                  <div className="friend-name"> {friend.displayname} </div>
                                  </div>
-                                 <div>
-                                     {friend.displayname}
-                                 </div>
-                             </div> 
+                                
+                                    
+                                 
+                            //  </div> 
                     )
                 }
-            })
+            })   
         }
+        else return (<div>You Don't Have Any Friends Yet!</div>)
 
 
 
@@ -68,9 +59,12 @@ class Friends extends Component {
 
     render(){
         return(
-            <div className='friendsContainer'>
+            <div className='friends-parent-div'>
             <Navbar/>
-                {this.getFriends()}
+            <div className="friends-title">My Friends</div>
+                <div className="friendsContainer">
+                    {this.getFriends()}
+                </div>      
             </div>
         )
     }
