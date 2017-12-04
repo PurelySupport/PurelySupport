@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+.Landing {
+    .main {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title-box {
+        height: 50vh;
+        width: 30vw;
+        border: 3px solid #FFFFFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #FFFFFF;
+        font-family: 'Raleway';
+        font-size: 3vh;
+        letter-spacing: .8vw;
+        opacity: .7;
+        animation-name: fadeIn;
+        transition: 1s;
+        animation-duration: 7s;
+    }
+
+    .btn-parent {
+        width: 30vw;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 2vh;
+    }
+
+    .title-btns {
+        color: #FFFFFF;
+        font-family: 'Raleway';
+        letter-spacing: .15vw;
+        opacity: .7;
+        animation-name: fadeIn;
+        transition: 1s;
+        animation-duration: 16s;
+    }
+
+    @keyframes fadeIn {
+        0%   { opacity: 0; }
+        50% { opacity: .7; }
+        100% { opacity: .7; }
+      }
+}
