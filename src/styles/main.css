@@ -231,7 +231,7 @@
   opacity: .7;
   animation-name: fadeIn;
   transition: 1s;
-  animation-duration: 16s; }
+  animation-duration: 14s; }
 
 @keyframes fadeIn {
   0% {
@@ -419,7 +419,8 @@
   display: none; }
 
 .Navbar a {
-  color: #FFFFFF; }
+  color: #FFFFFF;
+  font-family: 'Helvetica'; }
 
 .Navbar .nav-drop-down {
   background: rgba(0, 0, 0, 0.8);

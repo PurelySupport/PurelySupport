@@ -7,8 +7,8 @@
 
 
 insert into post (
-userid, groupid, content, timestamp, pointtotal, title
+userid, groupid, content, timestamp, pointtotal, title, image1
 ) 
 Values (
-$1, $2, $3, $4, $5, $6
+$1, $2, $3, $4, $5, $6, $7
 );
