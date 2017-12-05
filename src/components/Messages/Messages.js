@@ -16,31 +16,33 @@ class Messages extends Component {
             subject: '',
             messageBody: '',
             messages: [],
-            convoBuddy:''
-            
-
+            convoBuddy:'',
+            friends: [],
+            friendModal: false,
+            convoModal: false
         }
 
         this.handleChange = this.handleChange.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.getConvo = this.getConvo.bind(this);
-        this.findFriends = this.findFriends.bind(this)
     }
 
     componentDidMount() {
-        this.props.getAllUsers()
-        // console.log('redux userCredentials', this.props.userCredentials.userid)
-       
-        axios.get(`/api/getallmessages/${this.props.userCredentials.userid}`)
-            .then(response => {
-                this.setState({ messages: response.data })
-            })
-
-        this.props.getUserDetails(this.props.userCredentials.userid).then(response => {
-            this.setState({
-                messages: response.action.payload[0].user_messages
+        this.props.getAllUsers().then(response => {
+            response.action.payload.map(user => {
+                const myFriends = [];
+                if (this.props.userCredentials.friends.includes(user.userid) === true)
+                    this.state.friends.push(user)
             })
         })
+
+        this.props.getUserMessages(this.props.userCredentials.userid).then(response => {
+            console.log(response)
+            this.setState({
+                messages: response.action.payload
+            })
+        })
+
     }
 
     handleChange(e, formfield) {
@@ -48,7 +50,6 @@ class Messages extends Component {
             [formfield]: e
         })
     }
-
 
     sendMessage(friendid) {
 
@@ -64,19 +65,16 @@ class Messages extends Component {
 
         axios.post('/api/createmessage', body)
             .then(response => {
-                console.log('body', body)
+                this.props.getUserMessages(this.props.userCredentials.userid).then(response => {
+                    console.log(response)
+                    this.setState({
+                        messages: response.action.payload
+                    })
+                })
             })
     }
 
     getConvo(friendID) {
-        // axios.get(`/api/getconversation/3/${friendID}`)
-        //     .then(response => {
-        //         console.log(response.data[0])
-        //         return this.setState({
-        //             conversation: response.data[0].user_conversation
-        //         })
-        //     })
-
         const myId = this.props.userCredentials.userid
 
         fns.getConversation(`/api/getconversation/${myId}/${friendID}`)
@@ -87,36 +85,9 @@ class Messages extends Component {
         })
     }
 
-    findFriends() {
-        if (this.props.allUsers.length > 0) {
-            return this.props.allUsers.map((user, i, arr) => {
-                if (this.props.userCredentials.friends.includes(user.userid) === true) {
-                    return (
-                        <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src={user.img} /><div className='Messages_friend-holder-username'>{user.displayname}</div><Modal trigger={<Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon>} closeIcon>
-                            <Modal.Content>
-                                <Modal.Header>Compose Message</Modal.Header>
-                                <div className='Messages_modal-userholder'>
-                                    <img className='Messages_friend-holder-img' src={user.img} />
-                                    <div className='Messages_username-header'>{user.displayname}</div>
-                                </div>
-                                <Form>
-                                    <textarea rows='7' placeholder='Your message here...' onChange={(e) => this.handleChange(e.target.value, 'messageBody')}></textarea>
-                                </Form>
-                                <Button onClick={() => this.sendMessage(user.userid)}>Send</Button>
-                            </Modal.Content>
-                        </Modal></div>
-                    )
-                }
-            })
-        }
-    }
-
-
     render() {
-        console.log('user messages', this.state.messages)
-        console.log('allusers', this.props.allUsers)
-
-
+        console.log('user-messages', this.state.messages)
+        console.log('friends', this.state.friends)
         return (
             <div className='Messages'>
                 <Navbar />
@@ -124,14 +95,31 @@ class Messages extends Component {
                 <div className='Messages_friends-messages-container'>
                     <div className='Messages_friends-container'>
                         <div className='myFriends-header'>My Friends</div>
-                        {this.findFriends()}
+                        {this.state.friends.length ? this.state.friends.map(user => {
+                            return(
+                                <div className='Messages_friend-holder'><img className='Messages_friend-holder-img' src={user.img} /><div className='Messages_friend-holder-username'>{user.displayname}</div><Modal trigger={<Icon className='Messages_friend-holder-icon' size='large' name='write square'></Icon>} closeIcon>
+                                <Modal.Content>
+                                    <Modal.Header>Compose Message</Modal.Header>
+                                    <div className='Messages_modal-userholder'>
+                                        <img className='Messages_friend-holder-img' src={user.img} />
+                                        <div className='Messages_username-header'>{user.displayname}</div>
+                                    </div>
+                                    <Form>
+                                        <textarea rows='7' placeholder='Your message here...' onChange={(e) => this.handleChange(e.target.value, 'messageBody')}></textarea>
+                                    </Form>
+                                    <Button open={false} onClick={() => this.sendMessage(user.user_id)}>Send</Button>
+                                </Modal.Content>
+                            </Modal></div>)
+                        }) : <div className='Messages_modal-userholder'>'No friends'</div>}
                     </div>
+
+
                     <div className='Messages_container'>
-                       
-{this.state.messages.length ? this.state.messages.map((message) => {
-                            if (message.recieverid == this.props.userCredentials.userid)
-                                return <div key={message.messageid} className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon' name='mail'></Icon><div className='messages_user'>{this.props.allUsers.map(user => user.userid === message.senderid ? user.displayname : 'Unknown')}</div></div> <div className='messages_subject'>{message.content}</div> <div className='messages_time'></div>
-                                    <Modal trigger={<Button onClick={() => { this.getConvo(message.senderid) } } className='messages_read'>Read</Button>} closeIcon>
+                        {this.state.messages.length ? this.state.messages.map((message) => {
+                            if (message.user_id == this.props.userCredentials.userid)
+                            console.log('message', message)                            
+                            return <div key={message.messageid} className='Messages_temporary'><div className='usericonholder'><Icon className='messages_icon' name='mail'></Icon><div className='messages_user'>{message.displayname}</div></div> <div className='messages_subject'>{message.content}</div> <div className='messages_time'></div>
+                                    <Modal trigger={<Button onClick={() => { this.getConvo(message.user_id) } } className='messages_read'>Read</Button>} closeIcon>
                                         <Modal.Content>
                                             <div className='Messages_read-modal'>
                                                 <Modal.Header>Message Open</Modal.Header>
@@ -142,7 +130,7 @@ class Messages extends Component {
                                                     </div>
                                                 })}
                                                 <textarea className='Messages_read-modal_textbox' rows='7' onChange={(e) => this.handleChange(e.target.value, 'messageBody')}></textarea>
-                                                <Button onClick={() => this.sendMessage(message.senderid)}>Send</Button>
+                                                <Button open={false} onClick={() => this.sendMessage(message.user_id)}>Send</Button>
                                             </div>
                                         </Modal.Content>
                                     </Modal>
