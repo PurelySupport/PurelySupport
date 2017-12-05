@@ -13,7 +13,9 @@
     align-items: center;
     justify-content: center;
     width: 75%;
-    height: 75%;
+    // height: 75%;
+    height: 475px;
+    // overflow: scroll;
     
 }
 
@@ -123,7 +125,7 @@
     border: solid 1px black;
     height: 100%;
     width: 20%;
-    overflow: scroll;
+    overflow-y: scroll;
     
     .myFriends-header {
         width: 100%;
