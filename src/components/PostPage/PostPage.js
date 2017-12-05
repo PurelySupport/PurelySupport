@@ -184,7 +184,7 @@ class PostPage extends Component {
 
                     <Grid.Row>
                         <Grid.Column width={11}>
-                            <div>{this.state.post.content}</div>
+                        <div dangerouslySetInnerHTML={{ __html: this.state.post.content }} />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

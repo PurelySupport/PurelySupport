@@ -73,9 +73,9 @@ module.exports = {
     },
     createPost: (req, res, next) => {
         const db = req.app.get('db')
-        const { userid, groupid, content, timestamp, pointtotal, title } = req.body;
+        const { userid, groupid, content, timestamp, pointtotal, title, image1 } = req.body;
 
-        db.create_post([userid, groupid, content, timestamp, pointtotal, title])
+        db.create_post([userid, groupid, content, timestamp, pointtotal, title, image1])
             .then(data => {
                 console.log('consolelog', data)
                 res.status(200).send("??")
@@ -286,5 +286,12 @@ module.exports = {
             .then(data => {
                 res.status(200).send(data)
             }).catch((err) => res.status(500).send(err, 'Could not get all events.'))
-    })
+    }),
+    getUserGroups: (req, res, next) => {
+        const db = req.app.get('db')
+        db.get_user_groups(req.params.id)
+            .then(data => {
+                res.status(200).send(data)
+            }).catch(() => res.status(500).send('Could not retrieve user groups'));
+    },
 }

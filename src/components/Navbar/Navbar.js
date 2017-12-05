@@ -36,9 +36,6 @@ class Navbar extends Component {
                             <div className={this.state.navDropDownVisible ? 'nav-menu-icon' : 'hide'}><a onClick={this.openNavDropDown}>&times;</a></div>
 
                             <div className='nav-drop-down-parent'>
-                                <Link to='/accountsettings' className='fix-link2'>
-                                    <list>ACCOUNT</list>
-                                </Link>
                                 <Link to='/dashboard' className='fix-link2'>
                                     <list>DASHBOARD</list>
                                 </Link>
@@ -53,6 +50,9 @@ class Navbar extends Component {
                                 </Link>
                                 <Link to='events' className='fix-link2'>
                                     <list>EVENTS</list>
+                                </Link>
+                                <Link to='/accountsettings' className='fix-link2'>
+                                    <list>ACCOUNT SETTINGS</list>
                                 </Link>
                                 <a href={process.env.REACT_APP_LOGOUT}>
                                     <list>LOGOUT</list>

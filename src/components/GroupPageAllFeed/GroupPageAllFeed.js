@@ -15,7 +15,7 @@ class GroupPageAllFeed extends Component {
             posts: [],
             text: '',
             title: '',
-            image: '',
+            image1: '',
             open: false,
         }
 
@@ -70,10 +70,11 @@ class GroupPageAllFeed extends Component {
             timestamp: timestamp,
             pointtotal: 0,
             title: this.state.title,
-            image: this.state.image
+            image1: this.state.image1
         }
         return axios.post(`/api/createpost`, body)
     }
+    
     render() {
 
         console.log('this is state.posts', this.state.posts)
@@ -82,8 +83,8 @@ class GroupPageAllFeed extends Component {
 
         return (
             <div className='GroupPageAllFeed'>
-                <h1>Group Page/All Feed</h1>
                 <Navbar />
+                <h1>Group Page/All Feed</h1>
                 <Modal trigger={<Button onClick={this.closeConfigShow(true, false)}> New Post</Button>}
                     closeIcon open={open}
                     closeOnRootNodeClick={closeOnRootNodeClick}
