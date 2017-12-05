@@ -5,8 +5,11 @@ import Navbar from '../Navbar/Navbar';
 
 class Dashboard extends Component {
 
+    
+
     componentDidMount() {
         this.props.getUserCredentials
+
     }
 
     componentWillReceiveProps(newProps) {
