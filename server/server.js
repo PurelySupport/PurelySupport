@@ -157,7 +157,9 @@ app.get('/api/getallmessages/:id', userController.getAllMessages);
 
 app.get('/api/getallevents', userController.getAllEvents);
 
-app.get('/api/getuserinterestsgroups/:id', userController.getUserInterestsGroups)
+app.get('/api/getuserinterestsgroups/:id', userController.getUserInterestsGroups);
+
+app.get('/api/getusergroups/:id', userController.getUserGroups);
 
 
 // app.post('/api/payment', function (req, res, next) {
