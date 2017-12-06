@@ -1,8 +1,26 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/css?family=Lato");
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/css?family=Lato");
+.AccountSettings .main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Raleway'; }
+
+.AccountSettings .container {
+  height: 47vh;
+  width: 80vw;
+  border: 2px solid #FFFFFF;
+  padding: 1.5vh; }
+
+.AccountSettings .pad {
+  margin-top: 2vh; }
+
 .Events {
   height: 100vh;
   width: 100vw;
@@ -216,7 +234,8 @@
   opacity: .7;
   animation-name: fadeIn;
   transition: 1s;
-  animation-duration: 7s; }
+  animation-duration: 7s;
+  min-width: 335px; }
 
 .Landing .btn-parent {
   width: 30vw;
@@ -471,6 +490,76 @@
 
 .PostPage .RedHeartBtn {
   color: red; }
+
+.PublicProfile .main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.PublicProfile .title-box {
+  height: 50vh;
+  width: 50vw;
+  border: 3px solid #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  color: #FFFFFF;
+  font-family: 'Raleway';
+  font-size: 3vh;
+  letter-spacing: .8vw;
+  text-transform: uppercase;
+  opacity: .7; }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: .7; }
+  100% {
+    opacity: .7; } }
+
+.PublicProfile .btn-parent {
+  display: flex;
+  position: absolute;
+  bottom: 13%;
+  justify-content: space-around;
+  height: 10vh;
+  width: 50vw;
+  font-size: 1.3vh;
+  letter-spacing: .2vw;
+  cursor: pointer; }
+
+.PublicProfile .btn-parent span:hover {
+  color: #000;
+  opacity: 1; }
+
+.PublicProfile .groups {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 10vw;
+  height: 38vh;
+  position: relative;
+  z-index: 3;
+  position: absolute;
+  bottom: 100%;
+  left: 2%;
+  text-align: center; }
+
+.PublicProfile .interests {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 10vw;
+  height: 38vh;
+  position: relative;
+  z-index: 3;
+  position: absolute;
+  bottom: 100%;
+  left: 26%;
+  text-align: center; }
 
 .GroupView {
   display: flex;
