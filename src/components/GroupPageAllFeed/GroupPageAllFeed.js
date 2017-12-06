@@ -74,7 +74,7 @@ class GroupPageAllFeed extends Component {
         }
         return axios.post(`/api/createpost`, body)
     }
-    
+
     render() {
 
         console.log('this is state.posts', this.state.posts)
@@ -84,53 +84,58 @@ class GroupPageAllFeed extends Component {
         return (
             <div className='GroupPageAllFeed'>
                 <Navbar />
-                <h1>Group Page/All Feed</h1>
-                <Modal trigger={<Button onClick={this.closeConfigShow(true, false)}> New Post</Button>}
-                    closeIcon open={open}
-                    closeOnRootNodeClick={closeOnRootNodeClick}
-                    onClose={this.close}>
-                    <Modal.Header>What's On Your Mind?</Modal.Header>
-                    <Modal.Content >
-                        <Form>
-                            <Form.Field control='input' Label='Title' placeholder='Title' onChange={(e) => this.handleChange(e.target.value, 'title')} required />
-                            <Form.Field control='input' Label='Image URL' placeholder='Image URL' onChange={(e) => this.handleChange(e.target.value, 'image')} required />
-                            <ReactQuill className='editor'
-                                theme='snow'
-                                value={this.state.text}
-                                onChange={this.handleChange}
-                            />
-                            {this.state.text === '' || this.state.title === '' ? <Button disabled>Submit</Button> : <Button onClick={() => this.addPost()}>Submit</Button>}
-                            <div className='render'>
-                                <div dangerouslySetInnerHTML={{ __html: this.state.post }} />
-                            </div>
-                        </Form>
-                    </Modal.Content>
-                </Modal>
+                <div className='main'>
+                    <div className='container'>
 
-
-
-                {/* fancier cards */}
-                {this.state.posts === '' ? <p></p> : this.state.posts.map((post, index) => {
-                    return (
-                        <figure className="card">
-                            <div><img src={post.image} alt="" /></div>
-                            <figcaption>
-                                {/* <h5>Food</h5> */}
-                                <Link to={`/postpage/${post.postid}`} className='fix-link'>
-                                <h4>{post.title}</h4>
-                                </Link>
-                                <footer>
-                                    <div className="date">{post.timestamp}</div>
-                                    <div className="icons">
-                                        <div><Icon name='empty heart' size='large' color='red' />{post.pointtotal}</div>
+                        <h1>Group Page/All Feed</h1>
+                        <Modal trigger={<Button onClick={this.closeConfigShow(true, false)}> New Post</Button>}
+                            closeIcon open={open}
+                            closeOnRootNodeClick={closeOnRootNodeClick}
+                            onClose={this.close}>
+                            <Modal.Header>What's On Your Mind?</Modal.Header>
+                            <Modal.Content >
+                                <Form>
+                                    <Form.Field control='input' Label='Title' placeholder='Title' onChange={(e) => this.handleChange(e.target.value, 'title')} required />
+                                    <Form.Field control='input' Label='Image URL' placeholder='Image URL' onChange={(e) => this.handleChange(e.target.value, 'image')} required />
+                                    <ReactQuill className='editor'
+                                        theme='snow'
+                                        value={this.state.text}
+                                        onChange={this.handleChange}
+                                    />
+                                    {this.state.text === '' || this.state.title === '' ? <Button disabled>Submit</Button> : <Button onClick={() => this.addPost()}>Submit</Button>}
+                                    <div className='render'>
+                                        <div dangerouslySetInnerHTML={{ __html: this.state.post }} />
                                     </div>
-                                </footer>
-                            </figcaption>
-                        </figure>
-                    )
-                })
-                }
+                                </Form>
+                            </Modal.Content>
+                        </Modal>
 
+
+
+                        {/* fancier cards */}
+                        {this.state.posts === '' ? <p></p> : this.state.posts.map((post, index) => {
+                            return (
+                                <figure className="card">
+                                    <div><img src={post.image} alt="" /></div>
+                                    <figcaption>
+                                        {/* <h5>Food</h5> */}
+                                        <Link to={`/postpage/${post.postid}`} className='fix-link'>
+                                            <h4>{post.title}</h4>
+                                        </Link>
+                                        <footer>
+                                            <div className="date">{post.timestamp}</div>
+                                            <div className="icons">
+                                                <div><Icon name='empty heart' size='large' color='red' />{post.pointtotal}</div>
+                                            </div>
+                                        </footer>
+                                    </figcaption>
+                                </figure>
+                            )
+                        })
+                        }
+
+                    </div>
+                </div>
             </div>
         )
     }
