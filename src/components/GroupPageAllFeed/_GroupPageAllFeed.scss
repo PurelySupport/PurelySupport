@@ -1,19 +1,42 @@
+@import '../../styles/_colors.scss';
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+
 .GroupPageAllFeed {
 
+  .main {
+    height: 100%;
+    width: 100vw;
+    font-family: 'Raleway';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+  }
+
+  .container {
+    // border: 2px solid $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .card {
-    font-family: 'Lato', Arial, sans-serif;
+    // font-family: 'Lato', Arial, sans-serif;
     position: relative;
     // float: left;
-    overflow: hidden;
-    margin: 0.5vh 1%;
+    // overflow: hidden;
+    // margin: 0.5vh 1%;
     min-width: 30vw;
-    max-width: 35vw;
+    max-width: 60vw;
     width: 100vw;
     background-color: #ffffff;
     color: #2B2B2B;
     text-align: center;
     font-size: .8vh;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    // border: 2px solid red;
   }
   
   .card img {
