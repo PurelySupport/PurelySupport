@@ -1,0 +1,20 @@
+.event {
+    width: 250px;
+    height: 350px;
+
+    img {
+        min-width: 0px;
+        max-width: 0px;
+        max-width: 70%;
+        max-height: 40%;
+    }
+
+    .event > groupname {
+        color: black;
+        font-size: 20px;
+    }
+}
+
+.stuff > div {
+    color: black;
+}
