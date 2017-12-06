@@ -22,6 +22,21 @@
 .AccountSettings .pad {
   margin-top: 2vh; }
 
+.event {
+  width: 250px;
+  height: 350px; }
+  .event img {
+    min-width: 0px;
+    max-width: 0px;
+    max-width: 70%;
+    max-height: 40%; }
+  .event .event > groupname {
+    color: black;
+    font-size: 20px; }
+
+.stuff > div {
+  color: black; }
+
 .Events {
   height: 100vh;
   width: 100vw;
