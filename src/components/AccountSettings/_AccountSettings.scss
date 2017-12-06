@@ -1,0 +1,29 @@
+@import '../../styles/_colors.scss';
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+
+.AccountSettings {
+    .main {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Raleway';
+    }
+
+    .container {
+        height: 47vh;
+        width: 80vw;
+        border: 2px solid $white;
+        padding: 1.5vh;
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+
+    }
+
+    .pad {
+        margin-top: 2vh;
+    }
+}

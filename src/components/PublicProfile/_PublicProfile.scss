@@ -1,0 +1,216 @@
+.PublicProfile {
+    .main {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .title-box {
+        height: 50vh;
+        width: 50vw;
+        border: 3px solid #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        color: #FFFFFF;
+        font-family: 'Raleway';
+        font-size: 3vh;
+        letter-spacing: .8vw;
+        text-transform: uppercase;
+        opacity: .7;
+    }
+
+    @keyframes fadeIn {
+        0%   { opacity: 0; }
+        50% { opacity: .7; }
+        100% { opacity: .7; }
+      }
+
+      .btn-parent {
+          display: flex;
+          position: absolute;
+          bottom: 13%;
+          justify-content: space-around;
+          height: 10vh;
+          width: 50vw;
+          font-size: 1.3vh;
+          letter-spacing: .2vw;
+          cursor: pointer;
+      }
+    
+      .btn-parent span:hover {
+        color: #000;
+        opacity: 1;
+      }
+
+      .groups {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 10vw;
+        height: 38vh;
+        position: relative;
+        z-index: 3;
+        position: absolute;
+        bottom: 100%;
+        left: 2%;
+        text-align: center;
+      }
+
+      .interests {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        width: 10vw;
+        height: 38vh;
+        position: relative;
+        z-index: 3;
+        position: absolute;
+        bottom: 100%;
+        left: 26%;
+        text-align: center;
+      }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// @import '../../styles/_colors.scss';
+// @import url('https://fonts.googleapis.com/css?family=Raleway');
+
+// .PublicProfile {
+//     .main {
+//         height: 100vh;
+//         width: 100vw;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//     }
+
+//     .card-main {
+//         height: 60.5vh;
+//         width: 75vw;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         position: relative;
+//         text-align: center;
+//         color: white;
+//     }
+
+//     .card-img {
+//         height: 60vh;
+//         width: 33vw;
+//         border-radius: 10px;
+//         z-index: 1;
+//         margin-left: 2vw;
+//     }
+
+//     .card-img-text {
+//         color: $white;
+//         font-family: 'Raleway';
+//         position: absolute;
+//         top: 50%;
+//         left: 7%;
+//         font-size: 7vh;
+//         letter-spacing: 1vw;
+//         opacity: .5
+//     }
+
+//     .card-img-text2 {
+//         color: $white;
+//         font-family: 'Raleway';
+//         position: absolute;
+//         top: 60%;
+//         left: 7%;
+//         font-size: 2vh;
+//         letter-spacing: 1vw;
+//         opacity: .5;
+//     }
+
+//     .card-content1 {
+//         background-color: $white;
+//         height: 58vh;
+//         width: 45vw;
+//         border: 2px solid red;
+//     }
+
+//     .card-content-clicked {
+//         background-color: $white;
+//         height: 58vh;
+//         width: 45vw;
+//     }
+
+//     .card-content2 {
+//         background-color: $white;
+//         height: 58vh;
+//         width: 45vw;  
+//     }
+
+//     .card-img div {
+//         height: 5vh;
+//         width: 33vw;
+//         text-align: center;
+//     }
+
+//     .follow-btn {
+//         position: absolute;
+//         left: 46.8%;
+//         z-index: 3;
+//         border-radius: 100%;
+//         height: 6vh;
+//         background: $grey; 
+//     }
+// }
