@@ -34,7 +34,7 @@ class PublicProfile extends Component {
     componentDidMount() {
         this.props.getAllUsers().then(response => {
             this.getUser()
-            this.getUserInfo()
+            this.state.publicUser ? this.getUserInfo() : null
             this.props.userCredentials.length ? this.followingCheck() : null
         })
     }
