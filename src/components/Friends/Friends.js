@@ -52,9 +52,6 @@ class Friends extends Component {
             })
         }
         else return (<div>You Don't Have Any Friends Yet!</div>)
-
-
-
     }
 
 

@@ -5,6 +5,7 @@ import { getUserDetails } from '../../ducks/reducer';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import fns from './../../utilities/functions';
+import {Link} from 'react-router-dom';
 
 class PostPage extends Component {
     constructor() {
@@ -24,12 +25,13 @@ class PostPage extends Component {
         this.showReplyForm = this.showReplyForm.bind(this);
         this.showCommentForm = this.showCommentForm.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.addComment = this.addComment.bind(this);
 
     }
 
     componentDidMount() {
         this.props.getUserDetails(this.props.userCredentials.userid)
-       
+
         // axios.get(`/api/getpost/${this.props.match.params.id}`)
         //     .then(res => this.setState({
         //         post: res.data[0]
@@ -41,21 +43,21 @@ class PostPage extends Component {
         //             comments: res.data
         //         })
         //     })
-        
+
         fns.grabPost(`/api/getpost/${this.props.match.params.id}`)
-        .then( res => {
-            this.setState({
-                post: res
+            .then(res => {
+                this.setState({
+                    post: res
+                })
             })
-        })
-       
+
         fns.getComments(`/api/getcomments/${this.props.match.params.id}`)
-        .then( res => {
-            this.setState({
-                comments: res
+            .then(res => {
+                this.setState({
+                    comments: res
+                })
             })
-        })
-        
+
     }
 
     showCommentForm() {
@@ -92,15 +94,16 @@ class PostPage extends Component {
             + currentdate.getSeconds();
 
         const data = {
-            userid: this.props.userCredentials.userid,
+            userid: 5,
             postid: this.state.post.postid,
+            pointtotal: 0,
             comment: this.state.newComment,
             timestamp: timestamp
         }
 
         axios.post('/api/postcomment', data)
-            .then(() => {
-                window.location.reload()
+            .then((response) => {
+                this.setState({ comments: response.data, newComment: ''})
             })
     }
 
@@ -143,9 +146,9 @@ class PostPage extends Component {
             userid: this.props.userCredentials.userid
         }
         axios.put(`/api/upvotepost/${postid}`, data)
-        .then(res => this.setState({
-            post: res.data
-        }))
+            .then(res => this.setState({
+                post: res.data
+            }))
     }
 
 
@@ -154,6 +157,9 @@ class PostPage extends Component {
         return (
             <div className='PostPage'>
                 <Navbar />
+                <div className='image'>
+                    <img src={this.state.post.image1} />
+                </div>
                 <Grid centered verticalAlign='top' celled>
                     <Grid.Row>
                         <Grid.Column width={10}>
@@ -169,7 +175,7 @@ class PostPage extends Component {
 
                         <Grid.Column width={5}>
 
-                        {/* <Icon name='heart' size='large' className='HeartBtn' onClick={() => this.upvotePost(this.state.post.postid)} /> */}
+                            {/* <Icon name='heart' size='large' className='HeartBtn' onClick={() => this.upvotePost(this.state.post.postid)} /> */}
 
                             {this.state.post.liked_by == null ?
                                 <Icon name='empty heart' size='large' color='red' onClick={() => this.upvotePost(this.state.post.postid)} /> :
@@ -184,7 +190,7 @@ class PostPage extends Component {
 
                     <Grid.Row>
                         <Grid.Column width={11}>
-                        <div dangerouslySetInnerHTML={{ __html: this.state.post.content }} />
+                            <div dangerouslySetInnerHTML={{ __html: this.state.post.content }} />
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>
@@ -197,7 +203,7 @@ class PostPage extends Component {
                             <Comment key={comment.commentid}>
                                 <Comment.Avatar src={comment.img} />
                                 <Comment.Content>
-                                    <Comment.Author as='a'>{comment.displayname}</Comment.Author>
+                                    <Link to={`/publicprofile/${comment.userid}`}><Comment.Author as='a'>{comment.displayname}</Comment.Author></Link>
 
                                     <Comment.Metadata>
                                         <div>{comment.timestamp}</div>
@@ -229,7 +235,7 @@ class PostPage extends Component {
                     })}
                     {this.state.commentFormVisible === false ? <p></p> :
                         <Form reply>
-                            <Form.TextArea onChange={(e) => this.handleChange(e.target.value, 'newComment')} />
+                            <Form.TextArea value={this.state.newComment} onChange={(e) => this.handleChange(e.target.value, 'newComment')} />
                             {this.state.newComment === '' ?
                                 <Button content='Add Comment' labelPosition='left' icon='edit' disabled /> :
                                 <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={() => this.addComment()} />

@@ -20,6 +20,7 @@ class GroupPageAllFeed extends Component {
         }
 
         this.handleChange = this.handleChange.bind(this)
+        this.handleChange2 = this.handleChange2.bind(this)
         this.addPost = this.addPost.bind(this)
 
     }
@@ -38,6 +39,10 @@ class GroupPageAllFeed extends Component {
             [formfield]: e
         })
     }
+
+    handleChange2(value) {
+        this.setState({ text: value })
+      }
 
     closeConfigShow = (closeOnEscape, closeOnRootNodeClick) => () => {
         this.setState({ closeOnEscape, closeOnRootNodeClick, open: true })
@@ -63,12 +68,11 @@ class GroupPageAllFeed extends Component {
             title: this.state.title,
             image1: this.state.image1
         }
+        console.log('body', body)
         return axios.post(`/api/createpost`, body)
     }
 
     render() {
-
-        console.log('this is state.posts', this.state.posts)
 
         const { open, closeOnEscape, closeOnRootNodeClick } = this.state
 
@@ -88,13 +92,13 @@ class GroupPageAllFeed extends Component {
                                 <Modal.Content >
                                     <Form>
                                         <Form.Field control='input' Label='Title' placeholder='Title' onChange={(e) => this.handleChange(e.target.value, 'title')} required />
-                                        <Form.Field control='input' Label='Image URL' placeholder='Image URL' onChange={(e) => this.handleChange(e.target.value, 'image')} required />
+                                        <Form.Field control='input' Label='Image URL' placeholder='Image URL' onChange={(e) => this.handleChange(e.target.value, 'image1')} required />
                                         <ReactQuill className='editor'
                                             theme='snow'
                                             value={this.state.text}
-                                            onChange={this.handleChange}
+                                            onChange={this.handleChange2}
                                         />
-                                        {this.state.text === '' || this.state.title === '' ? <Button disabled>Submit</Button> : <Button onClick={() => this.addPost()}>Submit</Button>}
+                                        <Button onClick={() => this.addPost()}>Submit</Button>
                                         <div className='render'>
                                             <div dangerouslySetInnerHTML={{ __html: this.state.post }} />
                                         </div>
