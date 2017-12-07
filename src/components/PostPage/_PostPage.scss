@@ -1,8 +1,18 @@
 .PostPage {
+
+    .image {
+        display: flex;
+        justify-content: center;
+        
+        img {
+            max-width: 500px;
+            max-height: 300px;
+        }
+    }
+
     button {
         border: none;
     }
-
 
     .HeartBtn {
         color: transparent;

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getUserCredentials, getEvents, getUserDetails } from '../../ducks/reducer';
 import Navbar from '../Navbar/Navbar';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -61,11 +62,14 @@ class Dashboard extends Component {
                     {this.props.allEvents.map(event => {
                         return (
                             <div className='event'>
-                                <img src={event.image} />
-                                <div className='groupName'>{event.groupname}</div>
-                                <div className='name'>{event.name}</div>
-                                <div className='date'>{event.date}</div>
-                                <div className='time'>{event.starttime}</div>
+                                <div className='img-holder'><img src={event.image} /></div>
+                                <div className='holder'>
+                                    <Link to={`/events`}><div className='groupName'>{event.groupname}</div></Link>
+                                    <div className='name'>{event.name}</div>
+                                    <div className='date'>{event.date}</div>
+                                    <div className='place'>{`${event.city}, ${event.state}`}</div>
+                                    <div className='time'>{event.starttime}</div>
+                                </div>
                                 <div className='description'>{event.description}</div>
                             </div>
                         )
@@ -100,7 +104,7 @@ class Dashboard extends Component {
                                 <div>{disease.disease_name}</div>
                             )
                         }) : null}
-                        
+
                     </div>
                 </div>
             </div>
