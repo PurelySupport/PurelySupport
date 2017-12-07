@@ -91,7 +91,7 @@ class Messages extends Component {
         return (
             <div className='Messages'>
                 <Navbar />
-                <Header>Messages</Header>
+                <div className='header'>Messages</div>
                 <div className='Messages_friends-messages-container'>
                     <div className='Messages_friends-container'>
                         <div className='myFriends-header'>My Friends</div>

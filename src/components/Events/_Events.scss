@@ -12,11 +12,17 @@
     font-family: 'Lato';
     font-weight: 500;
 
-    .feed-container {
-        height: 100%;
-        width: 100vw;
+    .main {
         display: flex;
         justify-content: center;
+    }
+
+    .feed-container {
+        height: 100vh;
+        width: 80vw;
+        display: flex;
+        justify-content: center;
+        border: 2px solid $white;
         // align-content: center;
         // align-items: center;
         // border: 1px solid purple;

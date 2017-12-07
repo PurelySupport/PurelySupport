@@ -3,8 +3,10 @@
 @import url("https://fonts.googleapis.com/css?family=Lato");
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/css?family=Lato");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
 .AccountSettings .main {
   height: 100vh;
   width: 100vw;
@@ -43,11 +45,15 @@
   background: linear-gradient(to right, #D7DDE8, #757F9A);
   font-family: 'Lato';
   font-weight: 500; }
-  .Events .feed-container {
-    height: 100%;
-    width: 100vw;
+  .Events .main {
     display: flex;
     justify-content: center; }
+  .Events .feed-container {
+    height: 100vh;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    border: 2px solid #FFFFFF; }
   .Events .event-main {
     height: 100%;
     width: 68vw;
@@ -172,7 +178,10 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  border: 2px solid #FFFFFF;
+  border-bottom: none;
+  width: 68vw; }
 
 .GroupPageAllFeed .card {
   position: relative;
@@ -240,6 +249,23 @@
   text-decoration: none;
   color: #000; }
 
+.GroupPageAllFeed .new-post-btn {
+  height: 5vh;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  font-size: 4vh;
+  padding-top: 1vh; }
+
+.GroupPageAllFeed .new-post-btn div {
+  padding-top: 3vh; }
+
+.GroupPageAllFeed .np-btn {
+  padding-top: 1vh; }
+
+.GroupPageAllFeed .card-container {
+  padding-top: 3vh; }
+
 .Landing .main {
   height: 100vh;
   width: 100vw;
@@ -294,7 +320,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  font-family: 'Raleway'; }
 
 .Messages_friends-messages-container {
   display: flex;
@@ -304,15 +331,21 @@
   width: 75%;
   height: 475px; }
 
+.header {
+  color: #FFFFFF;
+  font-size: 3vh;
+  padding-bottom: 1vh; }
+
 .Messages_container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border: solid 1px black;
+  border: solid 2px black;
   width: 80%;
   height: 100%;
-  overflow: scroll; }
+  overflow-y: scroll;
+  background-color: #FFFFFF; }
   .Messages_container .Messages_temporary {
     display: flex;
     width: 100%;
@@ -320,9 +353,9 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
-    border-bottom: 1px solid black; }
+    border-bottom: 2px solid black; }
     .Messages_container .Messages_temporary .messages_user {
-      border: 1px solid black;
+      border: 2px solid black;
       padding: 5px;
       width: 100px;
       height: 30px;
@@ -380,17 +413,20 @@
   margin: 20px; }
 
 .Messages_friends-container {
-  border: solid 1px black;
+  border: solid 2px black;
+  border-right: none;
   height: 100%;
   width: 20%;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  background-color: #FFFFFF; }
   .Messages_friends-container .myFriends-header {
     width: 100%;
     padding: 10px;
     display: flex;
     justify-content: center;
-    background-color: gray;
-    color: white;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid black;
+    color: black;
     font-size: 20px; }
   .Messages_friends-container .Messages_friend-holder {
     width: 100%;
@@ -400,7 +436,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 5px;
-    border-bottom: solid 1px gray; }
+    border-bottom: solid 2px black; }
     .Messages_friends-container .Messages_friend-holder .Messages_friend-holder-img {
       width: 30%;
       border-radius: 50%; }
@@ -594,42 +630,44 @@
   align-items: center;
   flex-direction: column; }
 
-.friendBox {
-  height: 90%;
-  width: 90%;
-  margin: 10px; }
-
-.friendsContainer {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  margin: auto;
-  top: 20%;
-  position: relative; }
-
-.friendimg {
-  margin: auto;
-  height: 30%;
-  width: 30%;
-  position: relative;
-  text-align: center;
-  font-size: 24px; }
-
-.friends-parent-div {
-  position: absolute;
-  height: 100vh;
-  width: 100vw; }
-
-.image {
-  height: 80%;
-  width: 80%;
-  border-radius: 5px; }
-
-.friends-title {
-  margin-top: 30px;
-  margin-left: 41%;
-  font-size: 50px;
-  left: 50%; }
-
-.friend-name {
-  padding-top: 18px; }
+.Friends {
+  font-family: 'Raleway';
+  color: #FFFFFF; }
+  .Friends .friendBox {
+    height: 90%;
+    width: 90%;
+    margin: 10px; }
+  .Friends .friendsContainer {
+    height: 100%;
+    width: 80vw;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: auto;
+    top: 5%;
+    position: relative;
+    border: 2px solid #FFFFFF; }
+  .Friends .friendimg {
+    margin: auto;
+    height: 30%;
+    width: 30%;
+    position: relative;
+    text-align: center;
+    font-size: 24px; }
+  .Friends .friends-parent-div {
+    position: absolute;
+    height: 100vh;
+    width: 100vw; }
+  .Friends .image {
+    width: 100%;
+    border-radius: 5px; }
+  .Friends .friends-title {
+    margin-top: 3vh;
+    margin-left: 10%;
+    font-size: 6vh; }
+  .Friends .friend-name {
+    padding-top: 18px; }
+  .Friends .fix-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #FFFFFF; }
