@@ -89,11 +89,11 @@ class Dashboard extends Component {
                             )
                         }) : null}
 
-                        {this.state.groups !== null ? this.state.groups.map(group => {
+                        {/* {this.state.groups !== null ? this.state.groups.map(group => {
                             return (
                                 <div>{group.group_name}</div>
                             )
-                        }) : null}
+                        }) : null} */}
 
                         {this.state.diseases !== null ? this.state.diseases.map(disease => {
                             return (
