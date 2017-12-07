@@ -415,7 +415,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {newGroup: action.payload})    
 
         case CREATE_EVENT + 'FULFILLED':
-            return Object.assign({}, state, {newEvent: action.payload})    
+            return Object.assign({}, state, {allEvents: action.payload})    
 
         case CREATE_MESSAGE + '_FULFILLED':
             return Object.assign({}, state, {newMessage: action.payload})    

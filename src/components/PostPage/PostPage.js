@@ -95,7 +95,7 @@ class PostPage extends Component {
             + currentdate.getSeconds();
 
         const data = {
-            userid: 5,
+            userid: this.props.userCredentials.userid,
             postid: this.state.post.postid,
             pointtotal: 0,
             comment: this.state.newComment,
