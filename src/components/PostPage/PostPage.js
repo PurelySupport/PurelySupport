@@ -30,7 +30,8 @@ class PostPage extends Component {
     }
 
     componentDidMount() {
-        this.props.getUserDetails(this.props.userCredentials.userid)
+        this.props.userCredentials.userid ? 
+        this.props.getUserDetails(this.props.userCredentials.userid) : null
 
         // axios.get(`/api/getpost/${this.props.match.params.id}`)
         //     .then(res => this.setState({
