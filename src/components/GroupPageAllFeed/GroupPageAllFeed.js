@@ -25,21 +25,12 @@ class GroupPageAllFeed extends Component {
     }
 
     componentDidMount() {
-        if (this.props.userCredentials.userid == null) {
-            axios.get('/api/allposts')
-                .then((res) => {
-                    this.setState({
-                        posts: res.data
-                    })
-                })
-        } else {
-            axios.get('/api/allposts')
-                .then((res) => {
-                    this.setState({
-                        posts: res.data
-                    })
-                })
-        }
+        axios.get('/api/allposts')
+        .then((res) => {
+            this.setState({
+                posts: res.data
+            })
+        })
     }
 
     handleChange(e, formfield) {
@@ -87,32 +78,36 @@ class GroupPageAllFeed extends Component {
                 <div className='main'>
                     <div className='container'>
 
-                        <h1>Group Page/All Feed</h1>
-                        <Modal trigger={<Button onClick={this.closeConfigShow(true, false)}> New Post</Button>}
-                            closeIcon open={open}
-                            closeOnRootNodeClick={closeOnRootNodeClick}
-                            onClose={this.close}>
-                            <Modal.Header>What's On Your Mind?</Modal.Header>
-                            <Modal.Content >
-                                <Form>
-                                    <Form.Field control='input' Label='Title' placeholder='Title' onChange={(e) => this.handleChange(e.target.value, 'title')} required />
-                                    <Form.Field control='input' Label='Image URL' placeholder='Image URL' onChange={(e) => this.handleChange(e.target.value, 'image')} required />
-                                    <ReactQuill className='editor'
-                                        theme='snow'
-                                        value={this.state.text}
-                                        onChange={this.handleChange}
-                                    />
-                                    {this.state.text === '' || this.state.title === '' ? <Button disabled>Submit</Button> : <Button onClick={() => this.addPost()}>Submit</Button>}
-                                    <div className='render'>
-                                        <div dangerouslySetInnerHTML={{ __html: this.state.post }} />
-                                    </div>
-                                </Form>
-                            </Modal.Content>
-                        </Modal>
+                        <div className='new-post-btn'>
+                        <div>Group Name</div>
+                            <Modal trigger={<Button onClick={this.closeConfigShow(true, false)} className='np-btn'> New Post</Button>}
+                                closeIcon open={open}
+                                closeOnRootNodeClick={closeOnRootNodeClick}
+                                onClose={this.close}>
+                                <Modal.Header>What's On Your Mind?</Modal.Header>
+                                <Modal.Content >
+                                    <Form>
+                                        <Form.Field control='input' Label='Title' placeholder='Title' onChange={(e) => this.handleChange(e.target.value, 'title')} required />
+                                        <Form.Field control='input' Label='Image URL' placeholder='Image URL' onChange={(e) => this.handleChange(e.target.value, 'image')} required />
+                                        <ReactQuill className='editor'
+                                            theme='snow'
+                                            value={this.state.text}
+                                            onChange={this.handleChange}
+                                        />
+                                        {this.state.text === '' || this.state.title === '' ? <Button disabled>Submit</Button> : <Button onClick={() => this.addPost()}>Submit</Button>}
+                                        <div className='render'>
+                                            <div dangerouslySetInnerHTML={{ __html: this.state.post }} />
+                                        </div>
+                                    </Form>
+                                </Modal.Content>
+                            </Modal>
+                        </div>
 
 
 
                         {/* fancier cards */}
+                        <div className='card-container'>
+
                         {this.state.posts === '' ? <p></p> : this.state.posts.map((post, index) => {
                             return (
                                 <figure className="card">
@@ -132,7 +127,8 @@ class GroupPageAllFeed extends Component {
                                 </figure>
                             )
                         })
-                        }
+                    }
+                    </div>
 
                     </div>
                 </div>
