@@ -64,124 +64,123 @@ class PublicProfile extends Component {
         })
     }
 
-    sendMessage(friendid) {
+sendMessage(friendid) {
 
-        const body = {
-            senderid: this.props.userCredentials.userid,
-            receiverid: friendid,
-            content: this.state.messageBody,
-            timestamp: Date.now()
-        }
-
-        axios.post('/api/createmessage', body)
-            .then(response => {
-                console.log('body', body)
-            })
+    const body = {
+        senderid: this.props.userCredentials.userid,
+        receiverid: friendid,
+        content: this.state.messageBody,
+        timestamp: Date.now()
     }
 
-    addFriend() {
-        const body = {
-            active_user_id: this.props.userCredentials.userid,
-            friend_user_id: this.state.publicUser.userid
-        }
-        axios.put('/api/addfriend', body)
-            .then(response => this.followingCheck())
-    }
+    axios.post('/api/createmessage', body)
+        .then(response => {
+            console.log('body', body)
+        })
+}
 
-    followingCheck() {
-        console.log('following?', this.state.following)
-        const id = this.state.publicUser.userid
-        if (this.props.userCredentials.friends.includes(id) === true) {
-            this.setState({
-                following: !this.state.following
-            })
-        } 
+addFriend() {
+    const body = {
+        active_user_id: this.props.userCredentials.userid,
+        friend_user_id: this.state.publicUser.userid
     }
+    axios.put('/api/addfriend', body)
+        .then(response => this.followingCheck())
+}
 
-    followStatusHandler() {
+followingCheck() {
+    console.log('following?', this.state.following)
+    const id = this.state.publicUser.userid
+    if (this.props.userCredentials.friends.includes(id) === true) {
         this.setState({
-            following: false
+            following: !this.state.following
         })
     }
+}
 
-    toggleGroups(){
-        this.setState({
-            groups: !this.state.groups
-        })
-    }
+followStatusHandler() {
+    this.setState({
+        following: false
+    })
+}
 
-    toggleInterests(){
-        this.setState({
-            interests: !this.state.interests
-        })
-    }
+toggleGroups(){
+    this.setState({
+        groups: !this.state.groups
+    })
+}
 
-    render() {
-        const user = this.state.publicUser
-        console.log('this.state.publicusergroups', this.state.publicUserGroups)
+toggleInterests(){
+    this.setState({
+        interests: !this.state.interests
+    })
+}
 
-        return (
-            <div className='PublicProfile'>
-                <Navbar />
+render() {
+    const user = this.state.publicUser
+    console.log('this.state.publicusergroups', this.state.publicUserGroups)
+
+    return (
+        <div className='PublicProfile'>
+            <Navbar />
+            <div className='main'>
                 <div className='main'>
-                    <div className='main'>
-                        <div className='title-box' style={{ 
-                            backgroundImage: `url(${user.img})`,
-                            backgroundSize: 'cover',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundPosition: '50% 50%',
-                            animationName: 'fadeIn',
-                            transition: 7 }}>
-                            <span>{user.displayname}</span>
-                            <span>{user.user_name}</span>
-                            <span> {user.city}, {user.state}</span>
-                            <div className='btn-parent'>
-                                <span onClick={() => this.toggleGroups()}>groups</span>
+                    <div className='title-box' style={{
+                        backgroundImage: `url(${user.img})`,
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: '50% 50%',
+                        animationName: 'fadeIn',
+                        transition: 7
+                    }}>
+                        <span>{user.displayname}</span>
+                        <span>{user.user_name}</span>
+                        <span> {user.city}, {user.state}</span>
+                        <div className='btn-parent'>
+                            <span onClick={() => this.toggleGroups()}>groups</span>
 
-
-
-                                <div className='groups'>
-                                {this.state.groups === false ? null : 
-                                this.state.publicUserGroups.map((group, index) => {
-                                    return(
-                                        <span>-{group.group_name}</span>
-                                    )
-                                })}
-                                </div>
-
-
-
-                                <span onClick={() => this.toggleInterests()}>interests</span>
-
-
-                                <div className='interests'>
-                                {this.state.interests === false ? null : this.state.publicUserInterests == null ? <span>no interests</span> :
-                                this.state.publicUserInterests.map((interest, index) => {
-                                    return(
-                                        <span>-{interest.interest_name}</span>
-                                    )
-                                })}
-                                </div>
-
-
-
-                                <Modal trigger={<span>message</span>} closeIcon>
-                                    <Modal.Content>
-                                        <Form>
-                                            <textarea rows='7' placeholder='Your message here...' onChange={(e) => this.handleChange(e.target.value, 'messageBody')}></textarea>
-                                        </Form>
-                                        {this.state.messageBody === '' ? <Button disabled>Send</Button> :
-                                    <Button onClick={() => this.sendMessage(this.state.publicUser.userid)}>Send</Button>}
-                                    </Modal.Content>
-                                </Modal>
-                                {this.state.following ? <span onClick={() => this.addFriend()}>follow</span> : <span onClick={() => this.addFriend()}>unfollow</span>}
+                            <div className='groups'>
+                                {this.state.groups === false ? null : this.state.publicUserGroups == null ? <span>no groups</span> :
+                                    this.state.publicUserGroups.map((group, index) => {
+                                        return (
+                                            <span>-{group.group_name}</span>
+                                        )
+                                    })}
                             </div>
+
+
+
+                            <span onClick={() => this.toggleInterests()}>interests</span>
+
+
+                            <div className='interests'>
+                                {this.state.interests === false ? null : this.state.publicUserInterests == null ? <span>no interests</span> :
+                                    this.state.publicUserInterests.map((interest, index) => {
+                                        return (
+                                            <span>-{interest.interest_name}</span>
+                                        )
+                                    })}
+                            </div>
+
+
+
+                            <Modal trigger={<span>message</span>} closeIcon>
+                                <Modal.Content>
+                                    <Form>
+                                        <textarea rows='7' placeholder='Your message here...' onChange={(e) => this.handleChange(e.target.value, 'messageBody')}></textarea>
+                                    </Form>
+                                    {this.state.messageBody === '' ? <Button disabled>Send</Button> :
+                                        <Button onClick={() => this.sendMessage(this.state.publicUser.userid)}>Send</Button>}
+                                </Modal.Content>
+                            </Modal>
+                            {this.state.following ? <span onClick={() => this.addFriend()}>follow</span> : <span onClick={() => this.addFriend()}>unfollow</span>}
                         </div>
                     </div>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
+}
 }
 
 function mapStateToProps(state) {

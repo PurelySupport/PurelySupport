@@ -114,7 +114,9 @@ class Events extends Component {
         return (
             <div className='Events'>
                 <Navbar />
+                <div className='events-header'>Events</div>
                 <div className='main'>
+
 
                     <div className='feed-container'>
                         <div className='event-main'>
@@ -135,7 +137,7 @@ class Events extends Component {
                                                 <div className='card-title'>{event.name}</div>
                                                 <div>{event.description.substr(0, 30) + '...'}</div>
                                                 <Modal trigger={<div className='read-more'>Read More</div>} closeIcon>
-                                                    <Modal.Header>{event.groupname}</Modal.Header>
+                                                    <Modal.Header >{event.groupname}</Modal.Header>
                                                     <Modal.Content image>
                                                         <Image wrapped size='large' src={event.image} />
                                                         <Modal.Description>

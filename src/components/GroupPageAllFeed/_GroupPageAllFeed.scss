@@ -4,6 +4,8 @@
 
 .GroupPageAllFeed {
 
+  font-family: 'Raleway';
+
   .main {
     height: 100%;
     width: 100vw;
@@ -14,19 +16,41 @@
     color: $white;
   }
 
+  .group-page-header {
+    font-family: 'Raleway';
+    color: $white;
+    font-size: 4vh;
+    font-weight: bold;
+    width: 80vw;
+    margin-top: 3vh;
+    // margin-bottom: 7vh;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid $white;
+    // border: 2px solid $white;
     border-bottom: none;
     width: 68vw;
   }
 
+  .post-title {
+    font-family: 'Raleway';
+    font-size: 3vh;
+    position: absolute;
+    left: 1%;
+    top: 83%;
+
+
+    // text-align: left;
+  }
+
   .card {
-    // font-family: 'Lato', Arial, sans-serif;
+    font-family: 'Raleway';
     position: relative;
+    margin-top: 5vh;
     // float: left;
     // overflow: hidden;
     // margin: 0.5vh 1%;
@@ -36,8 +60,11 @@
     background-color: #ffffff;
     color: #2B2B2B;
     text-align: center;
-    font-size: .8vh;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    font-size: .9vh;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.1), 0 6px 6px 0 rgba(0,0,0,0.2);
+    
+    // box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    // border: 2px solid red;
   }
   
   .card img {
@@ -47,9 +74,10 @@
   }
   
   .card figcaption {
-    padding: 10%;
-    padding-bottom: calc(25%);
+    padding: 5%;
+    // padding-bottom: calc(25%);
     background-color: #ffffff;
+    // border: 2px solid green;
   }
   
   .card h4 {
@@ -105,23 +133,44 @@
   }
 
   .new-post-btn {
-    height: 5vh;
-    width: 100vw;
-    display: flex;
-    justify-content: space-around;
-    font-size: 4vh;
-    padding-top: 1vh;
+    position: absolute;
+    right: 10%;
+    top: 6.2%;
   }
 
   .new-post-btn div {
     padding-top: 3vh;
   }
 
-  .np-btn {
-    padding-top: 1vh;
-  }
-
   .card-container {
     padding-top: 3vh;
   }
+
+  .img-holder {
+    width: 60vw;
+    height: 50vh;
+    // border: 2px solid green;
+  }
+
+  .card-content {
+    height: 3vh;
+    width: 60vw;
+    position: absolute;
+    left: 1%;
+    top: 88%;
+    // border: 2px solid red;
+    font-size: 1.5vh;
+    text-align: left;
+  }
+
+  .border-box {
+    width: 80vw;
+    // height: 200px;
+    border: 2px solid $white;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    margin-bottom: 3vh;
+    margin-top: .7vh;
+}
 }

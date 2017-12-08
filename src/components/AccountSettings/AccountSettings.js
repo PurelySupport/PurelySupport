@@ -132,6 +132,8 @@ class AccountSettings extends Component {
         return (
             <div className='AccountSettings'>
                 <Navbar />
+
+                <div className='account-header'>Account Settings</div>
                 <div className='main'>
                 
 

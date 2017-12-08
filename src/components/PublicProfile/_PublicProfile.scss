@@ -57,6 +57,7 @@
         bottom: 100%;
         left: 2%;
         text-align: center;
+        overflow: hidden;
       }
 
       .interests {
@@ -71,6 +72,9 @@
         bottom: 100%;
         left: 26%;
         text-align: center;
+        // border: 2px solid red;
+        overflow: hidden;
+        // overflow: scroll;
       }
 }
 

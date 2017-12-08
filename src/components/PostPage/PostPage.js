@@ -5,7 +5,7 @@ import { getUserDetails } from '../../ducks/reducer';
 import axios from 'axios';
 import Navbar from '../Navbar/Navbar';
 import fns from './../../utilities/functions';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class PostPage extends Component {
     constructor() {
@@ -30,8 +30,8 @@ class PostPage extends Component {
     }
 
     componentDidMount() {
-        this.props.userCredentials.userid ? 
-        this.props.getUserDetails(this.props.userCredentials.userid) : null
+        this.props.userCredentials.userid ?
+            this.props.getUserDetails(this.props.userCredentials.userid) : null
 
         // axios.get(`/api/getpost/${this.props.match.params.id}`)
         //     .then(res => this.setState({
@@ -104,7 +104,7 @@ class PostPage extends Component {
 
         axios.post('/api/postcomment', data)
             .then((response) => {
-                this.setState({ comments: response.data, newComment: ''})
+                this.setState({ comments: response.data, newComment: '' })
             })
     }
 
@@ -158,47 +158,60 @@ class PostPage extends Component {
         return (
             <div className='PostPage'>
                 <Navbar />
-                <div className='image'>
+                {/* <div className='image'>
                     <img src={this.state.post.image1} />
+                </div> */}
+                <div className='post-header'>{this.state.post.title}</div>
+                <div className='border-box'></div>
+                <div className='img-holder'
+                    style={{
+                        backgroundImage: `url(${this.state.post.image1})`,
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: '50% 50%',
+                    }}>
                 </div>
-                <Grid centered verticalAlign='top' celled>
+
+                <div className='post-main-container'>
+                    <div dangerouslySetInnerHTML={{ __html: this.state.post.content }} className='content-box' />
+                </div>
+                {/* <Grid centered verticalAlign='top' celled>
                     <Grid.Row>
-                        <Grid.Column width={10}>
-                            <h1>{this.state.post.title}</h1>
-                        </Grid.Column>
+                    <Grid.Column width={10}>
+                    <h1>{this.state.post.title}</h1>
+                    </Grid.Column>
                     </Grid.Row>
-
-
+                    
+                    
                     <Grid.Row>
-                        <Grid.Column width={5}>
-                            <div>{this.state.post.timestamp}</div>
-                        </Grid.Column>
-
-                        <Grid.Column width={5}>
-
-                            {/* <Icon name='heart' size='large' className='HeartBtn' onClick={() => this.upvotePost(this.state.post.postid)} /> */}
-
-                            {this.state.post.liked_by == null ?
-                                <Icon name='empty heart' size='large' color='red' onClick={() => this.upvotePost(this.state.post.postid)} /> :
-                                this.state.post.liked_by.indexOf(this.props.userCredentials.userid) === -1 ?
-                                    <Icon name='empty heart' size='large' color='red' onClick={() => this.upvotePost(this.state.post.postid)} /> :
-                                    <Icon name='heart' size='large' color='red' onClick={() => this.upvotePost(this.state.post.postid)} />
-                            }
-                            <div>{this.state.post.pointtotal}</div>
-                        </Grid.Column>
+                    <Grid.Column width={5}>
+                    <div>{this.state.post.timestamp}</div>
+                    </Grid.Column>
+                    
+                    <Grid.Column width={5}>
+                    
+                    
+                    {this.state.post.liked_by == null ?
+                        <Icon name='empty heart' size='large' color='red' onClick={() => this.upvotePost(this.state.post.postid)} /> :
+                        this.state.post.liked_by.indexOf(this.props.userCredentials.userid) === -1 ?
+                        <Icon name='empty heart' size='large' color='red' onClick={() => this.upvotePost(this.state.post.postid)} /> :
+                        <Icon name='heart' size='large' color='red' onClick={() => this.upvotePost(this.state.post.postid)} />
+                    }
+                    <div>{this.state.post.pointtotal}</div>
+                    </Grid.Column>
                     </Grid.Row>
-
-
+                    
+                    
                     <Grid.Row>
-                        <Grid.Column width={11}>
-                            <div dangerouslySetInnerHTML={{ __html: this.state.post.content }} />
-                        </Grid.Column>
+                    <Grid.Column width={11}>
+                    <div dangerouslySetInnerHTML={{ __html: this.state.post.content }} />
+                    </Grid.Column>
                     </Grid.Row>
-                </Grid>
+                </Grid> */}
 
 
                 <Comment.Group threaded >
-                    <Header as='h3' dividing>Comments</Header>
+                    <Header as='h3' className='comment-header'>Comments</Header>
                     {this.state.comments.map((comment, index) => {
                         return (
                             <Comment key={comment.commentid}>
@@ -234,6 +247,7 @@ class PostPage extends Component {
 
                         )
                     })}
+                    <div className='border-box'></div>
                     {this.state.commentFormVisible === false ? <p></p> :
                         <Form reply>
                             <Form.TextArea value={this.state.newComment} onChange={(e) => this.handleChange(e.target.value, 'newComment')} />

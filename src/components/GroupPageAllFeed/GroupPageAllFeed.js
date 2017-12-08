@@ -27,11 +27,11 @@ class GroupPageAllFeed extends Component {
 
     componentDidMount() {
         axios.get('/api/allposts')
-        .then((res) => {
-            this.setState({
-                posts: res.data
+            .then((res) => {
+                this.setState({
+                    posts: res.data
+                })
             })
-        })
     }
 
     handleChange(e, formfield) {
@@ -42,7 +42,7 @@ class GroupPageAllFeed extends Component {
 
     handleChange2(value) {
         this.setState({ text: value })
-      }
+    }
 
     closeConfigShow = (closeOnEscape, closeOnRootNodeClick) => () => {
         this.setState({ closeOnEscape, closeOnRootNodeClick, open: true })
@@ -82,58 +82,70 @@ class GroupPageAllFeed extends Component {
                 <div className='main'>
                     <div className='container'>
 
-                        <div className='new-post-btn'>
-                        <div>Group Name</div>
-                            <Modal trigger={<Button onClick={this.closeConfigShow(true, false)} className='np-btn'> New Post</Button>}
-                                closeIcon open={open}
-                                closeOnRootNodeClick={closeOnRootNodeClick}
-                                onClose={this.close}>
-                                <Modal.Header>What's On Your Mind?</Modal.Header>
-                                <Modal.Content >
-                                    <Form>
-                                        <Form.Field control='input' Label='Title' placeholder='Title' onChange={(e) => this.handleChange(e.target.value, 'title')} required />
-                                        <Form.Field control='input' Label='Image URL' placeholder='Image URL' onChange={(e) => this.handleChange(e.target.value, 'image1')} required />
-                                        <ReactQuill className='editor'
-                                            theme='snow'
-                                            value={this.state.text}
-                                            onChange={this.handleChange2}
-                                        />
-                                        <Button onClick={() => this.addPost()}>Submit</Button>
-                                        <div className='render'>
-                                            <div dangerouslySetInnerHTML={{ __html: this.state.post }} />
-                                        </div>
-                                    </Form>
-                                </Modal.Content>
-                            </Modal>
-                        </div>
+                        <div className='group-page-header'>All Posts</div>
+                        <div className='border-box'>
+                            </div>
+                            <div className='new-post-btn'>
+                                <Modal trigger={<Button onClick={this.closeConfigShow(true, false)} > New Post</Button>}
+                                    closeIcon open={open}
+                                    closeOnRootNodeClick={closeOnRootNodeClick}
+                                    onClose={this.close}>
+                                    <Modal.Header>What's On Your Mind?</Modal.Header>
+                                    <Modal.Content >
+                                        <Form>
+                                            <Form.Field control='input' Label='Title' placeholder='Title' onChange={(e) => this.handleChange(e.target.value, 'title')} required />
+                                            <Form.Field control='input' Label='Image URL' placeholder='Image URL' onChange={(e) => this.handleChange(e.target.value, 'image1')} required />
+                                            <ReactQuill className='editor'
+                                                theme='snow'
+                                                value={this.state.text}
+                                                onChange={this.handleChange2}
+                                            />
+                                            <Button onClick={() => this.addPost()}>Submit</Button>
+                                            <div className='render'>
+                                                <div dangerouslySetInnerHTML={{ __html: this.state.post }} />
+                                            </div>
+                                        </Form>
+                                    </Modal.Content>
+                                </Modal>
+                            </div>
 
 
 
                         {/* fancier cards */}
                         <div className='card-container'>
 
-                        {this.state.posts === '' ? <p></p> : this.state.posts.map((post, index) => {
-                            return (
-                                <figure className="card">
-                                    <div><img src={post.image} alt="" /></div>
-                                    <figcaption>
-                                        {/* <h5>Food</h5> */}
-                                        <Link to={`/postpage/${post.postid}`} className='fix-link'>
-                                        <img src={post.image1}/>
-                                            <h4>{post.title}</h4>
-                                        </Link>
-                                        <footer>
-                                            <div className="date">{post.timestamp}</div>
-                                            <div className="icons">
-                                                <div><Icon name='empty heart' size='large' color='red' />{post.pointtotal}</div>
-                                            </div>
-                                        </footer>
-                                    </figcaption>
-                                </figure>
-                            )
-                        })
-                    }
-                    </div>
+                            {this.state.posts === '' ? <p></p> : this.state.posts.map((post, index) => {
+                                return (
+                                    <figure className="card">
+
+                                        <div className='img-holder'
+                                            style={{
+                                                backgroundImage: `url(${post.image1})`,
+                                                backgroundSize: 'cover',
+                                                backgroundRepeat: 'no-repeat',
+                                                backgroundPosition: '50% 50%',
+                                            }}>
+                                        </div>
+                                        <figcaption>
+                                            {/* <h5>Food</h5> */}
+                                            <Link to={`/postpage/${post.postid}`} className='fix-link'>
+                                                {/* <img src={post.image1} /> */}
+                                                <div className='post-title'>{post.title.substr(0, 68) + '...'}</div>
+                                                {/* <div className='card-content'>{post.content.substr(0, 150) + '...'}</div> */}
+                                                <div className='card-content' dangerouslySetInnerHTML={{ __html: post.content.substr(0, 150) + "..." }} />
+                                            </Link>
+                                            <footer>
+                                                <div className="date">{post.timestamp}</div>
+                                                <div className="icons">
+                                                    <div><Icon name='empty heart' size='large' color='red' />{post.pointtotal}</div>
+                                                </div>
+                                            </footer>
+                                        </figcaption>
+                                    </figure>
+                                )
+                            })
+                            }
+                        </div>
 
                     </div>
                 </div>

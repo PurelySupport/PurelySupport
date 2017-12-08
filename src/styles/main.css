@@ -1,35 +1,77 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-@import url("https://fonts.googleapis.com/css?family=Lato");
-@import url("https://fonts.googleapis.com/css?family=Raleway");
-@import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/css?family=Lato");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Lato");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 .AccountSettings .main {
   height: 100vh;
   width: 100vw;
   display: flex;
   justify-content: center;
-  align-items: center;
   font-family: 'Raleway'; }
 
 .AccountSettings .container {
-  height: 47vh;
+  height: 55vh;
   width: 80vw;
   border: 2px solid #FFFFFF;
-  padding: 1.5vh; }
+  padding: 1.5vh;
+  margin-top: 1vh;
+  border-right: none;
+  border-left: none;
+  border-bottom: none; }
 
 .AccountSettings .pad {
   margin-top: 2vh; }
 
-.events {
-  width: 100%;
-  display: flex; }
-  .events .event {
+.AccountSettings .account-header {
+  width: 80vw;
+  font-family: "Raleway";
+  color: #FFFFFF;
+  font-size: 4vh;
+  font-weight: bold;
+  margin-top: 3vh;
+  margin-left: 20vh;
+  margin-bottom: 1vh; }
+
+.AccountSettings .border-box {
+  width: 80vw;
+  border: 2px solid #FFFFFF;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  margin-bottom: 3vh;
+  margin-top: .5vh; }
+
+.Dashboard .main-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%; }
+
+.Dashboard .events {
+  width: 90vw;
+  display: flex;
+  margin-top: 3vh;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .Dashboard .events .events-header {
+    width: 100vw;
+    font-family: "Raleway";
+    color: #FFFFFF;
+    font-size: 4vh;
+    font-weight: bold; }
+  .Dashboard .events .event {
     width: 250px;
     height: 350px;
+    min-width: 250px;
+    min-height: 350px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -37,20 +79,20 @@
     box-shadow: 2px 2px 2px 2px #888888;
     background-color: white;
     font-family: 'Raleway'; }
-    .events .event .img-holder {
+    .Dashboard .events .event .img-holder {
       background-color: black;
       width: 100%;
-      height: 40%;
+      height: 175px;
       overflow: hidden;
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       top: 0; }
-    .events .event .event > groupname {
+    .Dashboard .events .event .event > groupname {
       color: black;
       font-size: 20px; }
-    .events .event .holder {
+    .Dashboard .events .event .holder {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -59,19 +101,36 @@
       padding-bottom: 5%;
       margin-bottom: 2%;
       overflow: hidden; }
-    .events .event .description {
+    .Dashboard .events .event .description {
       width: 100%;
-      padding: 5%;
-      overflow-y: scroll;
+      padding-right: 5%;
+      padding-left: 5%;
       margin-bottom: 5px; }
-    .events .event .groupName {
+    .Dashboard .events .event .groupName {
       color: lightslategray; }
-    .events .event .name {
+    .Dashboard .events .event .name {
       font-size: 20px;
       letter-spacing: 1px; }
 
-.stuff > div {
+.Dashboard .stuff > div {
   color: black; }
+
+.Dashboard .fix-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: #000; }
+
+.Dashboard .event-holder {
+  width: 90vw;
+  display: flex;
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 2px solid #FFFFFF;
+  border-left: none;
+  border-right: none;
+  border-bottom: none; }
 
 .Events {
   height: 100vh;
@@ -87,7 +146,19 @@
     width: 80vw;
     display: flex;
     justify-content: center;
-    border: 2px solid #FFFFFF; }
+    border: 2px solid #FFFFFF;
+    border-left: none;
+    border-right: none;
+    border-bottom: none; }
+  .Events .events-header {
+    width: 80vw;
+    font-family: "Raleway";
+    color: #FFFFFF;
+    font-size: 4vh;
+    font-weight: bold;
+    margin-top: 3vh;
+    margin-left: 20vh;
+    margin-bottom: 1vh; }
   .Events .event-main {
     height: 100%;
     width: 68vw;
@@ -95,16 +166,18 @@
     justify-content: space-between;
     margin-top: 7vh; }
   .Events .event-feed {
-    height: 100%;
+    height: 65%;
     width: 39.8vw;
     border: 1px solid grey;
     border-bottom: none;
     border-right: none;
     border-left: none;
-    border-radius: 5px; }
+    border-radius: 5px;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.2); }
   .Events .btn {
     background-color: #FFFFFF;
-    color: grey; }
+    color: grey;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.2); }
   .Events .view-select-container {
     height: 100%;
     width: 20vw;
@@ -121,7 +194,8 @@
     background: #FFFFFF;
     color: grey;
     margin-top: 7vh;
-    border: 1px solid grey; }
+    border: 1px solid grey;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.2); }
   .Events .view-select div {
     margin-left: .5vw; }
   .Events .view-select hr {
@@ -199,106 +273,120 @@
   margin-top: 5px;
   margin-bottom: 5px; }
 
-.GroupPageAllFeed .main {
-  height: 100%;
-  width: 100vw;
-  font-family: 'Raleway';
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #FFFFFF; }
-
-.GroupPageAllFeed .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #FFFFFF;
-  border-bottom: none;
-  width: 68vw; }
-
-.GroupPageAllFeed .card {
-  position: relative;
-  min-width: 30vw;
-  max-width: 60vw;
-  width: 100vw;
-  background-color: #ffffff;
-  color: #2B2B2B;
-  text-align: center;
-  font-size: .8vh;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15); }
-
-.GroupPageAllFeed .card img {
-  max-width: 100%;
-  vertical-align: top;
-  position: relative; }
-
-.GroupPageAllFeed .card figcaption {
-  padding: 10%;
-  padding-bottom: calc(25%);
-  background-color: #ffffff; }
-
-.GroupPageAllFeed .card h4 {
-  font-family: 'Oswald';
-  text-transform: uppercase;
-  font-size: 1.7vh;
-  font-weight: 400;
-  line-height: 1.8vh;
-  margin: 3px 0; }
-
-.GroupPageAllFeed .card h5 {
-  font-weight: 400;
-  margin: 0;
-  text-transform: uppercase;
-  color: #888;
-  letter-spacing: 1px; }
-
-.GroupPageAllFeed .card footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.065);
-  padding: 0 1.12vw;
-  font-size: 1.2vh;
-  line-height: 2.7vh;
-  text-align: left;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%; }
-
-.GroupPageAllFeed .card footer .icons {
-  position: absolute;
-  right: 1.12vw;
-  top: 0; }
-
-.GroupPageAllFeed .card footer .icons > div {
-  display: inline-block;
-  margin-left: .44vw; }
-
-.GroupPageAllFeed .card footer .icons i {
-  display: inline-block;
-  margin-right: .27vw;
-  font-size: 1em; }
-
-.GroupPageAllFeed .fix-link {
-  cursor: pointer;
-  text-decoration: none;
-  color: #000; }
-
-.GroupPageAllFeed .new-post-btn {
-  height: 5vh;
-  width: 100vw;
-  display: flex;
-  justify-content: space-around;
-  font-size: 4vh;
-  padding-top: 1vh; }
-
-.GroupPageAllFeed .new-post-btn div {
-  padding-top: 3vh; }
-
-.GroupPageAllFeed .np-btn {
-  padding-top: 1vh; }
-
-.GroupPageAllFeed .card-container {
-  padding-top: 3vh; }
+.GroupPageAllFeed {
+  font-family: 'Raleway'; }
+  .GroupPageAllFeed .main {
+    height: 100%;
+    width: 100vw;
+    font-family: 'Raleway';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF; }
+  .GroupPageAllFeed .group-page-header {
+    font-family: 'Raleway';
+    color: #FFFFFF;
+    font-size: 4vh;
+    font-weight: bold;
+    width: 80vw;
+    margin-top: 3vh; }
+  .GroupPageAllFeed .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none;
+    width: 68vw; }
+  .GroupPageAllFeed .post-title {
+    font-family: 'Raleway';
+    font-size: 3vh;
+    position: absolute;
+    left: 1%;
+    top: 83%; }
+  .GroupPageAllFeed .card {
+    font-family: 'Raleway';
+    position: relative;
+    margin-top: 5vh;
+    min-width: 30vw;
+    max-width: 60vw;
+    width: 100vw;
+    background-color: #ffffff;
+    color: #2B2B2B;
+    text-align: center;
+    font-size: .9vh;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.2); }
+  .GroupPageAllFeed .card img {
+    max-width: 100%;
+    vertical-align: top;
+    position: relative; }
+  .GroupPageAllFeed .card figcaption {
+    padding: 5%;
+    background-color: #ffffff; }
+  .GroupPageAllFeed .card h4 {
+    font-family: 'Oswald';
+    text-transform: uppercase;
+    font-size: 1.7vh;
+    font-weight: 400;
+    line-height: 1.8vh;
+    margin: 3px 0; }
+  .GroupPageAllFeed .card h5 {
+    font-weight: 400;
+    margin: 0;
+    text-transform: uppercase;
+    color: #888;
+    letter-spacing: 1px; }
+  .GroupPageAllFeed .card footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.065);
+    padding: 0 1.12vw;
+    font-size: 1.2vh;
+    line-height: 2.7vh;
+    text-align: left;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; }
+  .GroupPageAllFeed .card footer .icons {
+    position: absolute;
+    right: 1.12vw;
+    top: 0; }
+  .GroupPageAllFeed .card footer .icons > div {
+    display: inline-block;
+    margin-left: .44vw; }
+  .GroupPageAllFeed .card footer .icons i {
+    display: inline-block;
+    margin-right: .27vw;
+    font-size: 1em; }
+  .GroupPageAllFeed .fix-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #000; }
+  .GroupPageAllFeed .new-post-btn {
+    position: absolute;
+    right: 10%;
+    top: 6.2%; }
+  .GroupPageAllFeed .new-post-btn div {
+    padding-top: 3vh; }
+  .GroupPageAllFeed .card-container {
+    padding-top: 3vh; }
+  .GroupPageAllFeed .img-holder {
+    width: 60vw;
+    height: 50vh; }
+  .GroupPageAllFeed .card-content {
+    height: 3vh;
+    width: 60vw;
+    position: absolute;
+    left: 1%;
+    top: 88%;
+    font-size: 1.5vh;
+    text-align: left; }
+  .GroupPageAllFeed .border-box {
+    width: 80vw;
+    border: 2px solid #FFFFFF;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    margin-bottom: 3vh;
+    margin-top: .7vh; }
 
 .Landing .main {
   height: 100vh;
@@ -323,7 +411,8 @@
   animation-name: fadeIn;
   transition: 1s;
   animation-duration: 7s;
-  min-width: 335px; }
+  min-width: 335px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.2); }
 
 .Landing .btn-parent {
   width: 30vw;
@@ -365,10 +454,14 @@
   width: 75%;
   height: 475px; }
 
-.header {
+.mess-header {
+  width: 75vw;
   color: #FFFFFF;
-  font-size: 3vh;
-  padding-bottom: 1vh; }
+  font-size: 4vh;
+  padding-bottom: 1vh;
+  font-weight: bold;
+  margin-bottom: 2vh;
+  margin-top: 2vh; }
 
 .Messages_container {
   display: flex;
@@ -379,7 +472,8 @@
   width: 80%;
   height: 100%;
   overflow-y: scroll;
-  background-color: #FFFFFF; }
+  background-color: #FFFFFF;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.2); }
   .Messages_container .Messages_temporary {
     display: flex;
     width: 100%;
@@ -452,7 +546,8 @@
   height: 100%;
   width: 20%;
   overflow-y: scroll;
-  background-color: #FFFFFF; }
+  background-color: #FFFFFF;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.2); }
   .Messages_friends-container .myFriends-header {
     width: 100%;
     padding: 10px;
@@ -595,6 +690,48 @@
 .PostPage .RedHeartBtn {
   color: red; }
 
+.PostPage .img-holder {
+  width: 100vw;
+  height: 50vh; }
+
+.PostPage .post-header {
+  width: 100vw;
+  font-family: "Raleway";
+  color: #FFFFFF;
+  font-size: 4vh;
+  font-weight: bold;
+  margin-top: 3vh;
+  padding-left: 1vh; }
+
+.PostPage .border-box {
+  width: 100vw;
+  border: 2px solid #FFFFFF;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  margin-bottom: 3vh;
+  margin-top: .5vh; }
+
+.PostPage .content-box {
+  width: 100vw;
+  height: 100%;
+  font-family: 'Raleway';
+  color: #000;
+  background-color: #FFFFFF; }
+
+.PostPage .post-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.PostPage .comment-header {
+  font-family: 'Raleway';
+  font-size: 4vh;
+  color: #FFFFFF;
+  font-weight: bold;
+  padding-left: 1vh; }
+
 .PublicProfile .main {
   height: 100vh;
   width: 100vw;
@@ -650,7 +787,8 @@
   position: absolute;
   bottom: 100%;
   left: 2%;
-  text-align: center; }
+  text-align: center;
+  overflow: hidden; }
 
 .PublicProfile .interests {
   display: flex;
@@ -663,7 +801,8 @@
   position: absolute;
   bottom: 100%;
   left: 26%;
-  text-align: center; }
+  text-align: center;
+  overflow: hidden; }
 
 .GroupView {
   display: flex;
@@ -679,7 +818,7 @@
     width: 90%;
     margin: 10px; }
   .Friends .friendsContainer {
-    height: 100%;
+    height: 40%;
     width: 80vw;
     display: flex;
     justify-content: space-between;
@@ -687,7 +826,10 @@
     margin: auto;
     top: 5%;
     position: relative;
-    border: 2px solid #FFFFFF; }
+    border: 2px solid #FFFFFF;
+    border-left: none;
+    border-right: none;
+    border-bottom: none; }
   .Friends .friendimg {
     margin: auto;
     height: 30%;
@@ -701,13 +843,16 @@
     width: 100vw; }
   .Friends .image {
     width: 100%;
-    border-radius: 5px; }
+    border-radius: 5px;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1), 0 6px 6px 0 rgba(0, 0, 0, 0.2); }
   .Friends .friends-title {
-    margin-top: 3vh;
+    margin-top: 4vh;
     margin-left: 10%;
-    font-size: 6vh; }
+    font-size: 4vh;
+    font-weight: bold; }
   .Friends .friend-name {
-    padding-top: 18px; }
+    padding-top: 18px;
+    font-weight: bold; }
   .Friends .fix-link {
     cursor: pointer;
     text-decoration: none;
