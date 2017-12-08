@@ -101,7 +101,11 @@ class Events extends Component {
             location: this.state.location
         }
         console.log(body)
-        this.props.createEvent(body)
+        this.props.createEvent(body).then(response => {
+            this.setState({
+                events: response.action.payload
+            })
+        })
     }
     
 
