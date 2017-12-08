@@ -26,6 +26,7 @@ class Events extends Component {
             groupid: 0,
             events: [],
             value: new Date(),
+            name: '',
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -89,7 +90,7 @@ class Events extends Component {
     newEvent() {
         const body = {
             groupid: this.state.groupid,
-            name: 6,
+            name: this.state.name,
             description: this.state.description,
             date: this.state.date,
             starttime: this.state.starttime,
@@ -99,8 +100,10 @@ class Events extends Component {
             state: this.state.state,
             location: this.state.location
         }
+        console.log(body)
         this.props.createEvent(body)
     }
+    
 
     onChange = value => this.setState({ value })
 
@@ -171,6 +174,9 @@ class Events extends Component {
                                                                     text: group.name
                                                                 }
                                                             })} onChange={(e, data) => this.setState({ groupid: data.value })} />
+                                                        </div>
+                                                        <div className='input-holder'>
+                                                            <div className='input-title'>Title</div><Input onChange={(e) => this.handleChange(e.target.value, 'name')} className='input'></Input>
                                                         </div>
                                                         <div className='input-holder'>
                                                             <div className='input-title'>Date</div><Input onChange={(e) => this.handleChange(e.target.value, 'date')} className='input'></Input>
