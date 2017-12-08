@@ -23,10 +23,14 @@
     
 }
 
-.header {
+.mess-header {
+    width: 75vw;
     color: $white;
-    font-size: 3vh;
+    font-size: 4vh;
     padding-bottom: 1vh;
+    font-weight: bold;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
 }
 
 
@@ -41,6 +45,8 @@
     overflow-y: scroll;
     // overflow: scroll;
     background-color: $white;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.1), 0 6px 6px 0 rgba(0,0,0,0.2);
+    
     
 
     .Messages_temporary {
@@ -141,6 +147,8 @@
     width: 20%;
     overflow-y: scroll;
     background-color: $white;
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.1), 0 6px 6px 0 rgba(0,0,0,0.2);
+    
     
     .myFriends-header {
         width: 100%;

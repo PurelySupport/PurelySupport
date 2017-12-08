@@ -1,6 +1,7 @@
 @import '../../styles/_colors.scss';
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+
 .Dashboard {
 
     .main-grid {
@@ -27,6 +28,7 @@
         font-family: "Raleway";
         color: $white;
         font-size: 4vh;
+        font-weight: bold;
         // border: 2px solid green;
     }
         
