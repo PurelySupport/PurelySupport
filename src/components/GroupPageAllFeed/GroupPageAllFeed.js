@@ -119,6 +119,7 @@ class GroupPageAllFeed extends Component {
                                     <figcaption>
                                         {/* <h5>Food</h5> */}
                                         <Link to={`/postpage/${post.postid}`} className='fix-link'>
+                                        <img src={post.image1}/>
                                             <h4>{post.title}</h4>
                                         </Link>
                                         <footer>

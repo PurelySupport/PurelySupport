@@ -28,6 +28,7 @@ class Messages extends Component {
     }
 
     componentDidMount() {
+        this.props.userCredentials.userid ? 
         this.props.getAllUsers().then(response => {
             let pass = response.action.payload.filter((user, index, array) => {
                 if (this.props.userCredentials.friends.includes(user.userid)) {
@@ -37,15 +38,15 @@ class Messages extends Component {
             this.setState({
                 friends: pass
             })  
-        })
+        }) : null;
 
+        this.props.userCredentials.userid ? 
         this.props.getUserMessages(this.props.userCredentials.userid).then(response => {
             console.log('usermessages response',response)
             this.setState({
                 messages: response.action.payload
             })
-        })
-
+        }) : null;
     }
 
     handleChange(e, formfield) {
