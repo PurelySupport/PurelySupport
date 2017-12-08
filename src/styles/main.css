@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/css?family=Lato");
 @import url("https://fonts.googleapis.com/css?family=Raleway");
@@ -24,12 +25,29 @@
 .AccountSettings .pad {
   margin-top: 2vh; }
 
-.events {
-  width: 100%;
-  display: flex; }
-  .events .event {
+.Dashboard .main-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%; }
+
+.Dashboard .events {
+  width: 90vw;
+  display: flex;
+  margin-top: 3vh;
+  flex-wrap: wrap;
+  justify-content: center; }
+  .Dashboard .events .events-header {
+    width: 100vw;
+    font-family: "Raleway";
+    color: #FFFFFF;
+    font-size: 4vh; }
+  .Dashboard .events .event {
     width: 250px;
     height: 350px;
+    min-width: 250px;
+    min-height: 350px;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -37,20 +55,20 @@
     box-shadow: 2px 2px 2px 2px #888888;
     background-color: white;
     font-family: 'Raleway'; }
-    .events .event .img-holder {
+    .Dashboard .events .event .img-holder {
       background-color: black;
       width: 100%;
-      height: 40%;
+      height: 175px;
       overflow: hidden;
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
       top: 0; }
-    .events .event .event > groupname {
+    .Dashboard .events .event .event > groupname {
       color: black;
       font-size: 20px; }
-    .events .event .holder {
+    .Dashboard .events .event .holder {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -59,19 +77,36 @@
       padding-bottom: 5%;
       margin-bottom: 2%;
       overflow: hidden; }
-    .events .event .description {
+    .Dashboard .events .event .description {
       width: 100%;
-      padding: 5%;
-      overflow-y: scroll;
+      padding-right: 5%;
+      padding-left: 5%;
       margin-bottom: 5px; }
-    .events .event .groupName {
+    .Dashboard .events .event .groupName {
       color: lightslategray; }
-    .events .event .name {
+    .Dashboard .events .event .name {
       font-size: 20px;
       letter-spacing: 1px; }
 
-.stuff > div {
+.Dashboard .stuff > div {
   color: black; }
+
+.Dashboard .fix-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: #000; }
+
+.Dashboard .event-holder {
+  width: 90vw;
+  display: flex;
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 2px solid #FFFFFF;
+  border-left: none;
+  border-right: none;
+  border-bottom: none; }
 
 .Events {
   height: 100vh;

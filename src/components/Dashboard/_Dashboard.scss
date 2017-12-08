@@ -1,65 +1,119 @@
-.events {
-    width: 100%;
-    display: flex;
-    
-.event {
-    width: 250px;
-    height: 350px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin: 25px;
-    box-shadow: 2px 2px 2px 2px #888888;
-    background-color: rgb(255, 255, 255);
-    font-family: 'Raleway';
+@import '../../styles/_colors.scss';
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 
-    .img-holder {
-        background-color: black;
-        width: 100%;
-        height: 40%;
-        overflow: hidden;
-        position: relative;
+.Dashboard {
+
+    .main-grid {
         display: flex;
         justify-content: center;
         align-items: center;
-        top: 0;
+        // flex-wrap: wrap;
+        // justify-content: space-around;
+        height: 100%;
+        width: 100%;
+        // border: 2px solid green;
     }
 
-
-    .event > groupname {
-        color: black;
-        font-size: 20px;
-    }
-
-    .holder {
+    .events {
+        width: 90vw;
         display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding-left: 5%;
-        padding-top: 5%;
-        padding-bottom: 5%;
-        margin-bottom: 2%;
-        overflow: hidden;
-    }
+        margin-top: 3vh;
+        flex-wrap: wrap;
+        justify-content: center;
+        // border: 2px solid $white;
 
-    .description {
-        width: 100%;
-        padding: 5%;
-        overflow-y: scroll;
-        margin-bottom: 5px;
+    .events-header {
+        width: 100vw;
+        font-family: "Raleway";
+        color: $white;
+        font-size: 4vh;
+        // border: 2px solid green;
+    }
+        
+        
+    .event {
+        width: 250px;
+        height: 350px;
+        min-width: 250px;
+        min-height: 350px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 25px;
+        box-shadow: 2px 2px 2px 2px #888888;
+        background-color: rgb(255, 255, 255);
+        font-family: 'Raleway';
+        // border: 2px solid red;
+    
+        .img-holder {
+            background-color: black;
+            width: 100%;
+            height: 175px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+        }
+    
+    
+        .event > groupname {
+            color: black;
+            font-size: 20px;
+        }
+    
+        .holder {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            padding-left: 5%;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            margin-bottom: 2%;
+            overflow: hidden;
+            // border: 2px solid orchid;
+        }
+    
+        .description {
+            width: 100%;
+            padding-right: 5%;
+            padding-left: 5%;
+            // overflow-y: scroll;
+            margin-bottom: 5px;
+        }
+        
+        .groupName {
+            color: lightslategray;
+        }
+    
+        .name {
+            font-size: 20px;
+            letter-spacing: 1px;
+        }
+    }
     }
     
-    .groupName {
-        color: lightslategray;
+    .stuff > div {
+        color: black;
     }
 
-    .name {
-        font-size: 20px;
-        letter-spacing: 1px;
-    }
-}
-}
+    .fix-link {
+        cursor: pointer;
+        text-decoration: none;
+        color: #000;
+      }
 
-.stuff > div {
-    color: black;
+      .event-holder {
+          width: 90vw;
+          display: flex;
+          margin-top: 3vh;
+          margin-bottom: 5vh;
+          flex-wrap: wrap;
+          justify-content: center;
+          border: 2px solid $white;
+          border-left: none;
+          border-right: none;
+          border-bottom: none;
+      }
 }
