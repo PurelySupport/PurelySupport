@@ -1,0 +1,58 @@
+@import '../../styles/_colors.scss';
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+
+.AccountSettings {
+    .main {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+        font-family: 'Raleway';
+    }
+
+    .container {
+        height: 55vh;
+        width: 80vw;
+        border: 2px solid $white;
+        padding: 1.5vh;
+        margin-top: 1vh;
+        border-right: none;
+        border-left: none;
+        border-bottom: none;
+        // box-shadow: 0 10px 20px 0 rgba(0,0,0,0.1), 0 6px 6px 0 rgba(0,0,0,0.2);
+        
+        // display: flex;
+        // justify-content: center;
+        // align-items: center;
+
+    }
+
+    .pad {
+        margin-top: 2vh;
+    }
+
+    .account-header {
+        width: 80vw;
+        font-family: "Raleway";
+        color: $white;
+        font-size: 4vh;
+        font-weight: bold;
+        margin-top: 3vh;
+        margin-left: 20vh;
+        margin-bottom: 1vh;
+        // border: 2px solid green;
+    }
+
+    .border-box {
+        width: 80vw;
+        // height: 200px;
+        border: 2px solid $white;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        margin-bottom: 3vh;
+        margin-top: .5vh;
+    }
+}

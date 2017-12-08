@@ -131,64 +131,72 @@ class AccountSettings extends Component {
         }
         return (
             <div className='AccountSettings'>
-                <h1>Account Settings</h1>
                 <Navbar />
-                <Form size='tiny' error>
-                    <Form.Input label='Username' value={this.state.displayName} width={6} onChange={(e) => this.handleChange(e.target.value, 'displayName')} required />
-                    <Form.Group widths='equal'>
-                        <Form.Field label='First name' control='input' value={this.state.firstName} onChange={(e) => this.handleChange(e.target.value, 'firstName')} required />
-                        <Form.Field label='Last name' control='input' value={this.state.lastName} onChange={(e) => this.handleChange(e.target.value, 'lastName')} required />
-                    </Form.Group>
-                    <Form.Group widths='equal'>
-                        <Form.Field label='City' control='input' value={this.state.city} onChange={(e) => this.handleChange(e.target.value, 'city')} required />
-                        <Form.Field label='State' control='input' value={this.state.state} onChange={(e) => this.handleChange(e.target.value, 'state')} required />
-                    </Form.Group>
+
+                <div className='account-header'>Account Settings</div>
+                <div className='main'>
+                
+
+                    <div className='container'>
+
+                        <Form size='tiny' error>
+                            <Form.Input label='Username' value={this.state.displayName} width={6} onChange={(e) => this.handleChange(e.target.value, 'displayName')} required />
+                            <Form.Group widths='equal'>
+                                <Form.Field label='First name' control='input' value={this.state.firstName} onChange={(e) => this.handleChange(e.target.value, 'firstName')} required />
+                                <Form.Field label='Last name' control='input' value={this.state.lastName} onChange={(e) => this.handleChange(e.target.value, 'lastName')} required />
+                            </Form.Group>
+                            <Form.Group widths='equal'>
+                                <Form.Field label='City' control='input' value={this.state.city} onChange={(e) => this.handleChange(e.target.value, 'city')} required />
+                                <Form.Field label='State' control='input' value={this.state.state} onChange={(e) => this.handleChange(e.target.value, 'state')} required />
+                            </Form.Group>
 
 
-                    <Dropdown placeholder='Interests' value={[this.state.userInterests]} fluid multiple search selection options={this.props.interests.map((interest, index) => {
-                        return {
-                            key: interest.interestid,
-                            value: interest.interestid,
-                            text: interest.interest
-                        }
-                    })} onChange={(e, data) => this.setState({ userInterests: data.value })} />
-                    <Dropdown placeholder='Diseases' value={[this.state.userDiseases]} fluid multiple search selection options={this.props.diseases.map((disease, index) => {
-                        return {
-                            key: disease.diseaseid,
-                            value: disease.diseaseid,
-                            text: disease.name
-                        }
-                    })} onChange={(e, data) => this.setState({ userDiseases: data.value })} />
-                    <Dropdown placeholder='Groups' value={this.state.userGroups} fluid multiple search selection options={this.props.groups.map((group, index) => {
-                        return {
-                            key: group.groupid,
-                            value: group.groupid,
-                            text: group.name
-                        }
-                    })} onChange={(e, data) => this.setState({ userGroups: data.value })} />
+                            <Dropdown placeholder='Interests' value={this.state.userInterests} fluid multiple search selection options={this.props.interests.map((interest, index) => {
+                                return {
+                                    key: interest.interestid,
+                                    value: interest.interestid,
+                                    text: interest.interest
+                                }
+                            })} onChange={(e, data) => this.setState({ userInterests: data.value })} />
+                            <Dropdown placeholder='Diseases' value={this.state.userDiseases} fluid multiple search selection options={this.props.diseases.map((disease, index) => {
+                                return {
+                                    key: disease.diseaseid,
+                                    value: disease.diseaseid,
+                                    text: disease.name
+                                }
+                            })} onChange={(e, data) => this.setState({ userDiseases: data.value })} />
+                            <Dropdown placeholder='Groups' value={this.state.userGroups} fluid multiple search selection options={this.props.groups.map((group, index) => {
+                                return {
+                                    key: group.groupid,
+                                    value: group.groupid,
+                                    text: group.name
+                                }
+                            })} onChange={(e, data) => this.setState({ userGroups: data.value })} />
 
 
-                    {this.state.allInfoFilled === false ? <Button disabled>Submit</Button> :
-                        <Link to='/dashboard'>
-                            <Button type='submit' onClick={() => this.updateAccountSettings()} >Submit</Button>
-                        </Link>
-                    }
+                            {this.state.allInfoFilled === false ? <Button disabled className='pad'>Submit</Button> :
+                                <Link to='/dashboard'>
+                                    <Button type='submit' onClick={() => this.updateAccountSettings()} className='pad'>Submit</Button>
+                                </Link>
+                            }
 
-                    <Modal basic size='small' closeIcon trigger={<Button>Cancel</Button>}>
-                        <Header icon='hand paper' content='Unsaved Data' />
-                        <Modal.Content>
-                            <p>You have unsaved changes, are you sure you want to leave the page?</p>
-                        </Modal.Content>
-                        <Modal.Actions>
-                            <Link to='/dashboard'>
-                                <Button color='green' inverted>
-                                    <Icon name='checkmark' /> Yes
+                            <Modal basic size='small' closeIcon trigger={<Button>Cancel</Button>}>
+                                <Header icon='hand paper' content='Unsaved Data' />
+                                <Modal.Content>
+                                    <p>You have unsaved changes, are you sure you want to leave the page?</p>
+                                </Modal.Content>
+                                <Modal.Actions>
+                                    <Link to='/dashboard'>
+                                        <Button color='green' inverted>
+                                            <Icon name='checkmark' /> Yes
                             </Button>
-                            </Link>
-                        </Modal.Actions>
-                    </Modal>
-                    <Divider hidden />
-                </Form>
+                                    </Link>
+                                </Modal.Actions>
+                            </Modal>
+                            <Divider hidden />
+                        </Form>
+                    </div>
+                </div>
             </div>
         )
     }
