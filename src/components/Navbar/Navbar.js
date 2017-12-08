@@ -46,7 +46,7 @@ class Navbar extends Component {
                                     <list>FRIENDS</list>
                                 </Link>
                                 <Link to='/grouppage' className='fix-link2'>
-                                    <list>GROUPS</list>
+                                    <list>POSTS</list>
                                 </Link>
                                 <Link to='/events' className='fix-link2'>
                                     <list>EVENTS</list>

@@ -717,7 +717,9 @@
   height: 100%;
   font-family: 'Raleway';
   color: #000;
-  background-color: #FFFFFF; }
+  background-color: #FFFFFF;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw; }
 
 .PostPage .post-main-container {
   display: flex;
